@@ -6,7 +6,7 @@ import BackgroundCircules from './BackgroundCircules';
 type Props = {}
 
 export default function Hero({}: Props) {
-    const [text,count] = useTypewriter({
+    const [text] = useTypewriter({
         words:["print(Luis A. Ruiz)","Developer.cpp", "Desginer.tsx", "#include <Gamer.h>", "printf(Welcome?);"],
         loop: true,
         delaySpeed: 2500
