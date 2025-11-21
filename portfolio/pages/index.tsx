@@ -15,6 +15,7 @@ import { fetchProjects } from '../utils/fetchProjects'
 import { fetchSkills } from '../utils/fetchSkills'
 import { fetchExperience } from '../utils/fetchExperience'
 import { fetchSocial } from '../utils/fetchSocial'
+import Image from 'next/image';
 const ProfileImage = "/IMG_8783.PNG";
 
 type Props = {
@@ -29,7 +30,7 @@ const Home: NextPage<Props> = ({ pageInfo, experiences, skills, projects, social
   return (
     <div className="bg-gray-800 text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#008000]">
       <Head>
-        <title>Luis's Portfolio</title>
+        <title>Luis&apos;s Portfolio</title>
       </Head>
 
       <Header socials={socials} />
@@ -66,7 +67,7 @@ const Home: NextPage<Props> = ({ pageInfo, experiences, skills, projects, social
       <footer className="container m-auto rounded-full w-20 text-white p-4 sticky bottom-0 z-50">
         <Link href="#hero" className='sticky bottom-5 w-full cursor-pointer'>
           <div className="flex items-center justify-center text-center">
-            <img src={ProfileImage} alt="" className='h-10 w-10 rounded-full grayscale hover:grayscale-0' />
+            <Image src={ProfileImage} alt="" className='h-10 w-10 rounded-full grayscale hover:grayscale-0' width={40} height={40} />
           </div>
         </Link>
       </footer>
@@ -91,7 +92,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       projects,
       socials,
     },
-
-    revalidate: 10,
+    revalidate: process.env.NODE_ENV === "production" ? 60 : 10,
   }
 }

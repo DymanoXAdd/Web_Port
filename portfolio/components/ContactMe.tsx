@@ -41,7 +41,7 @@ function ContactMe({ }: Props) {
 
           <div className="flex items-center space-x-5 justify-center ">
             <EnvelopeIcon className=" text-[#008000] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">Luisruiz1002@yahoo.com</p>
+            <p className="text-2xl">Luisaruiz2734@gmail.com</p>
           </div>
 
           <div className="flex items-center space-x-5 justify-center ">

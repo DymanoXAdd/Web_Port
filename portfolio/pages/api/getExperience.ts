@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { client } from '../../sanity/lib/Client'
+import { client } from '../../sanity/lib/client'
 import {groq} from 'next-sanity'
 import { Experience, Project} from '../../typing'
 

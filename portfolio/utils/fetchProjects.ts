@@ -1,12 +1,14 @@
 import { Project } from "../typing";
+import { client } from '../sanity/lib/client';
+import { groq } from 'next-sanity';
+
+const query = groq`*[_type == "project"] {
+    ...,
+    technologies[]->
+}`;
 
 export const fetchProjects = async () => {
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getProject`);
-
-    const data = await res.json();
-    const projects: Project[] = data.projects;
-
+    const projects: Project[] = await client.fetch(query);
     //console.log("fetching", projects);
     return projects;
 }
