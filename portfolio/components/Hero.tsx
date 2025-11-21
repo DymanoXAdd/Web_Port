@@ -2,12 +2,16 @@ import Link from 'next/link';
 import React from 'react'
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
 import BackgroundCircules from './BackgroundCircules';
+import { image, PageInfo } from '../typing';
+import { urlFor } from '../sanity/lib/image';
 
-type Props = {}
+type Props = {
+    pageInfo: PageInfo;
+}
 
-export default function Hero({ }: Props) {
+export default function Hero({ pageInfo }: Props) {
     const [text] = useTypewriter({
-        words: ["print(Luis A. Ruiz)", "Developer.cpp", "Desginer.tsx", "#include <Gamer.h>", "printf(Welcome?);"],
+        words: [`print(${pageInfo.name})`, "Developer.cpp", "Desginer.tsx", "#include <Gamer.h>", "printf(Welcome?);"],
         loop: true,
         delaySpeed: 2500
     });
@@ -15,12 +19,12 @@ export default function Hero({ }: Props) {
         <div className=" h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
             <BackgroundCircules />
             <img className="relative rounded-full h-32 w-32 mx-auto object-cover"
-                src=""
+                src={urlFor(pageInfo?.heroImage).url()}
                 alt=""
             />
             <div className="z-20">
                 <h2 className=" text-sm uppercase text-gray-400 pb-2 tracking-[10px]">
-                    Software Engineer
+                    {pageInfo?.role}
                 </h2>
                 <h1 className=" text-5xl lg:text-5xl font-semibold px-10">
                     <span className="mr-3">{text}</span>

@@ -1,10 +1,14 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import { PageInfo } from '../typing';
+import { urlFor } from '../sanity/lib/image';
 
 
-type Props = {}
+type Props = {
+  pageInfo: PageInfo;
+}
 
-function About({ }: Props) {
+function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{
@@ -31,13 +35,13 @@ function About({ }: Props) {
         }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        src=""
+        src={urlFor(pageInfo?.profilePic).url()}
         className=" -mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-65 md:h-95 xl:w-[500px] xl:h-[600px]"
       />
       <div className=" space-y-10 px-0 md:px-10 ">
-        <h4 className=" text-4xl font-semibold">Here is a background </h4>
+        <h4 className=" text-4xl font-semibold">My Little Background</h4>
         <p className="text-base">
-          Sup Loser
+          {pageInfo?.backgroundInformation}
         </p>
       </div>
     </motion.div>
