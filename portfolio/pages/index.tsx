@@ -17,6 +17,7 @@ import { fetchExperience } from '../utils/fetchExperience'
 import { fetchSocial } from '../utils/fetchSocial'
 import Image from 'next/image';
 const ProfileImage = "/IMG_8783.PNG";
+import { Analytics } from "@vercel/analytics/next"
 
 type Props = {
   pageInfo: PageInfo;
@@ -71,6 +72,7 @@ const Home: NextPage<Props> = ({ pageInfo, experiences, skills, projects, social
           </div>
         </Link>
       </footer>
+      <Analytics />
     </div>
   )
 }
