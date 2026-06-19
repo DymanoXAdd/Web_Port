@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { Experience } from "@/types";
 import { urlFor } from "@/lib/sanity";
-import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
+import { containerVariants, itemVariants } from "@/lib/animations";
 import ExperienceCard from "@/components/ExperienceCard";
 
 type Props = {
@@ -14,7 +14,10 @@ type Props = {
 function WorkExperience({ experiences }: Props) {
   return (
     <motion.div
-      {...staggerContainer}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       className="h-screen flex flex-col relative overflow-hidden text-center md:text-left max-w-full justify-center mx-auto items-center z-0"
     >
       <h3 className="section-title">Experience</h3>
@@ -34,7 +37,7 @@ function WorkExperience({ experiences }: Props) {
             {experiences.map((experience, i) => (
               <motion.div
                 key={experience._id}
-                {...staggerItem}
+                variants={itemVariants}
                 className="flex-shrink-0 w-full md:w-screen max-w-md"
               >
                 <ExperienceCard experience={experience} />

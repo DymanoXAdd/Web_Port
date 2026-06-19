@@ -7,7 +7,7 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 import BackgroundCircles from "@/components/BackgroundCircles";
 import type { PageInfo } from "@/types";
 import { urlFor } from "@/lib/sanity";
-import { fadeInUp, float, staggerContainer, staggerItem } from "@/lib/animations";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
 type Props = {
   pageInfo: PageInfo;
@@ -28,12 +28,17 @@ export default function Hero({ pageInfo }: Props) {
 
   return (
     <motion.div
-      {...staggerContainer}
-      className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="relative h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden"
     >
-      <BackgroundCircles />
+      {/* Fills the whole section behind all content */}
+      <div className="absolute inset-0 z-0">
+        <BackgroundCircles />
+      </div>
 
-      <motion.div {...staggerItem} className="z-20">
+      <motion.div variants={itemVariants} className="z-20">
         <motion.img
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -46,7 +51,7 @@ export default function Hero({ pageInfo }: Props) {
         />
       </motion.div>
 
-      <motion.div {...staggerItem} className="z-20">
+      <motion.div variants={itemVariants} className="z-20">
         <h2 className="text-sm uppercase text-gray-400 pb-2 tracking-[10px]">
           {pageInfo?.role}
         </h2>
@@ -57,7 +62,7 @@ export default function Hero({ pageInfo }: Props) {
       </motion.div>
 
       <motion.div
-        {...staggerItem}
+        variants={itemVariants}
         className="pt-5 flex flex-wrap gap-4 justify-center"
       >
         {[

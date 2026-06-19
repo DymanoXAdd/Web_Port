@@ -1,5 +1,36 @@
 // Animation presets for consistent, reusable Framer Motion animations
 
+// ── Variants-based stagger (correct way to stagger children in Framer Motion) ──
+// Use these instead of staggerContainer/staggerItem spread pattern.
+// Parent uses containerVariants, children use itemVariants.
+export const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+export const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+};
+
+export const itemVariantsLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+export const itemVariantsRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+// ── ──────────────────────────────────────────────────────────────────────── ──
+
+
 export const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },

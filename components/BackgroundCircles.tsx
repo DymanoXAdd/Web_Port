@@ -9,7 +9,7 @@ export default function BackgroundCircles() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative w-full flex justify-center items-center"
+      className="relative w-full h-full flex justify-center items-center"
     >
       <div className="absolute top-0 z-0 w-72 h-72 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute top-0 -left-4 z-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>

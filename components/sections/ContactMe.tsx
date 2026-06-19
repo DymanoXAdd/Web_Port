@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import type { PageInfo } from "@/types";
 import { contactFormSchema, type ContactFormInput } from "@/lib/validation";
-import { staggerContainer, staggerItem } from "@/lib/animations";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
 type Props = {
   pageInfo: PageInfo;
@@ -59,20 +59,23 @@ export default function ContactMe({ pageInfo }: Props) {
 
   return (
     <motion.div
-      {...staggerContainer}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       className="h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
     >
       <h3 className="section-title">Contact</h3>
 
       <div className="flex flex-col translate-y-5 w-full md:w-1/2">
-        <motion.h4 {...staggerItem} className="text-2xl font-semibold text-center pt-10">
+        <motion.h4 variants={itemVariants} className="text-2xl font-semibold text-center pt-10">
           I got just what you need.{" "}
           <span className="underline decoration-green-500 text-green-400">
             Let's Talk.
           </span>
         </motion.h4>
 
-        <motion.div {...staggerItem} className="pt-5 pb-10 space-y-5">
+        <motion.div variants={itemVariants} className="pt-5 pb-10 space-y-5">
           {[
             {
               icon: PhoneIcon,
@@ -101,7 +104,7 @@ export default function ContactMe({ pageInfo }: Props) {
         </motion.div>
 
         <motion.form
-          {...staggerItem}
+          variants={itemVariants}
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col space-y-4 w-full md:w-fit mx-auto md:mx-0"
         >

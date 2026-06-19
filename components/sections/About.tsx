@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { PageInfo } from "@/types";
 import { urlFor } from "@/lib/sanity";
-import { fadeInLeft, fadeInRight, staggerContainer, staggerItem } from "@/lib/animations";
+import { containerVariants, itemVariants, itemVariantsLeft, itemVariantsRight } from "@/lib/animations";
 
 type Props = {
   pageInfo: PageInfo;
@@ -13,27 +13,30 @@ type Props = {
 function About({ pageInfo }: Props) {
   return (
     <motion.div
-      {...staggerContainer}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       className="flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
     >
       <h3 className="section-title">About</h3>
 
       <motion.img
-        {...fadeInLeft}
+        variants={itemVariantsLeft}
         src={urlFor(pageInfo?.profilePic).url()}
         alt={pageInfo?.name}
-        className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-65 md:h-95 xl:w-[500px] xl:h-[600px] shadow-lg"
+        className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-[260px] md:h-[380px] xl:w-[500px] xl:h-[600px] shadow-lg"
       />
 
-      <motion.div {...staggerItem} className="space-y-10 px-0 md:px-10">
+      <motion.div variants={itemVariants} className="space-y-10 px-0 md:px-10">
         <motion.h4
-          {...fadeInRight}
+          variants={itemVariantsRight}
           className="text-4xl font-semibold text-green-400"
         >
           My Little Background
         </motion.h4>
         <motion.p
-          {...fadeInRight}
+          variants={itemVariantsRight}
           className="text-base text-gray-300 leading-relaxed"
         >
           {pageInfo?.backgroundInformation}
@@ -41,7 +44,7 @@ function About({ pageInfo }: Props) {
 
         {/* Quick stats */}
         <motion.div
-          {...staggerItem}
+          variants={itemVariants}
           className="grid grid-cols-3 gap-4 pt-6"
         >
           {[
@@ -51,9 +54,7 @@ function About({ pageInfo }: Props) {
           ].map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 }}
+              variants={itemVariants}
               className="text-center p-4 rounded-lg bg-gray-700/30"
             >
               <div className="text-2xl font-bold text-green-400">{stat.value}</div>

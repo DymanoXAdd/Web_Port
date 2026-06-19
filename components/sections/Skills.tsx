@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { Skill } from "@/types";
 import SkillComponent from "@/components/Skill";
-import { staggerContainer, staggerItem } from "@/lib/animations";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
 type Props = {
   skills: Skill[];
@@ -13,7 +13,10 @@ type Props = {
 function Skills({ skills }: Props) {
   return (
     <motion.div
-      {...staggerContainer}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       className="flex relative flex-col text-center md:text-left max-w-full justify-center mx-auto py-10 z-0 min-h-screen"
     >
       <h3 className="section-title">Skills</h3>
@@ -22,8 +25,7 @@ function Skills({ skills }: Props) {
         {skills.map((skill, i) => (
           <motion.div
             key={skill._id}
-            {...staggerItem}
-            transition={{ delay: i * 0.05 }}
+            variants={itemVariants}
           >
             <SkillComponent skill={skill} index={i} />
           </motion.div>

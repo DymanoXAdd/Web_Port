@@ -73,27 +73,27 @@ export default async function Home() {
       <ErrorBoundary>
         <Header socials={socials} />
 
-        <section id="hero" className="snap-start">
+        <section id="hero" className="snap-start h-screen">
           <Hero pageInfo={pageInfo} />
         </section>
 
-        <section id="about" className="snap-center">
+        <section id="about" className="snap-start h-screen">
           <About pageInfo={pageInfo} />
         </section>
 
-        <section id="experience" className="snap-center">
+        <section id="experience" className="snap-start h-screen">
           <WorkExperience experiences={experiences} />
         </section>
 
-        <section id="skills" className="snap-start">
+        <section id="skills" className="snap-start h-screen">
           <Skills skills={skills} />
         </section>
 
-        <section id="projects" className="snap-start">
+        <section id="projects" className="snap-start h-screen">
           <Projects projects={projects} />
         </section>
 
-        <section id="contact" className="snap-start">
+        <section id="contact" className="snap-start h-screen">
           <ContactMe pageInfo={pageInfo} />
         </section>
 
