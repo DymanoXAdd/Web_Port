@@ -16,11 +16,11 @@ type Props = {
 export default function Hero({ pageInfo }: Props) {
   const [text] = useTypewriter({
     words: [
-      `console.log("${pageInfo.name}")`,
+      `print(${pageInfo.name})`,
       "Developer.cpp",
-      "Designer.tsx",
+      "Desginer.tsx",
       "#include <Gamer.h>",
-      "print(Welcome);",
+      "printf(Welcome?);",
     ],
     loop: true,
     delaySpeed: 2500,
@@ -33,8 +33,8 @@ export default function Hero({ pageInfo }: Props) {
       animate="visible"
       className="relative h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden"
     >
-      {/* Fills the whole section behind all content */}
-      <div className="absolute inset-0 z-0">
+      {/* Pulsing rings centered behind all content */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
         <BackgroundCircles />
       </div>
 
@@ -55,37 +55,34 @@ export default function Hero({ pageInfo }: Props) {
         <h2 className="text-sm uppercase text-gray-400 pb-2 tracking-[10px]">
           {pageInfo?.role}
         </h2>
-        <h1 className="text-5xl lg:text-6xl font-semibold px-10 min-h-32">
-          <span className="mr-3 text-green-400">{text}</span>
+        <h1 className="text-5xl lg:text-6xl font-semibold px-10">
+          <span className="mr-3">{text}</span>
           <Cursor cursorColor="#00ff00" />
         </h1>
-      </motion.div>
 
-      <motion.div
-        variants={itemVariants}
-        className="pt-5 flex flex-wrap gap-4 justify-center"
-      >
-        {[
-          { href: "#about", label: "About" },
-          { href: "#experience", label: "Experience" },
-          { href: "#skills", label: "Skills" },
-          { href: "#projects", label: "Projects" },
-        ].map((button, i) => (
-          <motion.div
-            key={button.href}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + i * 0.1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link href={button.href}>
-              <button className="hero-button">
-                {button.label}
-              </button>
-            </Link>
-          </motion.div>
-        ))}
+        <div className="pt-5 flex flex-wrap gap-4 justify-center">
+          {[
+            { href: "#about", label: "About" },
+            { href: "#experience", label: "Experience" },
+            { href: "#skills", label: "Skills" },
+            { href: "#projects", label: "Projects" },
+          ].map((button, i) => (
+            <motion.div
+              key={button.href}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link href={button.href}>
+                <button className="hero-button">
+                  {button.label}
+                </button>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}

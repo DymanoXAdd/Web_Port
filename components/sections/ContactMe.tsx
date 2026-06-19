@@ -194,7 +194,7 @@ export default function ContactMe({ pageInfo }: Props) {
             whileTap={{ scale: 0.95 }}
             className="bg-green-600 hover:bg-green-700 disabled:bg-gray-600 py-3 px-4 rounded-md text-white font-bold text-lg transition-colors"
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
+            {isSubmitting ? "Sending..." : "Submit"}
           </motion.button>
         </motion.form>
       </div>

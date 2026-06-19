@@ -7,39 +7,19 @@ export default function BackgroundCircles() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="relative w-full h-full flex justify-center items-center"
+      animate={{
+        scale: [1, 2, 2, 3, 1],
+        opacity: [0.1, 0.2, 0.4, 0.8, 0.1, 1.0],
+        borderRadius: ["20%", "20%", "50%", "80%", "20%"],
+      }}
+      transition={{ duration: 2.5 }}
+      className="relative flex justify-center items-center"
     >
-      <div className="absolute top-0 z-0 w-72 h-72 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute top-0 -left-4 z-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-8 right-20 z-0 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-
-      <style>{`
-        @keyframes blob {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
+      <div className="absolute border border-[#5F5756] rounded-full h-[200px] w-[200px] animate-ping" />
+      <div className="absolute border border-[#5F5756] rounded-full h-[300px] w-[300px] animate-ping" />
+      <div className="absolute border border-[#5F5756] rounded-full h-[500px] w-[500px] animate-ping" />
+      <div className="absolute rounded-full border border-[#008000] opacity-20 h-[650px] w-[650px] animate-pulse" />
+      <div className="absolute rounded-full border border-[#5F5756] opacity-20 h-[800px] w-[800px]" />
     </motion.div>
   );
 }

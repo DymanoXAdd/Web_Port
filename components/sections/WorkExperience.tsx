@@ -46,8 +46,6 @@ function WorkExperience({ experiences }: Props) {
           </motion.div>
         </motion.div>
       </div>
-
-      <div className="w-full absolute top-[30%] bg-green-600/10 left-0 h-[500px] -skew-y-12" />
     </motion.div>
   );
 }

@@ -14,8 +14,7 @@ type Props = {
 
 export default function Header({ socials }: Props) {
   return (
-    <header className="sticky top-0 w-full z-20 bg-gray-800/80 backdrop-blur-sm">
-      <div className="p-5 flex items-center justify-between max-w-7xl mx-auto xl:items-center">
+    <header className="sticky top-0 p-5 flex items-center justify-between max-w-7xl mx-auto z-20 xl:items-center">
       <motion.div
         {...slideInLeft}
         className="flex flex-row items-center gap-4"
@@ -65,7 +64,6 @@ export default function Header({ socials }: Props) {
           </p>
         </motion.div>
       </Link>
-      </div>
     </header>
   );
 }
