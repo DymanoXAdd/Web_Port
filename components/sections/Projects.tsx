@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import type { Project } from "@/types";
 import { urlFor } from "@/lib/sanity";
-import { staggerContainer, fadeInUp } from "@/lib/animations";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
 type Props = {
   projects: Project[];
@@ -13,7 +13,10 @@ type Props = {
 function Projects({ projects }: Props) {
   return (
     <motion.div
-      {...staggerContainer}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
     >
       <h3 className="section-title">Projects</h3>
@@ -44,9 +47,15 @@ function Projects({ projects }: Props) {
               />
             </motion.div>
 
-            <div className="space-y-10 px-0 md:px-10 max-w-6xl">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="space-y-10 px-0 md:px-10 max-w-6xl"
+            >
               <motion.h4
-                {...fadeInUp}
+                variants={itemVariants}
                 className="text-4xl font-semibold text-center text-green-400"
               >
                 <a
@@ -61,10 +70,10 @@ function Projects({ projects }: Props) {
               </motion.h4>
 
               <motion.div
-                {...fadeInUp}
+                variants={itemVariants}
                 className="flex items-center space-x-2 justify-center flex-wrap gap-4"
               >
-                {project?.technologies.map((technology, techIndex) => (
+                {project?.technologies.map((technology) => (
                   <motion.div
                     key={technology._id}
                     whileHover={{ scale: 1.2, rotate: 10 }}
@@ -81,16 +90,14 @@ function Projects({ projects }: Props) {
               </motion.div>
 
               <motion.p
-                {...fadeInUp}
+                variants={itemVariants}
                 className="text-lg text-center md:text-left text-gray-300 leading-relaxed"
               >
                 {project?.summary}
               </motion.p>
 
               <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                variants={itemVariants}
                 className="flex justify-center md:justify-start"
               >
                 <a
@@ -107,7 +114,7 @@ function Projects({ projects }: Props) {
                   </motion.button>
                 </a>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         ))}
       </div>
