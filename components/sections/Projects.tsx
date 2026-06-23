@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Project } from "@/types";
 import { urlFor } from "@/lib/sanity";
@@ -20,6 +21,18 @@ function Projects({ projects }: Props) {
       className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
     >
       <h3 className="section-title">Projects</h3>
+
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-30">
+        <Link href="/projects-globe">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors shadow-lg"
+          >
+            View Project Globe
+          </motion.button>
+        </Link>
+      </div>
 
       <div className="relative w-full h-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-green-500 scrollbar-thin">
         {projects.map((project, i) => (

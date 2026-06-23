@@ -71,7 +71,7 @@ export default function ContactMe({ pageInfo }: Props) {
         <motion.h4 variants={itemVariants} className="text-2xl font-semibold text-center pt-10">
           I got just what you need.{" "}
           <span className="underline decoration-green-500 text-green-400">
-            Let's Talk.
+            Let&apos;s Talk.
           </span>
         </motion.h4>
 
@@ -182,7 +182,7 @@ export default function ContactMe({ pageInfo }: Props) {
               animate={{ opacity: 1, y: 0 }}
               className="p-3 bg-green-500/20 border border-green-500 rounded text-green-400 text-sm"
             >
-              ✓ Message sent successfully! I'll get back to you soon.
+              ✓ Message sent successfully! I&apos;ll get back to you soon.
             </motion.div>
           )}
 
