@@ -73,5 +73,3 @@ export interface Social extends SanityBody {
   title: string;
   url: string;
 }
-
-export type Theme = "light" | "dark";

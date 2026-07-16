@@ -63,19 +63,23 @@ export default function ContactMe({ pageInfo }: Props) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
+      className="relative h-screen w-full overflow-y-auto overflow-x-hidden"
     >
       <h3 className="section-title">Contact</h3>
 
-      <div className="flex flex-col translate-y-5 w-full md:w-1/2">
-        <motion.h4 variants={itemVariants} className="text-2xl font-semibold text-center pt-10">
+      <div className="mx-auto flex min-h-full max-w-xl flex-col justify-center px-5 sm:px-8 pt-36 pb-12 md:pt-40 w-full">
+        <motion.h4
+          variants={itemVariants}
+          className="text-xl sm:text-2xl font-semibold text-center text-black"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
           I got just what you need.{" "}
-          <span className="underline decoration-green-500 text-green-400">
+          <span className="underline decoration-black text-black">
             Let&apos;s Talk.
           </span>
         </motion.h4>
 
-        <motion.div variants={itemVariants} className="pt-5 pb-10 space-y-5">
+        <motion.div variants={itemVariants} className="pt-4 pb-6 space-y-3">
           {[
             {
               icon: PhoneIcon,
@@ -97,8 +101,8 @@ export default function ContactMe({ pageInfo }: Props) {
               transition={{ delay: i * 0.1 }}
               className="flex items-center space-x-5 justify-center"
             >
-              <item.icon className="text-green-400 h-7 w-7 animate-pulse" />
-              <p className="text-2xl text-gray-300">{item.label}</p>
+              <item.icon className="text-black h-6 w-6 animate-pulse" />
+              <p className="text-lg sm:text-xl text-neutral-700">{item.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -106,7 +110,7 @@ export default function ContactMe({ pageInfo }: Props) {
         <motion.form
           variants={itemVariants}
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-4 w-full md:w-fit mx-auto md:mx-0"
+          className="flex flex-col space-y-3 w-full mx-auto"
         >
           {/* Name & Email Row */}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2">
@@ -156,7 +160,7 @@ export default function ContactMe({ pageInfo }: Props) {
             <textarea
               {...register("message")}
               placeholder="Message"
-              className="contact-input w-full min-h-32"
+              className="contact-input w-full min-h-24"
               disabled={isSubmitting}
             />
             {errors.message && (
@@ -192,7 +196,8 @@ export default function ContactMe({ pageInfo }: Props) {
             disabled={isSubmitting}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-green-600 hover:bg-green-700 disabled:bg-gray-600 py-3 px-4 rounded-md text-white font-bold text-lg transition-colors"
+            className="bg-black hover:bg-neutral-800 disabled:bg-neutral-400 py-3 px-4 rounded-md text-white font-bold text-lg transition-colors"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
             {isSubmitting ? "Sending..." : "Submit"}
           </motion.button>

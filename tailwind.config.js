@@ -4,13 +4,12 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: ["class", "[data-theme='dark']"],
   theme: {
     extend: {
       colors: {
         accent: {
-          light: "#00b300",
-          dark: "#00ff00",
+          light: "#333333",
+          dark: "#0a0a0a",
         },
       },
       animation: {

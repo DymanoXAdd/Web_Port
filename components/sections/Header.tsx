@@ -1,69 +1,139 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { SocialIcon } from "react-social-icons";
-import Link from "next/link";
+import React, { useState } from "react";
 import type { Social } from "@/types";
-import ThemeToggle from "@/components/theme/ThemeToggle";
-import { slideInLeft, slideInRight } from "@/lib/animations";
 
 type Props = {
+  // Kept in the signature: page.tsx passes socials. Surfaced subtly in the
+  // mobile overlay so the page.tsx call is never broken.
   socials: Social[];
 };
 
+const NAV_LINKS = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+];
+
 export default function Header({ socials }: Props) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 p-5 flex items-center justify-between max-w-7xl mx-auto z-20 xl:items-center">
-      <motion.div
-        {...slideInLeft}
-        className="flex flex-row items-center gap-4"
-      >
-        {/* Social Icons */}
-        {socials.map((social) => (
-          <motion.div
-            key={social._id}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
+    <>
+      <header className="fixed top-0 left-0 right-0 w-full px-5 sm:px-8 py-4 sm:py-5 flex justify-between items-center z-20">
+        {/* Logo (left) */}
+        <a href="#hero" className="flex flex-row items-center gap-3">
+          <span
+            className="text-[21px] sm:text-[26px] tracking-tight text-black"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
-            <SocialIcon
-              url={social.url}
-              fgColor="grey"
-              bgColor="transparent"
-              style={{ height: 40, width: 40 }}
-            />
-          </motion.div>
-        ))}
-
-        {/* Theme Toggle */}
-        <ThemeToggle />
-      </motion.div>
-
-      <Link href="#contact">
-        <motion.div
-          {...slideInRight}
-          className="flex flex-row items-center text-gray-300 cursor-pointer hover:text-green-400 transition-colors"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-10 w-10 text-gray-500"
+            Luis A Ruiz
+          </span>
+          <span
+            className="text-[25px] sm:text-[30px] text-black select-none"
+            style={{ letterSpacing: "-0.02em" }}
             aria-hidden="true"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-            />
-          </svg>
-          <p className="uppercase hidden md:inline-flex text-sm text-gray-400 hover:text-green-400 transition-colors">
-            Get in Touch
-          </p>
-        </motion.div>
-      </Link>
-    </header>
+            ✳︎
+          </span>
+        </a>
+
+        {/* Desktop nav links (center) — spaced pill/bubble buttons */}
+        <nav className="hidden md:flex flex-row items-center gap-2 lg:gap-3 text-[18px] lg:text-[20px] text-black">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full px-4 lg:px-5 py-[0.3em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Desktop CTA (right) */}
+        <div className="hidden md:flex flex-row items-center gap-3">
+          <a
+            href="#contact"
+            className="text-[23px] text-black underline underline-offset-2 hover:opacity-60 transition-opacity"
+          >
+            Get in touch
+          </a>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="flex md:hidden flex-col gap-[5px] items-center justify-center"
+        >
+          <span
+            className={`w-6 h-[2px] bg-black transition-transform duration-300 ${
+              open ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-[2px] bg-black transition-opacity duration-300 ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`w-6 h-[2px] bg-black transition-transform duration-300 ${
+              open ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
+      </header>
+
+      {/* Mobile overlay menu */}
+      <div
+        className="fixed inset-0 z-[19] bg-white/95 backdrop-blur-sm flex flex-col justify-center items-start px-8 gap-8 md:hidden transition-opacity duration-300"
+        style={{
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+        }}
+      >
+        {NAV_LINKS.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => setOpen(false)}
+            className="text-[32px] font-medium text-black hover:opacity-60 transition-opacity"
+          >
+            {link.label}
+          </a>
+        ))}
+        <div className="flex flex-row items-center gap-4">
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="text-[32px] font-medium text-black underline underline-offset-2 hover:opacity-60 transition-opacity"
+          >
+            Get in touch
+          </a>
+        </div>
+
+        {/* Socials surfaced subtly so the prop stays meaningful. */}
+        {socials?.length ? (
+          <div className="flex flex-row gap-5 pt-2">
+            {socials.map((social) => (
+              <a
+                key={social._id}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="text-base text-black/70 underline underline-offset-2 hover:opacity-60 transition-opacity"
+              >
+                {social.title}
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 }

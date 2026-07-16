@@ -4,8 +4,8 @@
   "description": "Full Stack Developer & Game Developer - Luis Ruiz's Portfolio",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a1a",
-  "theme_color": "#008000",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
   "orientation": "portrait-primary",
   "icons": [
     {

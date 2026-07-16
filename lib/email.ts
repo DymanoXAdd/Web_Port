@@ -38,7 +38,7 @@ const emailTemplate = (
   </head>
   <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
     <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px;">
-      <h1 style="color: #333; border-bottom: 2px solid #008000; padding-bottom: 10px;">
+      <h1 style="color: #333; border-bottom: 2px solid #0a0a0a; padding-bottom: 10px;">
         New Message from Your Portfolio
       </h1>
 
@@ -48,7 +48,7 @@ const emailTemplate = (
         <p style="color: #666;"><strong>Subject:</strong> ${safeSubject}</p>
       </div>
 
-      <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #008000; margin: 20px 0;">
+      <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #0a0a0a; margin: 20px 0;">
         <h3 style="color: #333; margin-top: 0;">Message:</h3>
         <p style="color: #666; line-height: 1.6; white-space: pre-wrap;">${safeMessage}</p>
       </div>

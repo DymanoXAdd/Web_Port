@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/context/ThemeContext"; // 👈 Make sure this path exactly matches your project structure
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css"; // Assuming you have your Tailwind/global styles here
 
@@ -41,14 +40,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* You can safely remove manual <head>, <meta charset>, and <viewport> tags.
-        Next.js populates them automatically using the metadata configuration above.
-      */}
+      <head>
+        {/* Template fonts: heading (HelveticaNowDisplay-Medium) + body (HelveticaNowDisplayW01-Rg).
+            Translated from the design template's index.html <link> tags into Next.js. */}
+        <link
+          rel="stylesheet"
+          href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium"
+        />
+        <link
+          rel="stylesheet"
+          href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg"
+        />
+      </head>
       <body>
-        <ThemeProvider>
-          {children}
-          <Analytics />
-        </ThemeProvider>
+        {children}
+        <Analytics />
       </body>
     </html>
   );

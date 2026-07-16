@@ -36,6 +36,7 @@ const nextConfig = {
     // - script-src: Next.js needs 'unsafe-eval' in dev; tighten in prod
     // - style-src: Tailwind generates inline styles so 'unsafe-inline' required
     // - img-src: self + Sanity CDN + data URIs (base64 images)
+    // - media-src: self + Pixabay CDN (the hero background video is hosted there)
     // - connect-src: Sanity API + Vercel Analytics
     // - frame-ancestors: nobody may embed us (stricter than X-Frame-Options)
     const siteCsp = [
@@ -43,6 +44,7 @@ const nextConfig = {
       "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' https://cdn.sanity.io data: blob:",
+      "media-src 'self' https://cdn.pixabay.com",
       "font-src 'self' data:",
       "connect-src 'self' https://cdn.sanity.io https://api.sanity.io https://vitals.vercel-insights.com",
       "frame-ancestors 'none'",

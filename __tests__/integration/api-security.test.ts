@@ -17,6 +17,24 @@ async function post(path: string, body: unknown, headers: Record<string, string>
   });
 }
 
+/**
+ * Test isolation for the rate limiter.
+ *
+ * The /api/email route rate-limits per client IP, keyed on the LAST entry of
+ * x-forwarded-for (falling back to "unknown" when absent). Without a header,
+ * every request in this suite shares the "unknown" bucket, so after RATE_LIMIT
+ * (5) requests the rest get 429 before validation runs.
+ *
+ * To keep each validation test honest, each gets a UNIQUE spoofed client IP so
+ * the limiter never exhausts mid-suite. The deliberate rate-limit test below
+ * intentionally reuses a single IP and must NOT use this helper.
+ */
+let ipCounter = 0;
+function uniqueIpHeaders(extra: Record<string, string> = {}): Record<string, string> {
+  ipCounter += 1;
+  return { "x-forwarded-for": `10.0.0.${ipCounter}`, ...extra };
+}
+
 // ──────────────────────────────────────────────────────────────────────────────
 // /api/email endpoint
 // ──────────────────────────────────────────────────────────────────────────────
@@ -30,7 +48,7 @@ describe("POST /api/email — input validation", () => {
   };
 
   test("returns 400 for empty body", async () => {
-    const res = await post("/api/email", {});
+    const res = await post("/api/email", {}, uniqueIpHeaders());
     expect(res.status).toBe(400);
     const json = await res.json();
     expect(json.success).toBe(false);
@@ -39,46 +57,46 @@ describe("POST /api/email — input validation", () => {
 
   test("returns 400 for missing name", async () => {
     const { name: _n, ...noName } = validPayload;
-    const res = await post("/api/email", noName);
+    const res = await post("/api/email", noName, uniqueIpHeaders());
     expect(res.status).toBe(400);
   });
 
   test("returns 400 for invalid email format", async () => {
-    const res = await post("/api/email", { ...validPayload, email: "notanemail" });
+    const res = await post("/api/email", { ...validPayload, email: "notanemail" }, uniqueIpHeaders());
     expect(res.status).toBe(400);
     const json = await res.json();
     expect(json.details?.fieldErrors?.email).toBeDefined();
   });
 
   test("returns 400 for name that is 1 char", async () => {
-    const res = await post("/api/email", { ...validPayload, name: "J" });
+    const res = await post("/api/email", { ...validPayload, name: "J" }, uniqueIpHeaders());
     expect(res.status).toBe(400);
   });
 
   test("returns 400 for subject shorter than 5 chars", async () => {
-    const res = await post("/api/email", { ...validPayload, subject: "Hi" });
+    const res = await post("/api/email", { ...validPayload, subject: "Hi" }, uniqueIpHeaders());
     expect(res.status).toBe(400);
   });
 
   test("returns 400 for message shorter than 10 chars", async () => {
-    const res = await post("/api/email", { ...validPayload, message: "Short" });
+    const res = await post("/api/email", { ...validPayload, message: "Short" }, uniqueIpHeaders());
     expect(res.status).toBe(400);
   });
 
   test("returns 400 for message over 5000 chars", async () => {
-    const res = await post("/api/email", { ...validPayload, message: "M".repeat(5001) });
+    const res = await post("/api/email", { ...validPayload, message: "M".repeat(5001) }, uniqueIpHeaders());
     expect(res.status).toBe(400);
   });
 
   test("returns 400 for null body", async () => {
-    const res = await post("/api/email", null);
+    const res = await post("/api/email", null, uniqueIpHeaders());
     expect(res.status).toBe(400);
   });
 
   test("returns 415 when Content-Type is not application/json", async () => {
     const res = await fetch(`${BASE_URL}/api/email`, {
       method: "POST",
-      headers: { "Content-Type": "text/plain" },
+      headers: { "Content-Type": "text/plain", ...uniqueIpHeaders() },
       body: "not json",
     });
     expect(res.status).toBe(415);
@@ -87,7 +105,7 @@ describe("POST /api/email — input validation", () => {
   test("returns 400 for malformed JSON", async () => {
     const res = await fetch(`${BASE_URL}/api/email`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...uniqueIpHeaders() },
       body: "{ invalid json",
     });
     expect(res.status).toBe(400);

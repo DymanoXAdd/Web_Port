@@ -1,28 +1,16 @@
 // Application constants
 
+// Single light/black theme palette (light/dark toggle removed).
 export const COLORS = {
-  light: {
-    background: "#ffffff",
-    surface: "#f5f5f5",
-    text: {
-      primary: "#1a1a1a",
-      secondary: "#666666"
-    },
-    border: "#e0e0e0",
-    accent: "#008000",
-    accentLight: "#00b300"
+  background: "#ffffff",
+  surface: "#f5f5f5",
+  text: {
+    primary: "#0a0a0a",
+    secondary: "#555555"
   },
-  dark: {
-    background: "#1a1a1a",
-    surface: "#2a2a2a",
-    text: {
-      primary: "#ffffff",
-      secondary: "#dddddd"
-    },
-    border: "#404040",
-    accent: "#00ff00",
-    accentLight: "#00dd00"
-  }
+  border: "#e5e5e5",
+  accent: "#0a0a0a",
+  accentLight: "#333333"
 };
 
 export const SECTIONS = [
