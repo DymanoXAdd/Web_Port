@@ -1,3 +1,25 @@
+# Session Handoff — 2026-11-12/13 — audit fixes, redesign, monitoring
+
+## State when this session ended
+- **Live on `luisaruiz.xyz`:** concept A "Query" redesign in green, contact form working (Luis confirmed a send from his phone), Sentry error monitoring + uptime check.
+- **`main` is clean and green.** No open PRs. CI (type-check, lint, unit 54, components 47, integration 27, Playwright E2E 8, build) + gitleaks run on every PR.
+- **Only task needing a decision:** T-028 major upgrades. The 5-step plan is in `docs/TASKS.md`; wait for Luis's yes, start with step 1 (Next 15 + React 19).
+- **Small cleanups:** T-031 (unused `@heroicons/react`, Vercel bypass secret, optional Sentry auth token).
+
+## What shipped (all PRs squash-merged, no co-author/footer lines)
+- T-015 visitor confirmation email removed · T-016 missing Sanity image can't crash the page · T-017 blocked font links removed · T-018 shared API guards in `lib/api-guards.ts` · T-019 dead code + 2 unused packages · T-020 one source for Luis's email · T-021 error screen hides raw errors · T-022 experience dates · T-023 project card a11y · T-024 one metadata block · T-025 security headers · T-003 CI · T-005 Dependabot + gitleaks · T-006 next/image · T-010 privacy line · T-011 redesign (D-005) · T-012 Playwright E2E · T-029 local fonts · T-004 Sentry (D-006) · T-030 uptime (Luis).
+- Infra fixes outside the code: Vercel Bot Protection Challenge → Log (D-003, this was the "Unexpected token '<'" form bug); DNS moved from Cloudflare to Vercel nameservers, Cloudflare zone deleted (D-004).
+
+## Things to know next time
+- **Testing the live site from Luis's PC:** Spectrum blocks `luisaruiz.xyz` there. Use `npx vercel curl "https://luis-portfolio-git-main-dymanoxadds-projects.vercel.app/..."` from PowerShell (Git Bash mangles `/api/...` paths). Luis checks the real domain on his phone.
+- **Vercel CLI is linked** (`.vercel/`, gitignored). Free plan keeps runtime logs ~1 hour; Sentry is the long-term record.
+- **Commit/PR text:** write messages to files (Write tool) and pass with `-F` / `--body-file`. PowerShell 5.1 breaks embedded double quotes and `Set-Content` adds a BOM. Merge Dependabot PRs with an explicit `--subject`/`--body-file` so no bot trailers land.
+- **Luis's approval rule for this project:** ask only when a task changes more than 4 files, adds a feature, or changes the UI; dependencies and outward actions still get an explicit yes.
+- **Hero copy** lives in Sanity Page Info (`heroKicker`, `headline`, `heroIntro`, `status`); empty fields fall back to the approved mockup wording.
+- `.claude/settings.json` is deleted locally on purpose (Luis was fixing permission prompts); keep it out of commits.
+
+---
+
 # Session Handoff — 2026-07-21 — 🚀 SHIPPED
 
 ## What happened this session (2026-07-21)
