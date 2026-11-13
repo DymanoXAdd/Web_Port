@@ -1,6 +1,6 @@
 # Tasks — portfolio-website
 
-Stage: production · Updated: 2026-11-12
+Stage: production · Updated: 2026-11-13
 
 <!-- IDs never get reused. "Now" holds at most 3 tasks. When a task changes state,
      update the registry row in the workspace CLAUDE.md in the same turn. -->
@@ -8,17 +8,15 @@ Stage: production · Updated: 2026-11-12
 ## Now
 
 ## Next
-- [ ] T-030 Uptime monitor for https://luisaruiz.xyz in Sentry (Alerts → Uptime → create; every 5 min; alert by email). Needs Luis in the Sentry UI (creating it from code would need a Sentry auth token secret). Vercel Bot Protection is on Log, so the checker gets a 200
+- [ ] T-031 Small cleanups (no approval needed beyond a dependency removal): uninstall unused `@heroicons/react`; revoke the Vercel "Protection Bypass for Automation" secret that `vercel curl` created (Project → Settings → Deployment Protection); optional `SENTRY_AUTH_TOKEN` for readable stack traces (new secret, needs yes)
+
+## Blocked or waiting on a human
 - [ ] T-028 Major upgrades, each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). Dependabot skips majors until this is planned. Needs Luis yes on this plan (written 2026-11-12), one PR per step, each previewed before merge:
   1. Next 14 → 15 + React 19 together (Next 15 needs React 19): `@types/react` 19, `@testing-library/react` 16, framer-motion to a React-19 version, eslint-config-next 15. Code risk is low: no `cookies()`/`headers()` use; route handlers only read `request.nextUrl`/headers.
   2. Sanity 3 → current (needs React 19 from step 1): `sanity`, `@sanity/vision`, `next-sanity` together; check `/studio` loads and the 4 new Page Info fields still save.
   3. Next 15 → 16: `next lint` is gone (switch the lint script to the ESLint CLI with a flat config); Turbopack becomes the default bundler.
   4. Tailwind 3 → 4: run the official upgrade tool, move `tailwind.config.js` colors into CSS `@theme`, swap `tailwind-scrollbar` for a v4-compatible version or drop it (the redesign barely uses it). Biggest visual risk: check every section on the preview.
   5. TypeScript 7 last, only once ts-jest and Next support it; until then stay on 5.9.
-- [x] T-029 (done 2026-11-12) Fonts are committed in `app/fonts/` (Inter + JetBrains Mono, latin, variable, OFL) and loaded with `next/font/local`. `next/font/google` failed two Vercel builds on a bad Google response
-- [x] T-011 (done 2026-11-12, PR #24, D-005) Concept A redesign live after Luis OK'd the preview. Mockups: https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ. Original task: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
-
-## Blocked or waiting on a human
 
 ## Open decisions from intake
 - _none — all settled 2026-11-12 (see BRIEF, D-002)_
@@ -26,6 +24,9 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-030 Sentry uptime monitor for https://luisaruiz.xyz created by Luis (2026-11-13)
+- [x] T-029 Fonts committed in `app/fonts/` (Inter + JetBrains Mono, latin, variable, OFL), loaded with `next/font/local`; `next/font/google` had failed two Vercel builds (2026-11-12, PR #25)
+- [x] T-011 Concept A "Query" redesign in green live after Luis OK'd the preview (2026-11-12, PR #24, D-005). Mockups: https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ
 - [x] T-004 Sentry error monitoring live (D-006): browser, server, ErrorBoundary and email-route errors; `/monitoring` tunnel; DSN in Vercel prod + preview. Verified locally: a caught email-API error was reported and a test event through the tunnel was accepted (2026-11-12). Uptime check split out as T-030
 - [x] T-012 Playwright E2E for the contact form (`e2e/contact.spec.ts`, desktop + phone): validation, success, HTML error page, server error; `/api/email` intercepted so no mail is sent; runs in CI (2026-11-12, Luis approved adding Playwright)
 - [x] Dependabot #16 (minor/patch) and #15 (Actions) merged after re-running CI on current main; #17–#20 (majors) closed, tracked as T-028 (2026-11-12)
