@@ -1,17 +1,17 @@
 # Graph Report - portfolio-website  (2026-11-12)
 
 ## Corpus Check
-- 78 files · ~29,222 words
+- 77 files · ~29,303 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 5 file(s) not represented in the graph (top: (none) 3, .graphify-bak 1, .css 1)
 
 ## Summary
-- 592 nodes · 810 edges · 57 communities (37 shown, 20 thin omitted)
+- 591 nodes · 813 edges · 55 communities (37 shown, 18 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cdd0d6b0`
+- Built from commit: `5612011d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -62,11 +62,10 @@
 - WorkExperience.tsx
 - ErrorBoundary
 - @testing-library/react
-- resend
-- styled-components@^6.4.2
-- identity-obj-proxy@^3.0.0
-- postcss@^8.4.32
-- ts-jest@^29.1.2
+- @testing-library/jest-dom
+- react-hook-form
+- react-social-icons@^5.15.0
+- eslint@^8.55.0
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 19 edges
@@ -74,13 +73,15 @@
 3. `Brief — portfolio-website` - 16 edges
 4. `Portfolio Website Rebuild - Complete Implementation` - 13 edges
 5. `urlFor()` - 11 edges
-6. `scripts` - 11 edges
-7. `sanity` - 11 edges
-8. `Implementation Status - Portfolio Rebuild` - 11 edges
-9. `expect()` - 10 edges
-10. `Home()` - 10 edges
+6. `Implementation Status - Portfolio Rebuild` - 11 edges
+7. `scripts` - 11 edges
+8. `sanity` - 11 edges
+9. `Home()` - 10 edges
+10. `expect()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Home()` --calls--> `ErrorBoundary`  [EXTRACTED]
+  app/page.tsx → components/ui/ErrorBoundary.tsx
 - `Home()` --calls--> `Header()`  [EXTRACTED]
   app/page.tsx → components/sections/Header.tsx
 - `Home()` --calls--> `Hero()`  [EXTRACTED]
@@ -89,13 +90,11 @@
   app/page.tsx → components/sections/Projects.tsx
 - `Home()` --calls--> `Skills()`  [EXTRACTED]
   app/page.tsx → components/sections/Skills.tsx
-- `Home()` --calls--> `WorkExperience()`  [EXTRACTED]
-  app/page.tsx → components/sections/WorkExperience.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (57 total, 20 thin omitted)
+## Communities (55 total, 18 thin omitted)
 
 ### Community 0 - "app/page.tsx"
 Cohesion: 0.24
@@ -130,8 +129,8 @@ Cohesion: 0.09
 Nodes (21): compilerOptions, allowImportingTsExtensions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, jsxImportSource (+13 more)
 
 ### Community 8 - "ContactMe.tsx"
-Cohesion: 0.16
-Nodes (15): checkRateLimit(), getClientIp(), POST(), rateLimitStore, emailTemplate(), escapeHtml(), resend, sendConfirmationEmail() (+7 more)
+Cohesion: 0.20
+Nodes (13): checkRateLimit(), getClientIp(), POST(), rateLimitStore, emailTemplate(), escapeHtml(), resend(), sendConfirmationEmail() (+5 more)
 
 ### Community 9 - "How to Run & Test the Portfolio Site"
 Cohesion: 0.10
@@ -139,11 +138,11 @@ Nodes (20): 10. Verify live + point domain, 1. Start the local dev server, 2. Se
 
 ### Community 10 - "dependencies"
 Cohesion: 0.10
-Nodes (20): dependencies, @heroicons/react@^2.0.18, @hookform/resolvers@^3.3.4, react@^18.3.0, react-hook-form@^7.50.0, react-simple-typewriter@^4.0.5, react-social-icons@^5.15.0, sanity@^3.99.0 (+12 more)
+Nodes (20): dependencies, @hookform/resolvers@^3.3.4, react@^18.3.0, react-simple-typewriter@^4.0.5, resend@^3.0.0, sanity@^3.99.0, @sanity/icons@^2.11.8, @sanity/image-url@^2.1.1 (+12 more)
 
 ### Community 11 - "devDependencies"
 Cohesion: 0.11
-Nodes (17): devDependencies, autoprefixer@^10.4.16, jest-environment-jsdom@^29.7.0, @testing-library/jest-dom@^6.9.1, @testing-library/user-event@^14.6.1, @types/jest@^29.5.11, @types/node@^20.10.0, @types/react-dom@^18.3.0 (+9 more)
+Nodes (19): devDependencies, autoprefixer@^10.4.16, identity-obj-proxy@^3.0.0, jest@^29.7.0, jest-environment-jsdom@^29.7.0, postcss@^8.4.32, @types/jest@^29.5.11, @types/node@^20.10.0 (+11 more)
 
 ### Community 12 - "Brief — portfolio-website"
 Cohesion: 0.12
@@ -154,8 +153,8 @@ Cohesion: 0.17
 Nodes (8): ALLOWED_PATHS, isAllowedPath(), POST(), metadata, next@^14.2.0, @vercel/analytics@^1.2.2, next, @vercel/analytics
 
 ### Community 14 - "package.json"
-Cohesion: 0.20
-Nodes (9): eslint@^8.55.0, jest@^29.7.0, @types/react@^18.3.0, name, private, version, eslint, jest (+1 more)
+Cohesion: 0.17
+Nodes (11): @heroicons/react@^2.0.18, @testing-library/user-event@^14.6.1, ts-jest@^29.1.2, @types/react-dom@^18.3.0, name, private, version, @heroicons/react (+3 more)
 
 ### Community 15 - "scripts"
 Cohesion: 0.18
@@ -247,14 +246,14 @@ Nodes (3): @testing-library/react@^14.3.1, @testing-library/react, threeExperien
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `next/core-web-vitals`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 344 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 342 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `react` connect `react` to `Skills.tsx`, `animations.ts`, `Projects.tsx`, `dependencies`, `types/index.ts`, `package.json`, `WorkExperience.tsx`, `ErrorBoundary`, `@testing-library/react`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **What connects `next/core-web-vitals` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Implementation Status - Portfolio Rebuild` be split into smaller, more focused modules?**

@@ -6,7 +6,6 @@ const config = {
   testMatch: ["**/__tests__/unit/**/*.test.ts"],
   // docs/reference/vault holds an old copy of the site; keep jest out of it
   modulePathIgnorePatterns: ["<rootDir>/docs/"],
-  setupFiles: ["<rootDir>/jest.env.js"],
   moduleNameMapper: {
     // Resolve the @/ alias used throughout the project
     "^@/(.*)$": "<rootDir>/$1",

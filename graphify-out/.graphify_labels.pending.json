@@ -50,10 +50,8 @@
   "48": "WorkExperience.tsx",
   "49": "ErrorBoundary",
   "50": "@testing-library/react",
-  "51": "resend",
-  "52": "styled-components@^6.4.2",
-  "53": "identity-obj-proxy@^3.0.0",
-  "54": "postcss@^8.4.32",
-  "55": "ts-jest@^29.1.2",
-  "56": "jest.env.js"
+  "51": "@testing-library/jest-dom",
+  "52": "react-hook-form",
+  "53": "react-social-icons@^5.15.0",
+  "54": "eslint@^8.55.0"
 }

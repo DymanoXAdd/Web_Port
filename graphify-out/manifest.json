@@ -1,8 +1,8 @@
 {
   ".claude/settings.json": {
-    "mtime": 1794455792.584441,
-    "seen": 1794455800.8020387,
-    "ast_hash": "f026efba462ef5a4b9e3cab752b47656",
+    "mtime": 1794529586.9104319,
+    "seen": 1794529632.5140302,
+    "ast_hash": "48a0b5367c99f4361200f8b2ca23820e",
     "semantic_hash": ""
   },
   ".eslintrc.json": {
@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "__tests__/unit/email-security.test.ts": {
-    "mtime": 1794455394.7983608,
-    "seen": 1794455800.8020535,
-    "ast_hash": "f879ca893d0d66c671f2f616586b43e8",
+    "mtime": 1794529883.4361987,
+    "seen": 1794529925.0021281,
+    "ast_hash": "e571e36aaf54697215ef160fc74acd55",
     "semantic_hash": ""
   },
   "__tests__/unit/rate-limit.test.ts": {
@@ -186,9 +186,9 @@
     "semantic_hash": ""
   },
   "jest.config.js": {
-    "mtime": 1794529345.0096433,
-    "seen": 1794529449.111136,
-    "ast_hash": "1e05a0ac0b8ae2ae0c9be35ed5f3b85c",
+    "mtime": 1794529883.4361987,
+    "seen": 1794529925.0021453,
+    "ast_hash": "7443bd9d15d26e75fed156db56943838",
     "semantic_hash": ""
   },
   "jest.integration.config.js": {
@@ -216,9 +216,9 @@
     "semantic_hash": ""
   },
   "lib/email.ts": {
-    "mtime": 1794455394.8076744,
-    "seen": 1794455800.8020706,
-    "ast_hash": "1c8386e262fb3c631ef885fe59e2e15c",
+    "mtime": 1794529883.4341898,
+    "seen": 1794529925.0021493,
+    "ast_hash": "ca270fb6a26efe30bf85874b01bfd3e4",
     "semantic_hash": ""
   },
   "lib/sanity-queries.ts": {
@@ -414,9 +414,9 @@
     "semantic_hash": ""
   },
   ".claude/session-handoff.md": {
-    "mtime": 1784683872.0,
-    "seen": 1794455800.8020937,
-    "ast_hash": "d5564e1d7825f90d42e3f609f5807725",
+    "mtime": 1794529617.514076,
+    "seen": 1794529632.5140975,
+    "ast_hash": "b2576584ca9d015d91921a23f742e4ff",
     "semantic_hash": ""
   },
   ".github/pull_request_template.md": {
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1794455792.5764256,
-    "seen": 1794455800.8020952,
-    "ast_hash": "300990056d803dca1eb78ad93cd7d936",
+    "mtime": 1794529586.9104319,
+    "seen": 1794529632.5140994,
+    "ast_hash": "943c57ee81801d8533a0d699c06f441d",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
@@ -456,21 +456,15 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794529444.3937466,
-    "seen": 1794529449.1111736,
-    "ast_hash": "c151fad9126aea34a030ff53f0ac01b9",
+    "mtime": 1794529883.4924624,
+    "seen": 1794529925.002181,
+    "ast_hash": "1ab529722c0cff6c9bd731782be6897d",
     "semantic_hash": ""
   },
   "public/robots.txt": {
     "mtime": 1794455394.8136733,
     "seen": 1794455800.8020992,
     "ast_hash": "4aac03db429616f8bd2a1699acf77b54",
-    "semantic_hash": ""
-  },
-  "jest.env.js": {
-    "mtime": 1794529345.0113876,
-    "seen": 1794529449.111137,
-    "ast_hash": "8270c3bb46bb95b4957e02f1b2aea6cc",
     "semantic_hash": ""
   },
   "package-lock.json": {
