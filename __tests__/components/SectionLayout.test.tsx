@@ -223,4 +223,9 @@ describe("ContactMe section layout", () => {
     // The Sanity-driven contact info renders too.
     expect(screen.getByText("luisaruiz2734@gmail.com")).toBeInTheDocument();
   });
+
+  it("tells visitors what happens to their message", () => {
+    render(<ContactMe pageInfo={mockPageInfo} />);
+    expect(screen.getByText("Your message is emailed to Luis and not stored.")).toBeInTheDocument();
+  });
 });

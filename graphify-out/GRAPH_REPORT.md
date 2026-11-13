@@ -1,7 +1,7 @@
 # Graph Report - portfolio-website  (2026-11-12)
 
 ## Corpus Check
-- 82 files · ~30,555 words
+- 82 files · ~30,597 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 5 file(s) not represented in the graph (top: (none) 3, .graphify-bak 1, .css 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6fcc53fa`
+- Built from commit: `ba3b5db3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -68,16 +68,16 @@
 6. `Implementation Status - Portfolio Rebuild` - 11 edges
 7. `scripts` - 11 edges
 8. `sanity` - 11 edges
-9. `expect()` - 10 edges
-10. `Home()` - 10 edges
+9. `Home()` - 10 edges
+10. `expect()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Done` --references--> `imageUrl()`  [INFERRED]
-  docs/TASKS.md → lib/sanity.ts
 - `Done` --references--> `checkRateLimit()`  [INFERRED]
   docs/TASKS.md → lib/api-guards.ts
 - `Done` --references--> `isAllowedPath()`  [INFERRED]
   docs/TASKS.md → lib/api-guards.ts
+- `Done` --references--> `imageUrl()`  [INFERRED]
+  docs/TASKS.md → lib/sanity.ts
 - `Done` --references--> `ErrorBoundary`  [INFERRED]
   docs/TASKS.md → components/ui/ErrorBoundary.tsx
 - `Home()` --calls--> `ErrorBoundary`  [EXTRACTED]
