@@ -10,7 +10,19 @@ type Props = {
   experience: Experience;
 };
 
+// "" for a missing/invalid date. UTC because Sanity dates ("2020-01-01") parse as UTC midnight,
+// which shows as the previous month in US time zones.
+function formatMonth(date?: string): string {
+  const d = date ? new Date(date) : null;
+  return d && !isNaN(d.getTime())
+    ? d.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })
+    : "";
+}
+
 export default function ExperienceCard({ experience }: Props) {
+  const end = experience.isCurrentlyWorkingHere ? "Present" : formatMonth(experience.dateEnded);
+  const dates = [formatMonth(experience.dateStarted), end].filter(Boolean).join(" - ");
+
   return (
     <motion.div
       {...hoverScale}
@@ -36,19 +48,7 @@ export default function ExperienceCard({ experience }: Props) {
 
       <p className="text-neutral-600 text-sm mb-2">{experience.company}</p>
 
-      <div className="text-xs text-neutral-500 mb-4">
-        {new Date(experience.dateStarted).toLocaleDateString("en-US", {
-          month: "short",
-          year: "numeric",
-        })}
-        {" - "}
-        {experience.isCurrentlyWorkingHere
-          ? "Present"
-          : new Date(experience.dateEnded).toLocaleDateString("en-US", {
-              month: "short",
-              year: "numeric",
-            })}
-      </div>
+      <div className="text-xs text-neutral-500 mb-4">{dates}</div>
 
       <ul className="text-sm text-neutral-700 space-y-1 text-left">
         {experience.points?.slice(0, 3).map((point, i) => (
