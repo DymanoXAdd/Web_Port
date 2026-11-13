@@ -3,9 +3,10 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css"; // Assuming you have your Tailwind/global styles here
 
 export const metadata: Metadata = {
-  title: "Luis Ruiz | Full Stack Developer",
+  // The one metadata block for the site (app/page.tsx used to override it; these are the values that were live).
+  title: "Luis A Ruiz | Full Stack Developer & Game Developer",
   description:
-    "Computer Programmer & Game Developer. Strong in SQL, data, and building things that matter.",
+    "Computer Programmer with expertise in SQL and data. Building games and leveling up. Let's connect.",
   keywords: [
     "developer",
     "programmer",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     "full stack",
     "game developer",
     "portfolio",
+    "Luis Ruiz",
   ],
   authors: [{ name: "Luis Ruiz" }],
   creator: "Luis Ruiz",

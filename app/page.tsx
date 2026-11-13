@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity";
 import {
   pageInfoQuery,
@@ -22,21 +21,6 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import ContactMe from "@/components/sections/ContactMe";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
-
-export const metadata: Metadata = {
-  title: "Luis A Ruiz | Full Stack Developer & Game Developer",
-  description:
-    "Computer Programmer with expertise in SQL and data. Building games and leveling up. Let's connect.",
-  keywords: [
-    "developer",
-    "programmer",
-    "SQL",
-    "full stack",
-    "game developer",
-    "portfolio",
-    "Luis Ruiz",
-  ],
-};
 
 export const revalidate = 60; // ISR - revalidate every 60 seconds
 
