@@ -6,6 +6,8 @@ const config = {
   testEnvironment: "jsdom",
   testMatch: ["**/__tests__/components/**/*.test.tsx"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  // docs/reference/vault holds an old copy of the site; keep jest out of it
+  modulePathIgnorePatterns: ["<rootDir>/docs/"],
   moduleNameMapper: {
     // @/ path alias used across the project
     "^@/(.*)$": "<rootDir>/$1",

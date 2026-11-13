@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(rm -rf *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.local)",
+      "Read(./.env.production)",
+      "Read(./secrets/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/luisr/.local/bin/graphify.EXE hook-guard search",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/luisr/.local/bin/graphify.EXE hook-guard read",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/luisr/.local/bin/graphify.EXE hook-guard compact",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
