@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "__tests__/components/HeroHeader.test.tsx": {
-    "mtime": 1794537500.1592834,
-    "seen": 1794537561.4914446,
-    "ast_hash": "3e7a67370742538529eba35692b1989c",
+    "mtime": 1794537655.4086769,
+    "seen": 1794537817.2088282,
+    "ast_hash": "2d466bf0a1e8e34d1c42bde61009ce15",
     "semantic_hash": ""
   },
   "__tests__/components/Projects.test.tsx": {
@@ -78,8 +78,8 @@
     "semantic_hash": ""
   },
   "app/api/email/route.ts": {
-    "mtime": 1794537492.1482275,
-    "seen": 1794537561.4914572,
+    "mtime": 1794537655.410681,
+    "seen": 1794537817.2088404,
     "ast_hash": "fa282e4353a95cf7fd426b1f0ac7496d",
     "semantic_hash": ""
   },
@@ -138,8 +138,8 @@
     "semantic_hash": ""
   },
   "components/sections/Hero.tsx": {
-    "mtime": 1794537492.1185353,
-    "seen": 1794537561.4914653,
+    "mtime": 1794537655.411203,
+    "seen": 1794537817.2088487,
     "ast_hash": "d751f9cb820a92c48500ceb6d61db046",
     "semantic_hash": ""
   },
@@ -162,9 +162,9 @@
     "semantic_hash": ""
   },
   "components/ui/ErrorBoundary.tsx": {
-    "mtime": 1794455394.805673,
-    "seen": 1794455800.8020658,
-    "ast_hash": "b4e6a6779d68236cb6cfd7d63ca90c06",
+    "mtime": 1794537764.6460133,
+    "seen": 1794537817.208852,
+    "ast_hash": "fa218c64e05f4bff972ebf1419ba5cee",
     "semantic_hash": ""
   },
   "jest.components.config.js": {
@@ -444,14 +444,14 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794537554.6616626,
-    "seen": 1794537561.4915059,
-    "ast_hash": "66be68341e189ccb7089ba63d5cba9ef",
+    "mtime": 1794537810.4265068,
+    "seen": 1794537817.2088907,
+    "ast_hash": "d170197e1c82f27a7c0e14228f252d33",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
-    "mtime": 1794537500.2178168,
-    "seen": 1794537561.491453,
+    "mtime": 1794537655.4086769,
+    "seen": 1794537817.2088363,
     "ast_hash": "633e954797f235606aa29238dc2bcb5d",
     "semantic_hash": ""
   },
@@ -465,6 +465,12 @@
     "mtime": 1794536832.4853635,
     "seen": 1794536834.2874103,
     "ast_hash": "f2bcc862db566de8e701b88d2c3c18c4",
+    "semantic_hash": ""
+  },
+  "__tests__/components/ErrorBoundary.test.tsx": {
+    "mtime": 1794537761.3169868,
+    "seen": 1794537817.208826,
+    "ast_hash": "d9f6e2b360c33eaa9d33d22c149b1a8a",
     "semantic_hash": ""
   },
   "package-lock.json": {
