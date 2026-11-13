@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1ff1fb8d`
+- Built from commit: `a5c20650`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,7 +29,7 @@
 - dependencies
 - devDependencies
 - Brief — portfolio-website
-- @heroicons/react
+- @testing-library/react
 - package.json
 - scripts
 - Orchestrator Agent
@@ -49,16 +49,16 @@
 - next.config.js
 - Decisions — portfolio-website
 - .eslintrc.json
-- @sanity/image-url
+- @testing-library/jest-dom
 - frontend.md
 - security.md
 - testing.md
 - jest@^29.7.0
-- @testing-library/jest-dom
-- @testing-library/react
+- @heroicons/react
+- @sanity/image-url
+- eslint-config-next@^14.2.0
 - jest-environment-jsdom@^29.7.0
 - ts-jest@^29.1.2
-- eslint-config-next@^14.2.0
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 19 edges
@@ -79,10 +79,10 @@
   docs/TASKS.md → components/ui/ErrorBoundary.tsx
 - `Home()` --calls--> `ErrorBoundary`  [EXTRACTED]
   app/page.tsx → components/ui/ErrorBoundary.tsx
-- `ExperienceCard()` --calls--> `imageUrl()`  [EXTRACTED]
-  components/ExperienceCard.tsx → lib/sanity.ts
-- `SkillComponent()` --calls--> `imageUrl()`  [EXTRACTED]
-  components/Skill.tsx → lib/sanity.ts
+- `getPortfolioData()` --calls--> `sanityFetch()`  [EXTRACTED]
+  app/page.tsx → lib/sanity.ts
+- `Home()` --calls--> `About()`  [EXTRACTED]
+  app/page.tsx → components/sections/About.tsx
 
 ## Import Cycles
 - None detected.

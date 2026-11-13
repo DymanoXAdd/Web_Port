@@ -231,6 +231,12 @@ describe("HTTP Security Headers — GET /", () => {
     expect(csp).toContain("https://cdn.sanity.io");
   });
 
+  test("loads no stylesheet from another origin (CSP style-src is 'self', so it would be blocked)", async () => {
+    const html = await (await fetch(`${BASE_URL}/`)).text();
+    const external = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="(https?:\/\/[^"]+)"/g)].map((m) => m[1]);
+    expect(external).toEqual([]);
+  });
+
   test("has Strict-Transport-Security header", () => {
     // HSTS is only sent over HTTPS; in local HTTP dev it may be absent
     // Mark as skipped in dev, required in prod
