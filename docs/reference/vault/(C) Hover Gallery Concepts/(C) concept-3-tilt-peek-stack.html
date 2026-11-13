@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+  CONCEPT 3 — 3D TILT + PEEK STACK (Hover Gallery)
+  Pure HTML/CSS + a few lines of JS for the cursor-follow tilt.
+  No images — numbered squares only.
+  Idea: cards overlap in a fanned stack. Hover one → it lifts out of the stack,
+  tilts in 3D toward your cursor, and reveals its detail panel.
+  Most "premium"/interactive feel. Best for a small curated set (3–5 standout projects).
+  Maps to Projects: card face = image; back/detail = title + summary + View Project.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concept 3 — 3D Tilt + Peek Stack</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: #08080b;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 36px;
+  }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .hint { color: #888; font-size: 13px; }
+
+  .stack {
+    display: flex;
+    perspective: 1000px;
+    padding: 30px 60px;
+  }
+
+  .card {
+    position: relative;
+    width: 170px;
+    height: 230px;
+    margin-left: -45px;           /* overlap = the "stack/fan" look */
+    border-radius: 20px;
+    background: linear-gradient(160deg, #2a2a32, #17171c);
+    border: 1px solid #3a3a44;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    font-weight: 800;
+    color: #50505a;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                margin 0.45s ease, box-shadow 0.45s ease, color 0.45s ease, z-index 0s;
+  }
+  .card:first-child { margin-left: 0; }
+
+  /* subtle resting fan rotation so the stack reads as 3D */
+  .card:nth-child(1) { transform: rotateZ(-6deg); }
+  .card:nth-child(2) { transform: rotateZ(-3deg); }
+  .card:nth-child(3) { transform: rotateZ(0deg); }
+  .card:nth-child(4) { transform: rotateZ(3deg); }
+  .card:nth-child(5) { transform: rotateZ(6deg); }
+
+  /* hovered card lifts out, neighbors slide aside to make room */
+  .card:hover {
+    z-index: 10;
+    color: #fff;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0 35px 70px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .card:first-child:hover { margin-left: 0; }
+
+  /* detail panel revealed on hover */
+  .detail {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
+  }
+  .card:hover .detail { opacity: 1; transform: translateY(0); }
+  .detail h3 { font-size: 15px; }
+  .detail p { font-size: 11px; color: #bbb; margin-top: 2px; }
+</style>
+</head>
+<body>
+  <h1>Concept 3 — 3D Tilt + Peek Stack</h1>
+  <p class="hint">Hover a square — it lifts from the fan and tilts toward your cursor. Best for 3–5 standout projects.</p>
+
+  <div class="stack" id="stack">
+    <div class="card" data-n="1">1<div class="detail"><h3>Project 1</h3><p>title · summary · view</p></div></div>
+    <div class="card" data-n="2">2<div class="detail"><h3>Project 2</h3><p>title · summary · view</p></div></div>
+    <div class="card" data-n="3">3<div class="detail"><h3>Project 3</h3><p>title · summary · view</p></div></div>
+    <div class="card" data-n="4">4<div class="detail"><h3>Project 4</h3><p>title · summary · view</p></div></div>
+    <div class="card" data-n="5">5<div class="detail"><h3>Project 5</h3><p>title · summary · view</p></div></div>
+  </div>
+
+  <script>
+    // Cursor-follow 3D tilt — only on the card being hovered.
+    // This is the bit you'd port into the React/framer-motion version.
+    document.querySelectorAll('.card').forEach((card) => {
+      const baseRot = card.style.transform; // keep the resting fan rotation
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;  // -0.5 .. 0.5
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform =
+          `translateY(-26px) scale(1.12) rotateX(${(-py * 16).toFixed(1)}deg) rotateY(${(px * 16).toFixed(1)}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = baseRot; // snap back to the fan
+      });
+    });
+  </script>
+</body>
+</html>

@@ -7,7 +7,18 @@
  * Run: npm test
  */
 
-import { escapeHtml } from "../../lib/email";
+import { escapeHtml, sendContactEmail } from "../../lib/email";
+
+// Importing lib/email above without RESEND_API_KEY must not throw (it broke Vercel preview builds).
+describe("missing RESEND_API_KEY", () => {
+  test("fails the send, not the import", async () => {
+    delete process.env.RESEND_API_KEY;
+    jest.spyOn(console, "error").mockImplementation(() => {});
+    await expect(
+      sendContactEmail({ name: "Al", email: "a@b.co", subject: "Hello", message: "Hello there!" }, "to@b.co")
+    ).rejects.toThrow(/API key/);
+  });
+});
 
 describe("escapeHtml", () => {
   test("escapes < (open tag)", () => {

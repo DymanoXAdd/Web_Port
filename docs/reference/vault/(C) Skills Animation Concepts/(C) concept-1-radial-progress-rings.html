@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>(C) Skills Concept 1 — Radial Progress Rings</title>
+<style>
+  :root { --bg:#0a0a0a; --fg:#fafafa; --muted:#888; --accent:#fafafa; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  header { text-align:center; padding:40px 20px 10px; }
+  h1 { margin:0; font-size:28px; letter-spacing:-0.02em; }
+  .sub { color:var(--muted); font-size:14px; margin-top:6px; }
+  .bar { text-align:center; margin:14px 0 30px; }
+  button { background:#fff; color:#000; border:0; border-radius:999px;
+           padding:9px 20px; font-weight:600; cursor:pointer; font-size:14px; }
+  button:hover { opacity:.85; }
+  .grid { max-width:880px; margin:0 auto; padding:0 20px 60px;
+          display:grid; grid-template-columns:repeat(4,1fr); gap:30px 24px; }
+  @media (max-width:640px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .skill { display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .ring { position:relative; width:120px; height:120px; }
+  .ring svg { transform:rotate(-90deg); width:120px; height:120px; }
+  .track { stroke:#222; }
+  .prog  { stroke:var(--accent); stroke-linecap:round;
+           stroke-dasharray:326.7; stroke-dashoffset:326.7;
+           transition:stroke-dashoffset 1.3s cubic-bezier(.16,1,.3,1); }
+  .icon  { position:absolute; inset:14px; border-radius:50%;
+           background:#161616; border:1px solid #2a2a2a;
+           display:flex; align-items:center; justify-content:center;
+           font-size:26px; font-weight:700; color:#ddd;
+           transition:transform .3s ease; }
+  .skill:hover .icon { transform:scale(1.06); }
+  .pct  { position:absolute; bottom:-2px; left:50%; transform:translateX(-50%);
+          background:#fff; color:#000; font-size:12px; font-weight:700;
+          padding:2px 9px; border-radius:999px;
+          opacity:0; transition:opacity .3s ease .2s; }
+  .play .pct { opacity:1; }
+  .name { font-size:13px; color:#bbb; }
+
+  /* entry stagger handled via CSS var --d */
+  .prog { transition-delay:var(--d); }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Skills</h1>
+    <div class="sub">Concept 1 — Radial Progress Rings (replays on every entry)</div>
+  </header>
+  <div class="bar"><button id="replay">↻ Replay animation</button></div>
+
+  <div class="grid" id="grid"></div>
+
+<script>
+  // mock skills (title, progress) — maps to Sanity Skill.title / Skill.progress
+  const SKILLS = [
+    ["SQL",90,"S"],["TypeScript",80,"TS"],["React",78,"R"],["Next.js",75,"N"],
+    ["Python",70,"Py"],["Tailwind",82,"Tw"],["Sanity",65,"Sa"],["Node",72,"No"],
+  ];
+  const C = 2 * Math.PI * 52; // r=52 circumference
+  const grid = document.getElementById("grid");
+
+  SKILLS.forEach(([name,prog,label], i) => {
+    const el = document.createElement("div");
+    el.className = "skill";
+    el.innerHTML = `
+      <div class="ring" data-prog="${prog}" style="--d:${i*0.08}s">
+        <svg viewBox="0 0 120 120">
+          <circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="6"/>
+          <circle class="prog"  cx="60" cy="60" r="52" fill="none" stroke-width="6"/>
+        </svg>
+        <div class="icon">${label}</div>
+        <div class="pct">${prog}%</div>
+      </div>
+      <div class="name">${name}</div>`;
+    grid.appendChild(el);
+  });
+
+  function animate() {
+    document.querySelectorAll(".ring").forEach(ring => {
+      const prog = +ring.dataset.prog;
+      const circle = ring.querySelector(".prog");
+      ring.parentElement.classList.remove("play");
+      circle.style.strokeDashoffset = C;            // reset
+      // force reflow so the transition replays
+      void circle.getBoundingClientRect();
+      circle.style.strokeDashoffset = C * (1 - prog/100);
+      ring.parentElement.classList.add("play");
+    });
+  }
+
+  // replay every time the section scrolls into view
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if (e.isIntersecting) animate(); });
+  }, { threshold:0.4 });
+  io.observe(grid);
+
+  document.getElementById("replay").addEventListener("click", animate);
+  animate();
+</script>
+</body>
+</html>

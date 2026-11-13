@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.next/
+coverage/
+vendor/
+*.min.js
+*.lock
+.env*
+secrets/
+graphify-out/
+docs/reference/
+package-lock.json
+tsconfig.tsbuildinfo

@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 import { ContactFormInput } from "./validation";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Built per send, not at import: a missing key must fail one request, not the build.
+const resend = () => new Resend(process.env.RESEND_API_KEY);
 
 /**
  * Escapes HTML special characters to prevent XSS in email bodies.
@@ -64,7 +65,7 @@ const emailTemplate = (
 
 export async function sendContactEmail(data: ContactFormInput, recipientEmail: string) {
   try {
-    const result = await resend.emails.send({
+    const result = await resend().emails.send({
       from: "noreply@luisaruiz.xyz", // must be a Resend-verified sender domain
       to: recipientEmail,
       reply_to: data.email,
@@ -90,7 +91,7 @@ export async function sendContactEmail(data: ContactFormInput, recipientEmail: s
 export async function sendConfirmationEmail(email: string, name: string) {
   const safeName = escapeHtml(name);
   try {
-    const result = await resend.emails.send({
+    const result = await resend().emails.send({
       from: "noreply@luisaruiz.xyz",
       to: email,
       subject: "We received your message!",

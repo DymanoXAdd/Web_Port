@@ -4,6 +4,8 @@ const config = {
   testEnvironment: "node",
   // Integration tests: requires a running dev server
   testMatch: ["**/__tests__/integration/**/*.test.ts"],
+  // docs/reference/vault holds an old copy of the site; keep jest out of it
+  modulePathIgnorePatterns: ["<rootDir>/docs/"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },

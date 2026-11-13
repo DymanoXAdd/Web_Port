@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+  CONCEPT 4 — VERTICAL EXPANDING PANELS (Vertical Accordion Hover Gallery)
+  *** THIS IS THE VERTICAL ONE ***
+  Pure HTML/CSS concept. No images — numbered squares only.
+  Idea: stacked horizontal rows. Hover one → its HEIGHT grows to dominate the
+  column, the others shrink. The active row reveals its title/summary inline.
+  Reads top-to-bottom like a list — fits nicely in a tall section.
+  Maps to Projects: each row = one project; revealed area = title + summary + "View Project".
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concept 4 — Vertical Expanding Panels</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 28px;
+  }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .hint { color: #888; font-size: 13px; }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;       /* <-- vertical stack */
+    gap: 12px;
+    width: 100%;
+    max-width: 560px;
+    height: 560px;
+  }
+
+  .panel {
+    position: relative;
+    flex: 1;                       /* equal height by default */
+    border-radius: 16px;
+    background: #1c1c1e;
+    border: 1px solid #2e2e30;
+    cursor: pointer;
+    overflow: hidden;
+    transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+  }
+  .gallery:hover .panel { flex: 0.5; }            /* others shrink */
+  .panel:hover { flex: 4; background: #2a2a2e; }  /* hovered row grows tall */
+
+  /* number block on the left = stand-in for the project image */
+  .num {
+    flex-shrink: 0;
+    width: 56px;
+    font-size: 40px;
+    font-weight: 800;
+    color: #4a4a52;
+    transition: color 0.4s ease;
+  }
+  .panel:hover .num { color: #fff; }
+
+  /* revealed content to the right of the number */
+  .content {
+    margin-left: 18px;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.35s ease 0.15s, transform 0.35s ease 0.15s;
+  }
+  .panel:hover .content { opacity: 1; transform: translateX(0); }
+  .content h3 { font-size: 18px; margin-bottom: 4px; }
+  .content p { font-size: 13px; color: #aaa; }
+</style>
+</head>
+<body>
+  <h1>Concept 4 — Vertical Expanding Panels (vertical)</h1>
+  <p class="hint">Hover a row — it grows taller, the rest shrink. Reads as a top-to-bottom list.</p>
+
+  <div class="gallery">
+    <div class="panel"><span class="num">1</span><div class="content"><h3>Project 1</h3><p>title · tech · summary appears here</p></div></div>
+    <div class="panel"><span class="num">2</span><div class="content"><h3>Project 2</h3><p>title · tech · summary appears here</p></div></div>
+    <div class="panel"><span class="num">3</span><div class="content"><h3>Project 3</h3><p>title · tech · summary appears here</p></div></div>
+    <div class="panel"><span class="num">4</span><div class="content"><h3>Project 4</h3><p>title · tech · summary appears here</p></div></div>
+    <div class="panel"><span class="num">5</span><div class="content"><h3>Project 5</h3><p>title · tech · summary appears here</p></div></div>
+  </div>
+</body>
+</html>

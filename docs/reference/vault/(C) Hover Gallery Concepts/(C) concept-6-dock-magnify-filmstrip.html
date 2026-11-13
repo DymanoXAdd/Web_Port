@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+  CONCEPT 6 — DOCK MAGNIFY FILMSTRIP (Hover Gallery Carousel)
+  HTML/CSS + a little JS for the magnification falloff.
+  No images — numbered squares only.
+  Idea: a horizontal filmstrip of squares. The item under the cursor magnifies
+  the most, and its immediate neighbors scale down progressively — like the
+  macOS dock. Feels like a true "hover carousel": move along the strip and the
+  focus glides with your cursor. Pairs naturally with horizontal scroll for many items.
+  Maps to Projects: square = project image; the magnified one shows its caption.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concept 6 — Dock Magnify Filmstrip</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 28px;
+    overflow-x: hidden;
+  }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .hint { color: #888; font-size: 13px; }
+
+  .strip {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    padding: 60px 30px;
+    height: 320px;
+  }
+
+  .item {
+    position: relative;
+    flex-shrink: 0;
+    width: 110px;
+    height: 110px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #26262c, #18181c);
+    border: 1px solid #34343a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    font-weight: 800;
+    color: #50505a;
+    cursor: pointer;
+    transform-origin: bottom center;
+    transition: transform 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    will-change: transform;
+  }
+  .item.lifted {
+    color: #fff;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.12);
+    z-index: 2;
+  }
+
+  .caption {
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    background: #fff;
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .item.lifted .caption { opacity: 1; }
+</style>
+</head>
+<body>
+  <h1>Concept 6 — Dock Magnify Filmstrip</h1>
+  <p class="hint">Move along the strip — the square under your cursor grows most, neighbors taper off (macOS-dock style).</p>
+
+  <div class="strip" id="strip">
+    <div class="item">1<span class="caption">Project 1</span></div>
+    <div class="item">2<span class="caption">Project 2</span></div>
+    <div class="item">3<span class="caption">Project 3</span></div>
+    <div class="item">4<span class="caption">Project 4</span></div>
+    <div class="item">5<span class="caption">Project 5</span></div>
+    <div class="item">6<span class="caption">Project 6</span></div>
+    <div class="item">7<span class="caption">Project 7</span></div>
+  </div>
+
+  <script>
+    // Dock-style magnification: each item scales by distance from the cursor.
+    // This falloff math is exactly what you'd port into the React version.
+    const strip = document.getElementById('strip');
+    const items = [...strip.querySelectorAll('.item')];
+    const MAX = 1.6;      // peak scale (cursor on it)
+    const REACH = 180;    // px of influence on each side
+
+    strip.addEventListener('mousemove', (e) => {
+      items.forEach((item) => {
+        const r = item.getBoundingClientRect();
+        const center = r.left + r.width / 2;
+        const dist = Math.abs(e.clientX - center);
+        const t = Math.max(0, 1 - dist / REACH);           // 1 at cursor → 0 at edge of reach
+        const scale = 1 + (MAX - 1) * (t * t);             // ease the falloff
+        item.style.transform = `scale(${scale.toFixed(3)})`;
+        item.classList.toggle('lifted', t > 0.75);          // caption on the focused one
+      });
+    });
+    strip.addEventListener('mouseleave', () => {
+      items.forEach((item) => {
+        item.style.transform = 'scale(1)';
+        item.classList.remove('lifted');
+      });
+    });
+  </script>
+</body>
+</html>
