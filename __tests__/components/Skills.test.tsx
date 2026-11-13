@@ -10,7 +10,7 @@
  *
  * Mocks:
  *  - @/lib/sanity: the real module throws at import time when Sanity env vars are
- *    absent, and urlFor must be deterministic for each card <img> src.
+ *    absent, and imageUrl must be deterministic for each card <img> src.
  *  - framer-motion: stub motion.* to plain DOM elements (memoised per tag so React
  *    keeps the same component type across re-renders) and provide working stubs for
  *    every hook the components import — useInView and useReducedMotion are jest
@@ -21,7 +21,7 @@ import type { Skill } from "@/types";
 
 // Deterministic image URL builder — avoids the env-var throw in lib/sanity.
 jest.mock("@/lib/sanity", () => ({
-  urlFor: () => ({ url: () => "https://example.com/img.png" }),
+  imageUrl: () => "https://example.com/img.png",
 }));
 
 // Controllable hooks shared with the framer-motion mock.

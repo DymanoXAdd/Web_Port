@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { Project } from "@/types";
-import { urlFor } from "@/lib/sanity";
+import { imageUrl } from "@/lib/sanity";
 import { containerVariants } from "@/lib/animations";
 
 type Props = {
@@ -132,7 +132,7 @@ function ProjectCard({
       {/* Card face */}
       <div className="relative w-56 sm:w-64 lg:w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
         <img
-          src={urlFor(project.image).url()}
+          src={imageUrl(project.image)}
           alt={project.title}
           className="h-44 w-full object-cover sm:h-52 lg:h-60"
         />
@@ -159,7 +159,7 @@ function ProjectCard({
             {project.technologies?.map((technology) => (
               <img
                 key={technology._id}
-                src={urlFor(technology.image).url()}
+                src={imageUrl(technology.image)}
                 alt={technology.title}
                 title={technology.title}
                 className="h-8 w-8 rounded-md border border-black/10 object-contain p-1"
