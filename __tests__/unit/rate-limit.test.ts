@@ -110,8 +110,8 @@ describe("isAllowedPath (revalidate allowlist)", () => {
     expect(isAllowedPath("/")).toBe(true);
   });
 
-  test("allows /api/email", () => {
-    expect(isAllowedPath("/api/email")).toBe(true);
+  test("rejects /api/email (API routes are dynamic; nothing to revalidate)", () => {
+    expect(isAllowedPath("/api/email")).toBe(false);
   });
 
   test("rejects arbitrary path", () => {

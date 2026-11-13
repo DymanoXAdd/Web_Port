@@ -42,7 +42,7 @@ export function getClientIp(headers: Headers): string {
 }
 
 // Only these paths may be revalidated from the Sanity webhook (blocks path-traversal abuse).
-const ALLOWED_PATHS = new Set(["/", "/api/email"]);
+const ALLOWED_PATHS = new Set(["/"]); // only the page is cached; API routes are dynamic
 
 export function isAllowedPath(path: string): boolean {
   return ALLOWED_PATHS.has(path);

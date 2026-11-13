@@ -203,8 +203,13 @@ describe("HTTP Security Headers — GET /", () => {
     expect(headers.get("x-frame-options")).toBe("SAMEORIGIN");
   });
 
-  test("has X-XSS-Protection: 1; mode=block", () => {
-    expect(headers.get("x-xss-protection")).toBe("1; mode=block");
+  test("sends no deprecated X-XSS-Protection or DNS-prefetch-on headers", () => {
+    expect(headers.get("x-xss-protection")).toBeNull();
+    expect(headers.get("x-dns-prefetch-control")).toBeNull();
+  });
+
+  test("production CSP has no 'unsafe-eval' (suite runs against next start / a deploy)", () => {
+    expect(headers.get("content-security-policy")).not.toContain("unsafe-eval");
   });
 
   test("has Referrer-Policy: strict-origin-when-cross-origin", () => {
