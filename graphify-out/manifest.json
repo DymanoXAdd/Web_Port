@@ -48,8 +48,8 @@
     "semantic_hash": ""
   },
   "__tests__/integration/api-security.test.ts": {
-    "mtime": 1794536189.7880633,
-    "seen": 1794536257.8180041,
+    "mtime": 1794536405.638977,
+    "seen": 1794536406.4381285,
     "ast_hash": "23fc32e2c4f84ba382df96eeb0252ed2",
     "semantic_hash": ""
   },
@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "__tests__/unit/rate-limit.test.ts": {
-    "mtime": 1794455394.7983608,
-    "seen": 1794455800.802054,
-    "ast_hash": "68655fa606d1bcc4dfde448dc2230352",
+    "mtime": 1794536623.8455808,
+    "seen": 1794536677.0368903,
+    "ast_hash": "a85f94aeb70411388d927e9202ea8f05",
     "semantic_hash": ""
   },
   "__tests__/unit/validation.test.ts": {
@@ -78,20 +78,20 @@
     "semantic_hash": ""
   },
   "app/api/email/route.ts": {
-    "mtime": 1794533223.4444978,
-    "seen": 1794533224.3683796,
-    "ast_hash": "4bc30fd7aca0e92059d83bb7f88f17f6",
+    "mtime": 1794536610.8666043,
+    "seen": 1794536677.0368927,
+    "ast_hash": "1f195c32c929dfc1908d29b38f4fce61",
     "semantic_hash": ""
   },
   "app/api/revalidate/route.ts": {
-    "mtime": 1794455394.800364,
-    "seen": 1794455800.802056,
-    "ast_hash": "b81140f3523d1ba2d0be059dedff45f8",
+    "mtime": 1794536611.1094873,
+    "seen": 1794536677.0368934,
+    "ast_hash": "a691444f54a21206eb2f2f91e4f2694a",
     "semantic_hash": ""
   },
   "app/layout.tsx": {
-    "mtime": 1794536182.753316,
-    "seen": 1794536257.8180125,
+    "mtime": 1794536405.638977,
+    "seen": 1794536406.4381368,
     "ast_hash": "cd1543455788afe58bffd2f8f2f25e32",
     "semantic_hash": ""
   },
@@ -456,9 +456,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794536248.7808666,
-    "seen": 1794536257.8180604,
-    "ast_hash": "1e947cf4f1996a44a39b00e536ed6909",
+    "mtime": 1794536669.52249,
+    "seen": 1794536677.0369434,
+    "ast_hash": "246d70205714d303649dfe6a9a7c68e5",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -471,6 +471,12 @@
     "mtime": 1794535875.8184488,
     "seen": 1794535877.7486053,
     "ast_hash": "5f84901c57e9c16739a0d01314678ab0",
+    "semantic_hash": ""
+  },
+  "lib/api-guards.ts": {
+    "mtime": 1794536610.7106977,
+    "seen": 1794536677.0369093,
+    "ast_hash": "0f3995eb01f0e1e1c1eb3795cc1c4230",
     "semantic_hash": ""
   },
   "package-lock.json": {
