@@ -84,7 +84,7 @@ function ProjectCard({
       data-active={active ? "true" : "false"}
       // Not a button itself: the "View Project" link inside is the one control (no nested interactives).
       // Focus on that link bubbles here, so keyboard users still get the lift/reveal.
-      className={`project-card group relative flex-shrink-0 rounded-2xl focus-within:ring-4 focus-within:ring-black/40 ${
+      className={`project-card group relative flex-shrink-0 rounded-[14px] focus-within:ring-4 focus-within:ring-brand-text/60 ${
         active ? "is-active z-50" : "z-10"
       }`}
       style={{
@@ -115,67 +115,50 @@ function ProjectCard({
       }}
     >
       {/* Card face */}
-      <div className="relative w-56 sm:w-64 lg:w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
+      <div className="relative w-64 overflow-hidden rounded-[14px] border border-line bg-panel shadow-[0_24px_48px_rgba(0,0,0,0.45)]">
         {/* next/image throws without a src; a missing Sanity image keeps a same-size blank so the card doesn't collapse. */}
         {cover ? (
           <Image
             src={cover}
             alt={project.title}
-            width={288}
-            height={240}
-            className="h-44 w-full object-cover sm:h-52 lg:h-60"
+            width={256}
+            height={150}
+            className="h-[150px] w-full object-cover"
           />
         ) : (
-          <div className="h-44 w-full bg-neutral-100 sm:h-52 lg:h-60" />
+          <div className="h-[150px] w-full bg-panel-2" />
         )}
 
-        {/* Detail panel — present in the DOM always; revealed (opacity) on active. */}
-        <div
-          data-testid="project-detail"
-          className={`flex flex-col space-y-3 p-4 transition-opacity duration-300 ${
-            active ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <h4
-            className="text-lg font-semibold text-black"
-            style={{ fontFamily: "var(--font-heading)" }}
+        <div className="flex flex-col gap-2.5 p-5">
+          <h3 className="text-[19px] font-semibold text-fg">{project.title}</h3>
+
+          {/* Detail panel — present in the DOM always; revealed (opacity) on active. */}
+          <div
+            data-testid="project-detail"
+            className={`flex flex-col gap-2.5 transition-opacity duration-300 ${
+              active ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           >
-            {project.title}
-          </h4>
+            <p className="line-clamp-4 text-sm leading-relaxed text-muted">{project.summary}</p>
 
-          <p className="text-sm text-neutral-600 leading-relaxed line-clamp-4">
-            {project.summary}
-          </p>
+            {project.technologies?.length ? (
+              <p className="font-mono text-xs text-soft">
+                {project.technologies.map((t) => t.title).filter(Boolean).join(" · ").toLowerCase()}
+              </p>
+            ) : null}
 
-          <div className="flex flex-wrap items-center gap-2">
-            {project.technologies?.map((technology) => {
-              const src = imageUrl(technology.image);
-              return src ? (
-                <Image
-                  key={technology._id}
-                  src={src}
-                  alt={technology.title}
-                  title={technology.title}
-                  width={32}
-                  height={32}
-                  className="h-8 w-8 rounded-md border border-black/10 object-contain p-1"
-                />
-              ) : null;
-            })}
+            {project.linkToBuild && (
+              <a
+                href={project.linkToBuild}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View project: ${project.title}`}
+                className="w-fit py-1.5 font-semibold text-brand-text focus-visible:outline-none"
+              >
+                View Project →
+              </a>
+            )}
           </div>
-
-          {project.linkToBuild && (
-            <a
-              href={project.linkToBuild}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View project: ${project.title}`}
-              className="inline-block w-fit rounded-lg bg-black px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              View Project
-            </a>
-          )}
         </div>
       </div>
     </motion.div>
@@ -192,21 +175,22 @@ function Projects({ projects }: Props) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
+      className="section-wrap flex flex-col gap-2 pt-28"
     >
-      <h3 className="section-title">Projects</h3>
+      <h2 className="section-label">-- projects</h2>
 
       {count === 0 ? (
-        <div
-          data-testid="projects-empty"
-          className="text-neutral-500 text-lg"
-        >
+        <p data-testid="projects-empty" className="text-muted">
           No projects to show yet.
-        </div>
+        </p>
       ) : (
+        <>
+        <p className="text-[15px] text-muted">Hover a card, or Tab to its link, to lift it.</p>
+        {/* Scrolls sideways on a narrow phone instead of squashing the fan. */}
+        <div className="overflow-x-auto pb-10 pt-16">
         <div
           data-testid="project-stack"
-          className="relative z-20 flex w-full items-center justify-center px-6 pt-32 pb-12 md:pt-40"
+          className="relative z-20 mx-auto flex w-max items-center px-8"
           style={{ perspective: 1400 }}
         >
           {projects.map((project, i) => (
@@ -224,6 +208,8 @@ function Projects({ projects }: Props) {
             />
           ))}
         </div>
+        </div>
+        </>
       )}
     </motion.div>
   );

@@ -10,7 +10,7 @@ Stage: production · Updated: 2026-11-12
 ## Next
 - [ ] T-004 Sentry free tier + one uptime check on the home page (note: Cloudflare edge rejects some bots/checkers and Spectrum blocks the domain for CLI tools on Luis's network; run the uptime check from a hosted monitor and confirm it gets 200) (dependency + DSN secret approved in principle; confirm at build time)
 - [ ] T-028 Major upgrades, each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). Dependabot skips majors until this is planned. Needs a plan + Luis yes
-- [ ] T-011 Redesign: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
+- [ ] T-011 Concept A built (D-005) on `task/T-011-redesign-a`; waiting on Luis's OK of the preview before merge. Mockups: https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ. Redesign: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
 - [ ] T-012 Playwright contact-flow E2E test, after the redesign lands
 
 ## Blocked or waiting on a human

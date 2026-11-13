@@ -77,10 +77,9 @@ jest.mock("framer-motion", () => {
   };
 });
 
-/** Asserts a section is centered + width-constrained. */
+/** Asserts a section uses the shared centered, max-width wrapper (globals.css `.section-wrap`). */
 function expectCenteredConstrainedContainer(container: HTMLElement) {
-  expect(container.querySelector(".mx-auto")).toBeInTheDocument();
-  expect(container.querySelector('[class*="max-w-"]')).toBeInTheDocument();
+  expect(container.querySelector(".section-wrap")).toBeInTheDocument();
 }
 
 const mockImage = {
@@ -211,14 +210,14 @@ describe("ContactMe section layout", () => {
     expectCenteredConstrainedContainer(container);
 
     // The contact heading renders.
-    expect(screen.getByText(/Let'?s Talk\.?/)).toBeInTheDocument();
+    expect(screen.getByText(/Let'?s Talk\.?/i)).toBeInTheDocument();
 
-    // The contact form fields render (Sanity-independent form is intact).
-    expect(screen.getByPlaceholderText("Name")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /submit/i })
-    ).toBeInTheDocument();
+    // Every field has a real label (a11y), and the form has its submit button.
+    expect(screen.getByLabelText("Name")).toBeInTheDocument();
+    expect(screen.getByLabelText("Email")).toBeInTheDocument();
+    expect(screen.getByLabelText("Subject")).toBeInTheDocument();
+    expect(screen.getByLabelText("Message")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Send message" })).toHaveAttribute("type", "submit");
 
     // The Sanity-driven contact info renders too.
     expect(screen.getByText("luisaruiz2734@gmail.com")).toBeInTheDocument();

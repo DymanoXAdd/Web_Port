@@ -6,54 +6,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // Concept A "Query" (picked 2026-11-12). Contrast on ink: fg 15:1, muted 7.3:1, brand-text 8.7:1.
+      // brand (#00880C) is only for fills with white text (4.6:1); never small text on ink (4.2:1 fails AA).
       colors: {
-        accent: {
-          light: "#333333",
-          dark: "#0a0a0a",
-        },
+        ink: "#0E1116",
+        panel: "#131820",
+        "panel-2": "#1B2230",
+        line: "#222A35",
+        "line-2": "#3A4554",
+        fg: "#E6EDF3",
+        soft: "#C9D3DD",
+        muted: "#9BA7B4",
+        brand: { DEFAULT: "#00880C", hover: "#007309", text: "#34C94A" },
       },
-      animation: {
-        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "float": "float 3s ease-in-out infinite",
-        "slide-in-left": "slide-in-left 0.6s ease-out",
-        "slide-in-right": "slide-in-right 0.6s ease-out",
-        "fade-in-up": "fade-in-up 0.6s ease-out",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "slide-in-left": {
-          "0%": {
-            opacity: "0",
-            transform: "translateX(-50px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateX(0)",
-          },
-        },
-        "slide-in-right": {
-          "0%": {
-            opacity: "0",
-            transform: "translateX(50px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateX(0)",
-          },
-        },
-        "fade-in-up": {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-        },
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },
