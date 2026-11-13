@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { isAllowedPath } from "@/lib/api-guards";
 
 /**
  * On-demand ISR revalidation — called by Sanity webhooks.
@@ -9,14 +10,6 @@ import { revalidatePath } from "next/cache";
  * - `path` is validated against an allowlist to prevent path-traversal abuse.
  * - GET returns 405 (Method Not Allowed) — no health-check info leakage.
  */
-
-// Only these paths may be revalidated from an external webhook
-const ALLOWED_PATHS = new Set(["/", "/api/email"]);
-
-function isAllowedPath(path: string): boolean {
-  // Accept exact allowlist entries only
-  return ALLOWED_PATHS.has(path);
-}
 
 export async function POST(request: NextRequest) {
   try {
