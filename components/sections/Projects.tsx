@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { Project } from "@/types";
+import Image from "next/image";
 import { imageUrl } from "@/lib/sanity";
 import { containerVariants } from "@/lib/animations";
 
@@ -65,6 +66,7 @@ function ProjectCard({
   }
 
   const rest = restRotation(index, count);
+  const cover = imageUrl(project.image);
 
   // Neighbours slide aside to make room for the active card.
   let neighborShift = 0;
@@ -114,11 +116,18 @@ function ProjectCard({
     >
       {/* Card face */}
       <div className="relative w-56 sm:w-64 lg:w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
-        <img
-          src={imageUrl(project.image)}
-          alt={project.title}
-          className="h-44 w-full object-cover sm:h-52 lg:h-60"
-        />
+        {/* next/image throws without a src; a missing Sanity image keeps a same-size blank so the card doesn't collapse. */}
+        {cover ? (
+          <Image
+            src={cover}
+            alt={project.title}
+            width={288}
+            height={240}
+            className="h-44 w-full object-cover sm:h-52 lg:h-60"
+          />
+        ) : (
+          <div className="h-44 w-full bg-neutral-100 sm:h-52 lg:h-60" />
+        )}
 
         {/* Detail panel — present in the DOM always; revealed (opacity) on active. */}
         <div
@@ -139,15 +148,20 @@ function ProjectCard({
           </p>
 
           <div className="flex flex-wrap items-center gap-2">
-            {project.technologies?.map((technology) => (
-              <img
-                key={technology._id}
-                src={imageUrl(technology.image)}
-                alt={technology.title}
-                title={technology.title}
-                className="h-8 w-8 rounded-md border border-black/10 object-contain p-1"
-              />
-            ))}
+            {project.technologies?.map((technology) => {
+              const src = imageUrl(technology.image);
+              return src ? (
+                <Image
+                  key={technology._id}
+                  src={src}
+                  alt={technology.title}
+                  title={technology.title}
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 rounded-md border border-black/10 object-contain p-1"
+                />
+              ) : null;
+            })}
           </div>
 
           {project.linkToBuild && (

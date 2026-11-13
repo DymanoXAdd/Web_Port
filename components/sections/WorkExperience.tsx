@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Experience } from "@/types";
 import { containerVariants } from "@/lib/animations";
+import Image from "next/image";
 import { imageUrl } from "@/lib/sanity";
 import ExperienceCard from "@/components/ExperienceCard";
 
@@ -52,6 +53,7 @@ function WorkExperience({ experiences }: Props) {
   // active-card text the tests query, and is hidden from the a11y tree.
   const renderPeek = (item: Experience | null, side: "left" | "right") => {
     if (!item) return null;
+    const logo = imageUrl(item.companyImage);
     return (
       <div
         aria-hidden="true"
@@ -67,11 +69,17 @@ function WorkExperience({ experiences }: Props) {
               : "[mask-image:linear-gradient(to_left,transparent,black)]"
           }`}
         >
-          <img
-            src={imageUrl(item.companyImage)}
-            alt=""
-            className="h-20 w-20 rounded-full border-2 border-black object-cover"
-          />
+          {logo ? (
+            <Image
+              src={logo}
+              alt=""
+              width={80}
+              height={80}
+              className="h-20 w-20 rounded-full border-2 border-black object-cover"
+            />
+          ) : (
+            <div className="h-20 w-20 rounded-full border-2 border-black" />
+          )}
         </div>
       </div>
     );

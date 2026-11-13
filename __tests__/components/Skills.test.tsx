@@ -136,7 +136,8 @@ describe("Skills cascade + count-up", () => {
     const icons = screen.getAllByRole("img");
     expect(icons).toHaveLength(3);
     icons.forEach((img) => {
-      expect(img).toHaveAttribute("src", "https://example.com/img.png");
+      // next/image serves the Sanity URL through its optimizer: /_next/image?url=<encoded>&w=...
+      expect(img.getAttribute("src")).toContain(encodeURIComponent("https://example.com/img.png"));
     });
     expect(screen.getByAltText("SQL")).toBeInTheDocument();
     expect(screen.getByAltText("TypeScript")).toBeInTheDocument();
