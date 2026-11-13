@@ -29,3 +29,25 @@ test("one submission sends one email, only to the site owner", async () => {
   expect(send).toHaveBeenCalledTimes(1);
   expect(send.mock.calls[0][0].to).toBe("owner@example.com");
 });
+
+test("missing RECIPIENT_EMAIL sends nothing and returns a generic 500", async () => {
+  delete process.env.RECIPIENT_EMAIL;
+  send.mockClear();
+  jest.spyOn(console, "error").mockImplementation(() => {});
+  const res = await POST(
+    new NextRequest("http://localhost/api/email", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-forwarded-for": "8.8.8.8" },
+      body: JSON.stringify({
+        name: "Real Person",
+        email: "person@example.com",
+        subject: "Hello there",
+        message: "A normal message for you",
+      }),
+    })
+  );
+
+  expect(res.status).toBe(500);
+  expect(send).not.toHaveBeenCalled();
+  expect((await res.json()).error).not.toMatch(/RECIPIENT_EMAIL/);
+});

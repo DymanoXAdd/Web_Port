@@ -8,7 +8,6 @@ Stage: production · Updated: 2026-11-12
 ## Now
 
 ## Next
-- [ ] T-020 One source for Luis's email: Hero reads `pageInfo.contactInfo.email`; email route requires `RECIPIENT_EMAIL` instead of a hard-coded gmail fallback (route part needs yes)
 - [ ] T-021 `ErrorBoundary`: show the fixed friendly sentence, never `error.message`
 - [ ] T-022 `ExperienceCard`: missing `dateEnded` on a past job prints "Invalid Date"; show nothing/"Present" instead
 - [ ] T-023 Project card a11y: `role="button"` div wraps a link (nested interactive), and a project without `linkToBuild` opens `about:blank`. UI change, needs plan yes
@@ -31,6 +30,7 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-020 Hero email pill reads `pageInfo.contactInfo.email` (hidden if empty); email route requires `RECIPIENT_EMAIL` (set in Vercel Production) and returns a generic 500 without it. No hard-coded address left in app code (2026-11-12)
 - [x] T-019 Deleted `lib/constants.ts`, `components/BackgroundCircles.tsx`, `emailResponseSchema`, the empty footer link in `app/page.tsx`; uninstalled `react-simple-typewriter`, `react-social-icons`. Luis approved (2026-11-12)
 - [x] T-018 `checkRateLimit`, `getClientIp`, `isAllowedPath` live in `lib/api-guards.ts`; both API routes and `rate-limit.test.ts` import them (test no longer checks a hand copy). Behavior unchanged. Luis approved (2026-11-12)
 - [x] T-017 Removed the two CSP-blocked `db.onlinewebfonts.com` stylesheet links from `app/layout.tsx`; fonts still fall back to Helvetica Neue/Arial as before (2026-11-12). Test: integration "loads no stylesheet from another origin"
