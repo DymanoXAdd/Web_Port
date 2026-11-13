@@ -74,29 +74,38 @@ export default function SkillComponent({ skill, active }: Props) {
   const filled = reduced || active;
   const barWidth = `${filled ? target : 0}%`;
   const src = imageUrl(skill.image);
-  const iconClass = "h-20 w-20 rounded-full border border-gray-500 object-cover md:h-24 md:w-24";
+  const iconClass = "h-6 w-6 flex-shrink-0 rounded object-contain";
 
   return (
     <motion.div
       variants={cardVariants}
       data-testid="skill-card"
-      className="flex flex-col items-center gap-3 rounded-2xl border border-gray-700/60 bg-white/5 p-4 backdrop-blur-sm md:p-5"
+      className="flex flex-col gap-3.5 rounded-[10px] border border-line bg-panel p-5"
     >
-      {/* next/image throws without a src, so a missing Sanity image keeps an empty same-size circle. */}
-      {src ? (
-        <Image src={src} alt={skill.title} width={96} height={96} className={iconClass} />
-      ) : (
-        <div aria-hidden="true" className={iconClass} />
-      )}
-      <p className="text-center text-sm font-semibold text-black md:text-base">
-        {skill.title}
-      </p>
-      <p className="text-2xl font-bold text-[#F7AB0A]">
-        {reduced ? target : count}%
-      </p>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-gray-700/60">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2.5">
+          {/* next/image throws without a src, so a missing Sanity image keeps an empty same-size square. */}
+          {src ? (
+            <Image src={src} alt={skill.title} width={24} height={24} className={iconClass} />
+          ) : (
+            <div aria-hidden="true" className={iconClass} />
+          )}
+          <p className="truncate font-mono text-[15px] text-fg">{skill.title}</p>
+        </div>
+        <p className="text-[28px] font-bold tabular-nums text-brand-text">
+          {reduced ? target : count}%
+        </p>
+      </div>
+      <div
+        role="progressbar"
+        aria-label={`${skill.title} proficiency`}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={target}
+        className="h-1.5 w-full overflow-hidden rounded-full bg-line"
+      >
         <motion.div
-          className="h-full rounded-full bg-[#F7AB0A]"
+          className="h-full rounded-full bg-brand"
           initial={false}
           animate={{ width: barWidth }}
           transition={

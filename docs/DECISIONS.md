@@ -3,6 +3,13 @@
 <!-- One entry per decision, newest first. Never edit an old entry; add a new one
      that supersedes it. Changing anything recorded here needs human approval. -->
 
+## D-005 — 2026-11-12 — Redesign to concept A "Query" + four optional hero fields in Sanity
+- Status: approved by Luis, 2026-11-12 (picked concept A in green #00880C; approved the build plan, dropping the hero video and typewriter, and the new hero copy)
+- Decision: dark theme (ink #0E1116), brand green #00880C for fills with white text, #34C94A for small accent text (contrast: #00880C on ink is 4.2:1 and fails AA for small text). Inter + JetBrains Mono via next/font (self-hosted). Tilt project stack and skill count-up kept; experience carousel replaced by a list; hero video and typewriter removed; phone and address no longer shown in the contact section. `pageInfo` gains optional `heroKicker`, `headline`, `heroIntro`, `status`; the code falls back to the approved mockup wording when they are empty, so no data migration is needed.
+- Why: Luis chose it from three mockups (https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ).
+- Alternatives considered: B Editorial, C Bento (not picked).
+- Approved by: Luis
+
 ## D-004 — 2026-11-12 — DNS moves from Cloudflare to Vercel
 - Status: approved by Luis, 2026-11-12 (nameserver change made by Luis)
 - Decision: `luisaruiz.xyz` uses Vercel nameservers (`ns1/ns2.vercel-dns.com`). Resend records (`send` MX + SPF TXT, `resend._domainkey` DKIM) copied to Vercel DNS first.

@@ -16,7 +16,7 @@
  *    every hook the components import — useInView and useReducedMotion are jest
  *    mocks the tests control.
  */
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import type { Skill } from "@/types";
 
 // Deterministic image URL builder — avoids the env-var throw in lib/sanity.
@@ -103,7 +103,7 @@ describe("Skills cascade + count-up", () => {
   it("renders the section title", () => {
     render(<Skills skills={threeSkills} />);
     expect(
-      screen.getByRole("heading", { name: /^skills$/i })
+      screen.getByRole("heading", { name: "-- stack" })
     ).toBeInTheDocument();
   });
 
@@ -114,11 +114,19 @@ describe("Skills cascade + count-up", () => {
     expect(screen.getByText("React")).toBeInTheDocument();
   });
 
-  it("renders skill titles in black text (text-black, not text-gray-200)", () => {
+  it("exposes each skill as a labelled progressbar with its real value", () => {
     render(<Skills skills={threeSkills} />);
-    const title = screen.getByText("SQL");
-    expect(title.className).toContain("text-black");
-    expect(title.className).not.toContain("text-gray-200");
+    const bar = screen.getByRole("progressbar", { name: "SQL proficiency" });
+    expect(bar).toHaveAttribute("aria-valuenow", "95");
+  });
+
+  it("Replay restarts the cards (remounts them) without losing any", () => {
+    render(<Skills skills={threeSkills} />);
+    const before = screen.getAllByTestId("skill-card")[0];
+    fireEvent.click(screen.getByRole("button", { name: "Replay" }));
+    const after = screen.getAllByTestId("skill-card");
+    expect(after).toHaveLength(3);
+    expect(after[0]).not.toBe(before);
   });
 
   it("renders a percentage readout per skill (count-up display present)", () => {
@@ -171,7 +179,7 @@ describe("Skills cascade + count-up", () => {
   it("degrades sanely with zero skills (no crash)", () => {
     render(<Skills skills={[]} />);
     expect(
-      screen.getByRole("heading", { name: /^skills$/i })
+      screen.getByRole("heading", { name: "-- stack" })
     ).toBeInTheDocument();
     expect(screen.queryAllByTestId("skill-card")).toHaveLength(0);
   });

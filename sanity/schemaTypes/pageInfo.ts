@@ -17,6 +17,32 @@ export const pageInfoType = defineType({
       title: 'Role',
       type: 'string',
     }),
+    // Hero copy for the concept A redesign (2026-11-12). All optional: the site falls back to the
+    // approved mockup wording when a field is empty.
+    defineField({
+      name: 'heroKicker',
+      title: 'Hero code line',
+      type: 'string',
+      description: "Small mono line above your name, e.g. SELECT name, role FROM people WHERE handle = 'luis';",
+    }),
+    defineField({
+      name: 'headline',
+      title: 'Headline',
+      type: 'string',
+      description: 'Shown under your name, e.g. Software engineer who makes data behave.',
+    }),
+    defineField({
+      name: 'heroIntro',
+      title: 'Hero intro',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      description: 'Shown in the hero strip, e.g. Open to opportunities.',
+    }),
     defineField({
       name: 'heroImage',
       title: 'Hero Image',

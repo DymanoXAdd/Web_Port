@@ -53,46 +53,28 @@ export default async function Home() {
     await getPortfolioData();
 
   return (
-    <main className="snap-container bg-white text-black">
-      <ErrorBoundary>
-        <Header socials={socials} />
-
-        <section id="hero" className="snap-start h-screen">
+    <ErrorBoundary>
+      <Header socials={socials} />
+      <main className="min-h-screen bg-ink text-fg">
+        <section id="hero">
           <Hero pageInfo={pageInfo} />
         </section>
-
-        <section id="about" className="snap-start h-screen relative z-10 bg-white">
+        <section id="about">
           <About pageInfo={pageInfo} />
         </section>
-
-        <section
-          id="experience"
-          className="snap-start h-screen relative z-10 bg-white"
-        >
+        <section id="experience">
           <WorkExperience experiences={experiences} />
         </section>
-
-        <section
-          id="skills"
-          className="snap-start h-screen relative z-10 bg-white"
-        >
-          <Skills skills={skills} />
-        </section>
-
-        <section
-          id="projects"
-          className="snap-start h-screen relative z-10 bg-white"
-        >
+        <section id="projects">
           <Projects projects={projects} />
         </section>
-
-        <section
-          id="contact"
-          className="snap-start h-screen relative z-10 bg-white"
-        >
+        <section id="skills">
+          <Skills skills={skills} />
+        </section>
+        <section id="contact">
           <ContactMe pageInfo={pageInfo} />
         </section>
-      </ErrorBoundary>
-    </main>
+      </main>
+    </ErrorBoundary>
   );
 }
