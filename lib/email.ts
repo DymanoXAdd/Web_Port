@@ -86,30 +86,3 @@ export async function sendContactEmail(data: ContactFormInput, recipientEmail: s
     throw error;
   }
 }
-
-// Optional: Send confirmation email to visitor
-export async function sendConfirmationEmail(email: string, name: string) {
-  const safeName = escapeHtml(name);
-  try {
-    const result = await resend().emails.send({
-      from: "noreply@luisaruiz.xyz",
-      to: email,
-      subject: "We received your message!",
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2>Thank you, ${safeName}!</h2>
-          <p>We received your message and will get back to you as soon as possible.</p>
-          <p>Best regards,<br>Luis Ruiz</p>
-        </div>
-      `
-    });
-
-    if (result.error) {
-      console.error("Confirmation email send error:", result.error);
-      // Don't throw - this is optional
-    }
-  } catch (error) {
-    console.error("Confirmation email send error:", error);
-    // Don't throw - this is optional
-  }
-}

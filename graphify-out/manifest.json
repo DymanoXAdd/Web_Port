@@ -1,10 +1,4 @@
 {
-  ".claude/settings.json": {
-    "mtime": 1794529586.9104319,
-    "seen": 1794529632.5140302,
-    "ast_hash": "48a0b5367c99f4361200f8b2ca23820e",
-    "semantic_hash": ""
-  },
   ".eslintrc.json": {
     "mtime": 1794455394.7938604,
     "seen": 1794455800.802044,
@@ -66,8 +60,8 @@
     "semantic_hash": ""
   },
   "__tests__/unit/email-security.test.ts": {
-    "mtime": 1794529883.4361987,
-    "seen": 1794529925.0021281,
+    "mtime": 1794530437.7439885,
+    "seen": 1794530438.631691,
     "ast_hash": "e571e36aaf54697215ef160fc74acd55",
     "semantic_hash": ""
   },
@@ -84,9 +78,9 @@
     "semantic_hash": ""
   },
   "app/api/email/route.ts": {
-    "mtime": 1794455394.7993639,
-    "seen": 1794455800.8020554,
-    "ast_hash": "90cae2ddb8d5c32c7d720bbd975fed19",
+    "mtime": 1794532393.3063762,
+    "seen": 1794533202.8821092,
+    "ast_hash": "4bc30fd7aca0e92059d83bb7f88f17f6",
     "semantic_hash": ""
   },
   "app/api/revalidate/route.ts": {
@@ -180,20 +174,20 @@
     "semantic_hash": ""
   },
   "jest.components.config.js": {
-    "mtime": 1794529345.0096433,
-    "seen": 1794529449.1111348,
+    "mtime": 1794530437.7565398,
+    "seen": 1794530438.631739,
     "ast_hash": "e9ebf3f84d6479c31351aee189b123c0",
     "semantic_hash": ""
   },
   "jest.config.js": {
-    "mtime": 1794529883.4361987,
-    "seen": 1794529925.0021453,
+    "mtime": 1794530437.7565398,
+    "seen": 1794530438.6317399,
     "ast_hash": "7443bd9d15d26e75fed156db56943838",
     "semantic_hash": ""
   },
   "jest.integration.config.js": {
-    "mtime": 1794529345.0096433,
-    "seen": 1794529449.111138,
+    "mtime": 1794530437.7604165,
+    "seen": 1794530438.6317406,
     "ast_hash": "ce3670d9cd4ea089e3bb5a92dc762513",
     "semantic_hash": ""
   },
@@ -216,9 +210,9 @@
     "semantic_hash": ""
   },
   "lib/email.ts": {
-    "mtime": 1794529883.4341898,
-    "seen": 1794529925.0021493,
-    "ast_hash": "ca270fb6a26efe30bf85874b01bfd3e4",
+    "mtime": 1794532390.3455048,
+    "seen": 1794533202.882127,
+    "ast_hash": "3911854f0af1e23e883de14e8a4fb45f",
     "semantic_hash": ""
   },
   "lib/sanity-queries.ts": {
@@ -342,8 +336,8 @@
     "semantic_hash": ""
   },
   "tsconfig.json": {
-    "mtime": 1794529345.0113876,
-    "seen": 1794529449.1111577,
+    "mtime": 1794530437.7630033,
+    "seen": 1794530438.6317604,
     "ast_hash": "878d06a3284171f1b5a4d81e63cb0169",
     "semantic_hash": ""
   },
@@ -377,99 +371,105 @@
     "ast_hash": "5132e8c4b28b5a7e2f5319f225582aac",
     "semantic_hash": ""
   },
-  ".claude/agents/builder.md": {
-    "mtime": 1784680271.0,
-    "seen": 1794455800.8020892,
-    "ast_hash": "12a9f674018d7029d944a25c2b92ee4b",
-    "semantic_hash": ""
-  },
-  ".claude/agents/checker.md": {
-    "mtime": 1782194089.0,
-    "seen": 1794455800.80209,
-    "ast_hash": "cb98b0292ee88d0129956fa31a0f8521",
-    "semantic_hash": ""
-  },
-  ".claude/agents/orchestrator.md": {
-    "mtime": 1784680280.0,
-    "seen": 1794455800.8020906,
-    "ast_hash": "b122ececb2dd3910f08c19e1e55515a7",
-    "semantic_hash": ""
-  },
-  ".claude/rules/frontend.md": {
-    "mtime": 1794455782.2771342,
-    "seen": 1794455800.8020916,
-    "ast_hash": "4eaa77c94e8306054f40a35ccdf9cfcc",
-    "semantic_hash": ""
-  },
-  ".claude/rules/security.md": {
-    "mtime": 1794455782.2761352,
-    "seen": 1794455800.8020923,
-    "ast_hash": "2faa4c8edc1f45692d31c8c33aa0e350",
-    "semantic_hash": ""
-  },
-  ".claude/rules/testing.md": {
-    "mtime": 1794455395.5739462,
-    "seen": 1794455800.802093,
-    "ast_hash": "49b3afef8f22b894bda04a5c10752e25",
-    "semantic_hash": ""
-  },
-  ".claude/session-handoff.md": {
-    "mtime": 1794529617.514076,
-    "seen": 1794529632.5140975,
-    "ast_hash": "b2576584ca9d015d91921a23f742e4ff",
-    "semantic_hash": ""
-  },
-  ".github/pull_request_template.md": {
-    "mtime": 1794455395.5689461,
-    "seen": 1794455800.8020942,
-    "ast_hash": "148be117c79451f02376c63f93e938aa",
-    "semantic_hash": ""
-  },
-  "CLAUDE.md": {
-    "mtime": 1794529586.9104319,
-    "seen": 1794529632.5140994,
-    "ast_hash": "943c57ee81801d8533a0d699c06f441d",
-    "semantic_hash": ""
-  },
-  "docs/ARCHITECTURE.md": {
-    "mtime": 1794528920.697355,
-    "seen": 1794529449.1111703,
-    "ast_hash": "5ccb8b2598e339d7f9a7be88a80c075b",
-    "semantic_hash": ""
-  },
-  "docs/BRIEF.md": {
-    "mtime": 1794528920.697355,
-    "seen": 1794529449.111171,
-    "ast_hash": "43f99f817ecf57df6b752c6e7f029605",
-    "semantic_hash": ""
-  },
-  "docs/DECISIONS.md": {
-    "mtime": 1794528920.697355,
-    "seen": 1794529449.1111717,
-    "ast_hash": "6818c31b9546122f10cf08a8ec61077e",
-    "semantic_hash": ""
-  },
-  "docs/RUNBOOK.md": {
-    "mtime": 1794528920.697355,
-    "seen": 1794529449.111173,
-    "ast_hash": "14eae5b0b6c91ce44d0c7552c9ea82b9",
-    "semantic_hash": ""
-  },
-  "docs/TASKS.md": {
-    "mtime": 1794529883.4924624,
-    "seen": 1794529925.002181,
-    "ast_hash": "1ab529722c0cff6c9bd731782be6897d",
-    "semantic_hash": ""
-  },
   "public/robots.txt": {
     "mtime": 1794455394.8136733,
     "seen": 1794455800.8020992,
     "ast_hash": "4aac03db429616f8bd2a1699acf77b54",
     "semantic_hash": ""
   },
+  ".claude/agents/builder.md": {
+    "mtime": 1794530437.7384992,
+    "seen": 1794530439.7589347,
+    "ast_hash": "c237702f61f04b3c13a2a5369b92256d",
+    "semantic_hash": ""
+  },
+  ".claude/agents/checker.md": {
+    "mtime": 1794530437.7384992,
+    "seen": 1794530439.7589357,
+    "ast_hash": "158d3d7056c5029bb88b315b1b5d857c",
+    "semantic_hash": ""
+  },
+  ".claude/agents/orchestrator.md": {
+    "mtime": 1794530437.7384992,
+    "seen": 1794530439.7589366,
+    "ast_hash": "8868a4d81ee6b994d5b2ca33bf17e650",
+    "semantic_hash": ""
+  },
+  ".claude/rules/frontend.md": {
+    "mtime": 1794530437.7384992,
+    "seen": 1794530439.7589374,
+    "ast_hash": "4eaa77c94e8306054f40a35ccdf9cfcc",
+    "semantic_hash": ""
+  },
+  ".claude/rules/security.md": {
+    "mtime": 1794530437.7384992,
+    "seen": 1794530439.758938,
+    "ast_hash": "2faa4c8edc1f45692d31c8c33aa0e350",
+    "semantic_hash": ""
+  },
+  ".claude/rules/testing.md": {
+    "mtime": 1794530437.7409804,
+    "seen": 1794530439.7589388,
+    "ast_hash": "e72be30a358b44d4a7c7ba676a8723d2",
+    "semantic_hash": ""
+  },
+  ".claude/session-handoff.md": {
+    "mtime": 1794530437.7409804,
+    "seen": 1794530439.7589397,
+    "ast_hash": "992b9c65e300bb6de534683595c4e38d",
+    "semantic_hash": ""
+  },
+  ".github/pull_request_template.md": {
+    "mtime": 1794530437.741984,
+    "seen": 1794530439.7589405,
+    "ast_hash": "57d200d63f9475b08ede6f3f1dbf93c1",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1794530437.7439885,
+    "seen": 1794530439.758941,
+    "ast_hash": "943c57ee81801d8533a0d699c06f441d",
+    "semantic_hash": ""
+  },
+  "docs/ARCHITECTURE.md": {
+    "mtime": 1794530437.7439885,
+    "seen": 1794530439.7589417,
+    "ast_hash": "5ccb8b2598e339d7f9a7be88a80c075b",
+    "semantic_hash": ""
+  },
+  "docs/BRIEF.md": {
+    "mtime": 1794530437.7439885,
+    "seen": 1794530439.7589421,
+    "ast_hash": "43f99f817ecf57df6b752c6e7f029605",
+    "semantic_hash": ""
+  },
+  "docs/DECISIONS.md": {
+    "mtime": 1794530437.7439885,
+    "seen": 1794530439.758943,
+    "ast_hash": "6818c31b9546122f10cf08a8ec61077e",
+    "semantic_hash": ""
+  },
+  "docs/RUNBOOK.md": {
+    "mtime": 1794530437.7439885,
+    "seen": 1794530439.7589438,
+    "ast_hash": "14eae5b0b6c91ce44d0c7552c9ea82b9",
+    "semantic_hash": ""
+  },
+  "docs/TASKS.md": {
+    "mtime": 1794533197.6326828,
+    "seen": 1794533202.88216,
+    "ast_hash": "851249347d1b5a8a18afd2382c662c9a",
+    "semantic_hash": ""
+  },
+  "__tests__/unit/email-route.test.ts": {
+    "mtime": 1794532214.4977014,
+    "seen": 1794533202.8821049,
+    "ast_hash": "c55d770323183bf71687179396054a99",
+    "semantic_hash": ""
+  },
   "package-lock.json": {
-    "mtime": 1794529154.3611605,
-    "seen": 1794529449.1111755,
+    "mtime": 1794530437.7630033,
+    "seen": 1794530438.631771,
     "ast_hash": "41fd3c17b934684519c164657b647bc2",
     "semantic_hash": ""
   }

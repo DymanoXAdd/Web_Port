@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/validation";
-import { sendContactEmail, sendConfirmationEmail } from "@/lib/email";
+import { sendContactEmail } from "@/lib/email";
 
 /**
  * In-memory rate limit store.
@@ -95,12 +95,8 @@ export async function POST(request: NextRequest) {
     const formData = validationResult.data;
     const recipientEmail = process.env.RECIPIENT_EMAIL || "luisaruiz2734@gmail.com";
 
+    // Only Luis gets mail: a reply to the visitor's address let anyone use our domain to spam any inbox.
     await sendContactEmail(formData, recipientEmail);
-
-    // Fire-and-forget — never let this block the 200 response
-    sendConfirmationEmail(formData.email, formData.name).catch((err) => {
-      console.error("Confirmation email failed (non-fatal):", err);
-    });
 
     return NextResponse.json(
       { success: true, message: "Email sent successfully!" },
