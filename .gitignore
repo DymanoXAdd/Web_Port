@@ -27,3 +27,7 @@ docs/reference/vault/10 Original Files/
 
 .vercel
 .env*
+
+# Playwright
+/test-results/
+/playwright-report/

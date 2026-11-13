@@ -41,3 +41,7 @@ jobs:
           npx next start -p 3100 &
           for i in $(seq 1 30); do curl -sf http://localhost:3100/api/email > /dev/null && break; sleep 1; done
           npm run test:integration
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: E2E contact flow (email API intercepted; never sends mail)
+        run: npm run test:e2e
