@@ -108,14 +108,6 @@ export default async function Home() {
         >
           <ContactMe pageInfo={pageInfo} />
         </section>
-
-        <footer className="container m-auto rounded-full w-20 text-white p-4 sticky bottom-0 z-50">
-          <a href="#hero" className="sticky bottom-5 w-full cursor-pointer block">
-            <div className="flex items-center justify-center text-center">
-              {/* Profile image will be added in component */}
-            </div>
-          </a>
-        </footer>
       </ErrorBoundary>
     </main>
   );

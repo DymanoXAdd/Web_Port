@@ -8,7 +8,6 @@ Stage: production · Updated: 2026-11-12
 ## Now
 
 ## Next
-- [ ] T-019 Delete dead code: `lib/constants.ts`, `components/BackgroundCircles.tsx`, `emailResponseSchema`, empty footer in `app/page.tsx`; uninstall `react-simple-typewriter`, `react-social-icons`
 - [ ] T-020 One source for Luis's email: Hero reads `pageInfo.contactInfo.email`; email route requires `RECIPIENT_EMAIL` instead of a hard-coded gmail fallback (route part needs yes)
 - [ ] T-021 `ErrorBoundary`: show the fixed friendly sentence, never `error.message`
 - [ ] T-022 `ExperienceCard`: missing `dateEnded` on a past job prints "Invalid Date"; show nothing/"Present" instead
@@ -32,6 +31,7 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-019 Deleted `lib/constants.ts`, `components/BackgroundCircles.tsx`, `emailResponseSchema`, the empty footer link in `app/page.tsx`; uninstalled `react-simple-typewriter`, `react-social-icons`. Luis approved (2026-11-12)
 - [x] T-018 `checkRateLimit`, `getClientIp`, `isAllowedPath` live in `lib/api-guards.ts`; both API routes and `rate-limit.test.ts` import them (test no longer checks a hand copy). Behavior unchanged. Luis approved (2026-11-12)
 - [x] T-017 Removed the two CSP-blocked `db.onlinewebfonts.com` stylesheet links from `app/layout.tsx`; fonts still fall back to Helvetica Neue/Arial as before (2026-11-12). Test: integration "loads no stylesheet from another origin"
 - [x] T-027 DNS moved to Vercel nameservers (D-004); Resend records resolve, live form send confirmed, Cloudflare zone deleted by Luis (2026-11-12)

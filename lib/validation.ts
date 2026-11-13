@@ -25,12 +25,3 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>;
-
-// Email response validation
-export const emailResponseSchema = z.object({
-  success: z.boolean(),
-  messageId: z.string().optional(),
-  error: z.string().optional()
-});
-
-export type EmailResponse = z.infer<typeof emailResponseSchema>;

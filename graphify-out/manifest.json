@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "__tests__/unit/rate-limit.test.ts": {
-    "mtime": 1794536623.8455808,
-    "seen": 1794536677.0368903,
-    "ast_hash": "a85f94aeb70411388d927e9202ea8f05",
+    "mtime": 1794536832.479832,
+    "seen": 1794536833.2621846,
+    "ast_hash": "3668e42faf146d295c94d32fe9a282cd",
     "semantic_hash": ""
   },
   "__tests__/unit/validation.test.ts": {
@@ -78,14 +78,14 @@
     "semantic_hash": ""
   },
   "app/api/email/route.ts": {
-    "mtime": 1794536610.8666043,
-    "seen": 1794536677.0368927,
+    "mtime": 1794536832.4818354,
+    "seen": 1794536833.262187,
     "ast_hash": "1f195c32c929dfc1908d29b38f4fce61",
     "semantic_hash": ""
   },
   "app/api/revalidate/route.ts": {
-    "mtime": 1794536611.1094873,
-    "seen": 1794536677.0368934,
+    "mtime": 1794536832.4818354,
+    "seen": 1794536833.2621877,
     "ast_hash": "a691444f54a21206eb2f2f91e4f2694a",
     "semantic_hash": ""
   },
@@ -96,21 +96,15 @@
     "semantic_hash": ""
   },
   "app/page.tsx": {
-    "mtime": 1794455394.800364,
-    "seen": 1794455800.8020575,
-    "ast_hash": "28645a31c8ee86f88335d326699ea6a6",
+    "mtime": 1794537198.8657856,
+    "seen": 1794537267.0281863,
+    "ast_hash": "13741831423921a4dda5e8d4d7728b44",
     "semantic_hash": ""
   },
   "app/studio/[[...tool]]/page.tsx": {
     "mtime": 1794455394.8016658,
     "seen": 1794455800.8020582,
     "ast_hash": "d9a39e0990f46895c914491fb7da8717",
-    "semantic_hash": ""
-  },
-  "components/BackgroundCircles.tsx": {
-    "mtime": 1794455394.8016658,
-    "seen": 1794455800.802059,
-    "ast_hash": "5e806417e1731bbae96a262b53262095",
     "semantic_hash": ""
   },
   "components/ExperienceCard.tsx": {
@@ -203,12 +197,6 @@
     "ast_hash": "3d58966f1fd68b418729f2f1af722a95",
     "semantic_hash": ""
   },
-  "lib/constants.ts": {
-    "mtime": 1794455394.8076744,
-    "seen": 1794455800.80207,
-    "ast_hash": "5dfc027b29e3b22c361e72a33ab1b541",
-    "semantic_hash": ""
-  },
   "lib/email.ts": {
     "mtime": 1794533223.4475048,
     "seen": 1794533224.3683975,
@@ -234,9 +222,9 @@
     "semantic_hash": ""
   },
   "lib/validation.ts": {
-    "mtime": 1794455394.8096733,
-    "seen": 1794455800.8020732,
-    "ast_hash": "8f39102a3aa00cd8770caa638c8f73c4",
+    "mtime": 1794537198.7200453,
+    "seen": 1794537267.0282044,
+    "ast_hash": "e0a21dab64cdad9e684fcdd52e815e08",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -252,9 +240,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1794455394.8126729,
-    "seen": 1794455800.8020756,
-    "ast_hash": "85bac539743834c12d3b01bc3edf36df",
+    "mtime": 1794537200.8807025,
+    "seen": 1794537267.028207,
+    "ast_hash": "95b164f33751adb710565dc530916a95",
     "semantic_hash": ""
   },
   "postcss.config.js": {
@@ -456,9 +444,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794536669.52249,
-    "seen": 1794536677.0369434,
-    "ast_hash": "246d70205714d303649dfe6a9a7c68e5",
+    "mtime": 1794537259.4838982,
+    "seen": 1794537267.0282342,
+    "ast_hash": "f087a33f5c0f1c327142773acdb2b3ea",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -474,15 +462,15 @@
     "semantic_hash": ""
   },
   "lib/api-guards.ts": {
-    "mtime": 1794536610.7106977,
-    "seen": 1794536677.0369093,
-    "ast_hash": "0f3995eb01f0e1e1c1eb3795cc1c4230",
+    "mtime": 1794536832.4853635,
+    "seen": 1794536834.2874103,
+    "ast_hash": "f2bcc862db566de8e701b88d2c3c18c4",
     "semantic_hash": ""
   },
   "package-lock.json": {
-    "mtime": 1794530437.7630033,
-    "seen": 1794530438.631771,
-    "ast_hash": "41fd3c17b934684519c164657b647bc2",
+    "mtime": 1794537201.084838,
+    "seen": 1794537267.0282362,
+    "ast_hash": "7a0ef7d03bbc82781dd4125b8f7727c3",
     "semantic_hash": ""
   }
 }
