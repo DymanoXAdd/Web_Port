@@ -3,6 +3,13 @@
 <!-- One entry per decision, newest first. Never edit an old entry; add a new one
      that supersedes it. Changing anything recorded here needs human approval. -->
 
+## D-006 — 2026-11-12 — Sentry error monitoring
+- Status: approved by Luis, 2026-11-12 (asked to add Sentry; provided the DSN)
+- Decision: `@sentry/nextjs` 11 on browser, server and edge (`instrumentation-client.ts`, `instrumentation.ts`, `app/global-error.tsx`), plus explicit reports from `ErrorBoundary` and the email route's catch. Errors only: `tracesSampleRate: 0`, no replay, no personal data (SDK default). Browser reports go through the `/monitoring` tunnel on our own origin, so the CSP stays `connect-src 'self'`. DSN in Vercel as `NEXT_PUBLIC_SENTRY_DSN` (production + preview, plain config: a DSN is public by design); unset locally and in CI, so Sentry is off there. No source-map upload (would need a `SENTRY_AUTH_TOKEN` secret).
+- Why: Vercel Hobby keeps runtime logs ~1 hour, so the failed contact sends on 2026-11-12 left no trace; Sentry keeps them and alerts.
+- Alternatives considered: Vercel log drains (paid plan), no monitoring.
+- Approved by: Luis
+
 ## D-005 — 2026-11-12 — Redesign to concept A "Query" + four optional hero fields in Sanity
 - Status: approved by Luis, 2026-11-12 (picked concept A in green #00880C; approved the build plan, dropping the hero video and typewriter, and the new hero copy)
 - Decision: dark theme (ink #0E1116), brand green #00880C for fills with white text, #34C94A for small accent text (contrast: #00880C on ink is 4.2:1 and fails AA for small text). Inter + JetBrains Mono via next/font (self-hosted). Tilt project stack and skill count-up kept; experience carousel replaced by a list; hero video and typewriter removed; phone and address no longer shown in the contact section. `pageInfo` gains optional `heroKicker`, `headline`, `heroIntro`, `status`; the code falls back to the approved mockup wording when they are empty, so no data migration is needed.

@@ -8,7 +8,7 @@ Stage: production · Updated: 2026-11-12
 ## Now
 
 ## Next
-- [ ] T-004 Sentry free tier + one uptime check on the home page (note: Cloudflare edge rejects some bots/checkers and Spectrum blocks the domain for CLI tools on Luis's network; run the uptime check from a hosted monitor and confirm it gets 200) (dependency + DSN secret approved in principle; confirm at build time)
+- [ ] T-030 Uptime monitor for https://luisaruiz.xyz in Sentry (Alerts → Uptime → create; every 5 min; alert by email). Needs Luis in the Sentry UI (creating it from code would need a Sentry auth token secret). Vercel Bot Protection is on Log, so the checker gets a 200
 - [ ] T-028 Major upgrades, each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). Dependabot skips majors until this is planned. Needs Luis yes on this plan (written 2026-11-12), one PR per step, each previewed before merge:
   1. Next 14 → 15 + React 19 together (Next 15 needs React 19): `@types/react` 19, `@testing-library/react` 16, framer-motion to a React-19 version, eslint-config-next 15. Code risk is low: no `cookies()`/`headers()` use; route handlers only read `request.nextUrl`/headers.
   2. Sanity 3 → current (needs React 19 from step 1): `sanity`, `@sanity/vision`, `next-sanity` together; check `/studio` loads and the 4 new Page Info fields still save.
@@ -26,6 +26,7 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-004 Sentry error monitoring live (D-006): browser, server, ErrorBoundary and email-route errors; `/monitoring` tunnel; DSN in Vercel prod + preview. Verified locally: a caught email-API error was reported and a test event through the tunnel was accepted (2026-11-12). Uptime check split out as T-030
 - [x] T-012 Playwright E2E for the contact form (`e2e/contact.spec.ts`, desktop + phone): validation, success, HTML error page, server error; `/api/email` intercepted so no mail is sent; runs in CI (2026-11-12, Luis approved adding Playwright)
 - [x] Dependabot #16 (minor/patch) and #15 (Actions) merged after re-running CI on current main; #17–#20 (majors) closed, tracked as T-028 (2026-11-12)
 - [x] T-010 Contact form shows "Your message is emailed to Luis and not stored." under Submit (small grey text, AA contrast). Luis approved (2026-11-12)

@@ -1,6 +1,10 @@
+const { withSentryConfig } = require("@sentry/nextjs/config");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Next 14 only runs instrumentation.ts (server-side Sentry) with this flag.
+  experimental: { instrumentationHook: true },
   images: {
     remotePatterns: [
       {
@@ -84,4 +88,12 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withSentryConfig(nextConfig, {
+  silent: true,
+  // Browser reports go to /monitoring on our own origin and are forwarded to Sentry, so the CSP
+  // (connect-src 'self') and ad blockers don't drop them.
+  tunnelRoute: "/monitoring",
+  // shortcut: no source-map upload (needs a Sentry auth token secret); stack traces show minified code. Add SENTRY_AUTH_TOKEN if traces get hard to read.
+  sourcemaps: { disable: true },
+  telemetry: false,
+});
