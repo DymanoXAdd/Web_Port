@@ -1,13 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import type { PageInfo } from "@/types";
 import { contactFormSchema, type ContactFormInput } from "@/lib/validation";
-import { containerVariants, itemVariants } from "@/lib/animations";
 
 type Props = {
   pageInfo: PageInfo;
@@ -37,10 +34,11 @@ export default function ContactMe({ pageInfo }: Props) {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      // A firewall or platform error page is HTML, not JSON; show a plain message instead of a parse error.
+      const result = await response.json().catch(() => null);
 
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to send email");
+      if (!response.ok || !result) {
+        throw new Error(result?.error || "Your message couldn't be sent. Please try again, or email me directly.");
       }
 
       setSubmitted(true);
@@ -51,161 +49,84 @@ export default function ContactMe({ pageInfo }: Props) {
     }
   };
 
-  const contactInfo = pageInfo?.contactInfo || {
-    phoneNumber: "",
-    email: "",
-    address: "",
-  };
+  const email = pageInfo?.contactInfo?.email;
+  const socials = pageInfo?.socials ?? [];
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="relative h-screen w-full overflow-y-auto overflow-x-hidden"
-    >
-      <h3 className="section-title">Contact</h3>
-
-      <div className="mx-auto flex min-h-full max-w-xl flex-col justify-center px-5 sm:px-8 pt-36 pb-12 md:pt-40 w-full">
-        <motion.h4
-          variants={itemVariants}
-          className="text-xl sm:text-2xl font-semibold text-center text-black"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          I got just what you need.{" "}
-          <span className="underline decoration-black text-black">
-            Let&apos;s Talk.
-          </span>
-        </motion.h4>
-
-        <motion.div variants={itemVariants} className="pt-4 pb-6 space-y-3">
-          {[
-            {
-              icon: PhoneIcon,
-              label: contactInfo.phoneNumber || "Phone",
-            },
-            {
-              icon: EnvelopeIcon,
-              label: contactInfo.email || "Email",
-            },
-            {
-              icon: MapPinIcon,
-              label: contactInfo.address || "Address",
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="flex items-center space-x-5 justify-center"
-            >
-              <item.icon className="text-black h-6 w-6 animate-pulse" />
-              <p className="text-lg sm:text-xl text-neutral-700">{item.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.form
-          variants={itemVariants}
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-3 w-full mx-auto"
-        >
-          {/* Name & Email Row */}
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2">
-            <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
-              <input
-                {...register("name")}
-                placeholder="Name"
-                className="contact-input w-full"
-                type="text"
-                disabled={isSubmitting}
-              />
-              {errors.name && (
-                <span className="text-red-400 text-sm">{errors.name.message}</span>
-              )}
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.02 }} className="flex-1">
-              <input
-                {...register("email")}
-                placeholder="Email"
-                className="contact-input w-full"
-                type="email"
-                disabled={isSubmitting}
-              />
-              {errors.email && (
-                <span className="text-red-400 text-sm">{errors.email.message}</span>
-              )}
-            </motion.div>
+    <div className="section-wrap flex flex-wrap gap-12 py-28">
+      <div className="flex flex-[1_1_320px] flex-col gap-4">
+        <h2 className="section-label">-- contact</h2>
+        <p className="text-[40px] font-bold leading-[1.1] tracking-[-0.02em]">Let&apos;s talk.</p>
+        <p className="leading-relaxed text-muted">Send a note and it lands in my inbox.</p>
+        {email ? (
+          <a href={`mailto:${email}`} className="w-fit font-semibold text-brand-text underline-offset-2 hover:underline">
+            {email}
+          </a>
+        ) : null}
+        {socials.length ? (
+          <div className="flex gap-5 pt-2">
+            {socials.map((social) => (
+              <a
+                key={social._id}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-text underline-offset-2 hover:underline"
+              >
+                {social.title}
+              </a>
+            ))}
           </div>
-
-          {/* Subject */}
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <input
-              {...register("subject")}
-              placeholder="Subject"
-              className="contact-input w-full"
-              type="text"
-              disabled={isSubmitting}
-            />
-            {errors.subject && (
-              <span className="text-red-400 text-sm">{errors.subject.message}</span>
-            )}
-          </motion.div>
-
-          {/* Message */}
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <textarea
-              {...register("message")}
-              placeholder="Message"
-              className="contact-input w-full min-h-24"
-              disabled={isSubmitting}
-            />
-            {errors.message && (
-              <span className="text-red-400 text-sm">{errors.message.message}</span>
-            )}
-          </motion.div>
-
-          {/* Error Alert */}
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="p-3 bg-red-500/20 border border-red-500 rounded text-red-400 text-sm"
-            >
-              {error}
-            </motion.div>
-          )}
-
-          {/* Success Alert */}
-          {submitted && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="p-3 bg-green-500/20 border border-green-500 rounded text-green-400 text-sm"
-            >
-              ✓ Message sent successfully! I&apos;ll get back to you soon.
-            </motion.div>
-          )}
-
-          {/* Submit Button */}
-          <motion.button
-            type="submit"
-            disabled={isSubmitting}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-black hover:bg-neutral-800 disabled:bg-neutral-400 py-3 px-4 rounded-md text-white font-bold text-lg transition-colors"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            {isSubmitting ? "Sending..." : "Submit"}
-          </motion.button>
-          <p className="text-center text-xs text-neutral-500">
-            Your message is emailed to Luis and not stored.
-          </p>
-        </motion.form>
+        ) : null}
       </div>
-    </motion.div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-[1_1_420px] flex-col gap-4" noValidate>
+        <div className="flex flex-wrap gap-4">
+          <label className="flex flex-[1_1_180px] flex-col gap-1.5 text-sm text-soft">
+            Name
+            <input {...register("name")} className="field" type="text" autoComplete="name" disabled={isSubmitting} />
+            {errors.name && <span className="text-sm text-red-400">{errors.name.message}</span>}
+          </label>
+          <label className="flex flex-[1_1_180px] flex-col gap-1.5 text-sm text-soft">
+            Email
+            <input {...register("email")} className="field" type="email" autoComplete="email" disabled={isSubmitting} />
+            {errors.email && <span className="text-sm text-red-400">{errors.email.message}</span>}
+          </label>
+        </div>
+
+        <label className="flex flex-col gap-1.5 text-sm text-soft">
+          Subject
+          <input {...register("subject")} className="field" type="text" disabled={isSubmitting} />
+          {errors.subject && <span className="text-sm text-red-400">{errors.subject.message}</span>}
+        </label>
+
+        <label className="flex flex-col gap-1.5 text-sm text-soft">
+          Message
+          <textarea {...register("message")} className="field min-h-32" rows={5} disabled={isSubmitting} />
+          {errors.message && <span className="text-sm text-red-400">{errors.message.message}</span>}
+        </label>
+
+        {error && (
+          <p role="alert" className="rounded-md border border-red-500/60 bg-red-500/10 p-3 text-sm text-red-300">
+            {error}
+          </p>
+        )}
+
+        {submitted && (
+          <p role="status" className="rounded-md border border-brand-text/60 bg-brand/10 p-3 text-sm text-brand-text">
+            ✓ Message sent! I&apos;ll get back to you soon.
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="rounded-md bg-brand p-3.5 text-base font-semibold text-white transition-colors hover:bg-brand-hover disabled:bg-line-2"
+        >
+          {isSubmitting ? "Sending..." : "Send message"}
+        </button>
+        <p className="text-center text-[13px] text-muted">Your message is emailed to Luis and not stored.</p>
+      </form>
+    </div>
   );
 }

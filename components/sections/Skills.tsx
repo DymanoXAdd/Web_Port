@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import type { Skill } from "@/types";
 import SkillComponent from "@/components/Skill";
@@ -26,6 +26,8 @@ function Skills({ skills }: Props) {
   // Re-fires on EVERY entry: leaving the viewport flips inView -> false (resetting
   // the count-up + bar to 0), re-entering flips it true and replays the cascade.
   const inView = useInView(ref, { once: false, amount: 0.35 });
+  // Bumping the key remounts the cards, which restarts the cascade and count-up from 0.
+  const [replayKey, setReplayKey] = useState(0);
 
   return (
     <motion.div
@@ -33,17 +35,22 @@ function Skills({ skills }: Props) {
       variants={containerVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="relative h-screen w-full overflow-y-auto overflow-x-hidden z-0"
+      className="section-wrap flex flex-col gap-6 pt-24"
     >
-      <h3 className="section-title">Skills</h3>
-      <h3 className="section-subtitle">My current proficiency at a glance</h3>
-
-      <div className="mx-auto flex min-h-full max-w-5xl flex-col items-center justify-center px-5 pt-44 pb-12 md:pt-48">
-        <div className="grid w-full grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {skills?.map((skill) => (
-            <SkillComponent key={skill._id} skill={skill} active={inView} />
-          ))}
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <h2 className="section-label">-- stack</h2>
+        <button
+          type="button"
+          onClick={() => setReplayKey((k) => k + 1)}
+          className="rounded-md border border-line-2 px-3.5 py-2.5 font-mono text-[13px] text-soft transition-colors hover:border-brand-text hover:text-fg"
+        >
+          Replay
+        </button>
+      </div>
+      <div key={replayKey} className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {skills?.map((skill) => (
+          <SkillComponent key={skill._id} skill={skill} active={inView} />
+        ))}
       </div>
     </motion.div>
   );

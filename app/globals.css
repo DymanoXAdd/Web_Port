@@ -2,231 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme variables */
 :root {
-  /* New template fonts (translated from the design's index.css) */
-  --font-heading: "HelveticaNowDisplay-Medium", "Helvetica Neue", Arial,
-    sans-serif;
-  --font-body: "HelveticaNowDisplayW01-Rg", "Helvetica Neue", Arial, sans-serif;
-
-  /* Light / black-accent palette (new design default) */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --text-primary: #0a0a0a;
-  --text-secondary: #555555;
-  --border-color: #e5e5e5;
-  --accent-color: #0a0a0a;
-  --accent-light: #333333;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  /* Kept for components that set font-family inline. */
+  --font-heading: var(--font-inter), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Anchor jumps land below the sticky header. */
+  scroll-padding-top: 80px;
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #0e1116;
+  color: #e6edf3;
 }
 
-/* Typewriter cursor blink (hand-rolled hero typewriter) */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Hero intro heading: starts blurred + slightly offset, resolves to a fully
-   readable, un-blurred state. Pairs with `animation-fill-mode: forwards` on the
-   element so it holds the final blur(0) frame at rest. */
-@keyframes hero-deblur {
-  0% {
-    opacity: 0;
-    filter: blur(12px);
-    transform: translateY(12px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-}
-
-/* Fallback for users who prefer reduced motion / no-animation environments:
-   the heading must still end fully readable and un-blurred. */
-.hero-intro {
-  filter: blur(0);
-  animation: hero-deblur 1s ease-out both;
-}
-
-/* Hover blur/swap between the heading and the secondary copy block.
-   State is React-driven (the `.hero-swap-active` class is toggled on
-   mouseenter/mouseleave and removed cleanly on leave), so nothing can
-   latch. The blur lives on wrapper layers — NOT inline on `.hero-intro`
-   — so the on-load deblur animation stays untouched.
-
-   Default (not hovered): heading sharp + opaque, secondary slightly
-   softened/dimmed. Hovered: they cross-fade — secondary sharpens and
-   comes forward, heading softens and recedes. */
-.hero-heading-layer {
-  filter: blur(0);
-  opacity: 1;
-  transition: filter 0.45s ease, opacity 0.45s ease;
-}
-
-.hero-secondary-layer {
-  filter: blur(0);
-  opacity: 1;
-  transition: filter 0.45s ease, opacity 0.45s ease;
-}
-
-.hero-swap-active .hero-heading-layer {
-  filter: blur(4px);
-  opacity: 0.35;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-heading-layer,
-  .hero-secondary-layer {
-    transition: none;
-  }
-}
-
-/* Hero action pills fade-in + slide-up reveal */
-@keyframes pill-reveal {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom components */
 @layer components {
-  .hero-button {
-    @apply px-6 py-2 border rounded-full uppercase text-xs tracking-widest transition-all duration-200;
-    border-color: var(--border-color);
-    color: var(--text-secondary);
+  /* Section label in the "-- name" mono style. */
+  .section-label {
+    @apply font-mono text-[15px] font-semibold text-brand-text;
   }
 
-  .hero-button:hover {
-    border-color: var(--accent-light);
-    color: var(--accent-color);
+  .section-wrap {
+    @apply mx-auto w-full max-w-[1120px] px-6;
   }
 
-  .contact-input {
-    @apply outline-none bg-neutral-100 rounded-sm border-b px-3 py-2 text-neutral-800 placeholder-neutral-500 transition-all;
-    border-color: var(--border-color);
-  }
-
-  .contact-input:focus {
-    border-color: var(--accent-color);
-    color: var(--text-primary);
-  }
-
-  .contact-input:hover {
-    border-color: var(--accent-color);
-  }
-
-  .section-title {
-    @apply absolute top-16 md:top-20 left-0 right-0 w-full text-center uppercase tracking-tight font-extrabold text-3xl sm:text-4xl md:text-5xl;
-    color: #000000;
-    font-family: var(--font-heading);
-  }
-
-  .section-subtitle {
-    @apply absolute top-32 md:top-40 left-0 right-0 w-full text-center uppercase tracking-[3px] text-xs sm:text-sm font-medium;
-    color: var(--text-secondary);
-    font-family: var(--font-body);
-  }
-
-  /* Shared section shell: fills the viewport for scroll-snap, but lets content
-     scroll internally if it is taller than the screen (so nothing is clipped),
-     clears the fixed header, and offsets snap so titles aren't hidden behind it. */
-  .section-shell {
-    @apply relative h-screen w-full overflow-y-auto overflow-x-hidden;
-    scroll-margin-top: 0;
-  }
-
-  /* Centered, max-width content area that clears the header + absolute title. */
-  .section-inner {
-    @apply mx-auto flex min-h-full w-full max-w-7xl flex-col items-center justify-center px-5 sm:px-8 md:px-10 pt-32 pb-12 md:pt-40;
-  }
-
-  .snap-container {
-    @apply h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-color) var(--bg-secondary);
-  }
-
-  .snap-container::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .snap-container::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-  }
-
-  .snap-container::-webkit-scrollbar-thumb {
-    background: var(--accent-color);
-    border-radius: 4px;
-  }
-
-  .snap-container::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-light);
+  .field {
+    @apply w-full rounded-md border border-line-2 bg-panel px-3 py-3 text-base text-fg outline-none transition-colors placeholder:text-muted focus:border-brand-text;
   }
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent-color);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-light);
-}
-
-/* Selection color — neutral, consistent with the light/black theme */
 ::selection {
-  background-color: #e0e0e0;
-  color: #0a0a0a;
-}
-
-::-moz-selection {
-  background-color: #e0e0e0;
-  color: #0a0a0a;
-}
-
-/* Smooth transitions for theme changes */
-body,
-.hero-button,
-.contact-input {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  background-color: #00880c;
+  color: #ffffff;
 }
 
 /* Reduce motion for users who prefer it */

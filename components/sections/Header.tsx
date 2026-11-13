@@ -4,121 +4,86 @@ import React, { useState } from "react";
 import type { Social } from "@/types";
 
 type Props = {
-  // Kept in the signature: page.tsx passes socials. Surfaced subtly in the
-  // mobile overlay so the page.tsx call is never broken.
   socials: Social[];
 };
 
+// Labels stay capitalised for screen readers; CSS shows them lowercase in the mono "query" style.
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
 ];
 
 export default function Header({ socials }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <header className="fixed top-0 left-0 right-0 w-full px-5 sm:px-8 py-4 sm:py-5 flex justify-between items-center z-20">
-        {/* Logo (left) */}
-        <a href="#hero" className="flex flex-row items-center gap-3">
-          <span
-            className="text-[21px] sm:text-[26px] tracking-tight text-black"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            Luis A Ruiz
-          </span>
-          <span
-            className="text-[25px] sm:text-[30px] text-black select-none"
-            style={{ letterSpacing: "-0.02em" }}
-            aria-hidden="true"
-          >
-            ✳︎
-          </span>
+    <header className="sticky top-0 z-40 border-b border-line bg-ink/95 backdrop-blur">
+      <nav className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-6 py-4">
+        <a
+          href="#hero"
+          aria-label="Luis A Ruiz, back to top"
+          className="font-mono text-base font-semibold text-fg no-underline"
+        >
+          luis@ruiz:~$
         </a>
 
-        {/* Desktop nav links (center) — spaced pill/bubble buttons */}
-        <nav className="hidden md:flex flex-row items-center gap-2 lg:gap-3 text-[18px] lg:text-[20px] text-black">
+        <div className="hidden items-center gap-6 text-[15px] md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full px-4 lg:px-5 py-[0.3em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200"
+              className="font-mono lowercase text-muted transition-colors hover:text-fg"
             >
               {link.label}
             </a>
           ))}
-        </nav>
-
-        {/* Desktop CTA (right) */}
-        <div className="hidden md:flex flex-row items-center gap-3">
           <a
             href="#contact"
-            className="text-[23px] text-black underline underline-offset-2 hover:opacity-60 transition-opacity"
+            className="rounded-md bg-brand px-4 py-2.5 font-semibold text-white transition-colors hover:bg-brand-hover"
           >
             Get in touch
           </a>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="flex md:hidden flex-col gap-[5px] items-center justify-center"
+          className="flex h-11 w-11 flex-col items-center justify-center gap-[5px] md:hidden"
         >
-          <span
-            className={`w-6 h-[2px] bg-black transition-transform duration-300 ${
-              open ? "translate-y-[7px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`w-6 h-[2px] bg-black transition-opacity duration-300 ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`w-6 h-[2px] bg-black transition-transform duration-300 ${
-              open ? "-translate-y-[7px] -rotate-45" : ""
-            }`}
-          />
+          <span className={`h-[2px] w-6 bg-fg transition-transform duration-300 ${open ? "translate-y-[7px] rotate-45" : ""}`} />
+          <span className={`h-[2px] w-6 bg-fg transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"}`} />
+          <span className={`h-[2px] w-6 bg-fg transition-transform duration-300 ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
         </button>
-      </header>
+      </nav>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile menu */}
       <div
-        className="fixed inset-0 z-[19] bg-white/95 backdrop-blur-sm flex flex-col justify-center items-start px-8 gap-8 md:hidden transition-opacity duration-300"
-        style={{
-          opacity: open ? 1 : 0,
-          pointerEvents: open ? "auto" : "none",
-        }}
+        className="fixed inset-0 top-[65px] z-30 flex flex-col items-start gap-7 bg-ink px-6 pt-10 transition-opacity duration-300 md:hidden"
+        style={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
       >
         {NAV_LINKS.map((link) => (
           <a
             key={link.href}
             href={link.href}
             onClick={() => setOpen(false)}
-            className="text-[32px] font-medium text-black hover:opacity-60 transition-opacity"
+            className="font-mono text-2xl lowercase text-fg"
           >
             {link.label}
           </a>
         ))}
-        <div className="flex flex-row items-center gap-4">
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="text-[32px] font-medium text-black underline underline-offset-2 hover:opacity-60 transition-opacity"
-          >
-            Get in touch
-          </a>
-        </div>
-
-        {/* Socials surfaced subtly so the prop stays meaningful. */}
+        <a
+          href="#contact"
+          onClick={() => setOpen(false)}
+          className="rounded-md bg-brand px-5 py-3 text-lg font-semibold text-white"
+        >
+          Get in touch
+        </a>
         {socials?.length ? (
-          <div className="flex flex-row gap-5 pt-2">
+          <div className="flex gap-6 pt-2">
             {socials.map((social) => (
               <a
                 key={social._id}
@@ -126,7 +91,7 @@ export default function Header({ socials }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="text-base text-black/70 underline underline-offset-2 hover:opacity-60 transition-opacity"
+                className="text-brand-text underline underline-offset-2"
               >
                 {social.title}
               </a>
@@ -134,6 +99,6 @@ export default function Header({ socials }: Props) {
           </div>
         ) : null}
       </div>
-    </>
+    </header>
   );
 }

@@ -32,7 +32,7 @@ const nextConfig = {
     // - script-src: 'unsafe-eval' only in dev (React Refresh needs it); the prod build doesn't
     // - style-src: Tailwind generates inline styles so 'unsafe-inline' required
     // - img-src: self + Sanity CDN + data URIs (base64 images)
-    // - media-src: self + Pixabay CDN (the hero background video is hosted there)
+    // - media-src: self only (the remote hero video was removed in the 2026-11-12 redesign)
     // - connect-src: Sanity API + Vercel Analytics
     // - frame-ancestors: nobody may embed us (stricter than X-Frame-Options)
     const siteCsp = [
@@ -40,7 +40,7 @@ const nextConfig = {
       `script-src 'self' ${process.env.NODE_ENV === "production" ? "" : "'unsafe-eval' "}'unsafe-inline'`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' https://cdn.sanity.io data: blob:",
-      "media-src 'self' https://cdn.pixabay.com",
+      "media-src 'self'",
       "font-src 'self' data:",
       "connect-src 'self' https://cdn.sanity.io https://api.sanity.io https://vitals.vercel-insights.com",
       "frame-ancestors 'none'",
