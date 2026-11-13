@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # One grouped PR per week for npm minor/patch updates; majors come one per package so they can be reviewed alone.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      npm-minor-patch:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
