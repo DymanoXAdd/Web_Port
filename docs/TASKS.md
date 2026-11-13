@@ -9,8 +9,14 @@ Stage: production · Updated: 2026-11-12
 
 ## Next
 - [ ] T-004 Sentry free tier + one uptime check on the home page (note: Cloudflare edge rejects some bots/checkers and Spectrum blocks the domain for CLI tools on Luis's network; run the uptime check from a hosted monitor and confirm it gets 200) (dependency + DSN secret approved in principle; confirm at build time)
-- [ ] T-028 Major upgrades, each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). Dependabot skips majors until this is planned. Needs a plan + Luis yes
-- [ ] T-011 Concept A built (D-005) on `task/T-011-redesign-a`; waiting on Luis's OK of the preview before merge. Mockups: https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ. Redesign: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
+- [ ] T-028 Major upgrades, each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). Dependabot skips majors until this is planned. Needs Luis yes on this plan (written 2026-11-12), one PR per step, each previewed before merge:
+  1. Next 14 → 15 + React 19 together (Next 15 needs React 19): `@types/react` 19, `@testing-library/react` 16, framer-motion to a React-19 version, eslint-config-next 15. Code risk is low: no `cookies()`/`headers()` use; route handlers only read `request.nextUrl`/headers.
+  2. Sanity 3 → current (needs React 19 from step 1): `sanity`, `@sanity/vision`, `next-sanity` together; check `/studio` loads and the 4 new Page Info fields still save.
+  3. Next 15 → 16: `next lint` is gone (switch the lint script to the ESLint CLI with a flat config); Turbopack becomes the default bundler.
+  4. Tailwind 3 → 4: run the official upgrade tool, move `tailwind.config.js` colors into CSS `@theme`, swap `tailwind-scrollbar` for a v4-compatible version or drop it (the redesign barely uses it). Biggest visual risk: check every section on the preview.
+  5. TypeScript 7 last, only once ts-jest and Next support it; until then stay on 5.9.
+- [x] T-029 (done 2026-11-12) Fonts are committed in `app/fonts/` (Inter + JetBrains Mono, latin, variable, OFL) and loaded with `next/font/local`. `next/font/google` failed two Vercel builds on a bad Google response
+- [x] T-011 (done 2026-11-12, PR #24, D-005) Concept A redesign live after Luis OK'd the preview. Mockups: https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ. Original task: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
 - [ ] T-012 Playwright contact-flow E2E test, after the redesign lands
 
 ## Blocked or waiting on a human

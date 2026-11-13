@@ -1,17 +1,17 @@
 # Graph Report - portfolio-website  (2026-11-12)
 
 ## Corpus Check
-- 81 files · ~28,363 words
+- 81 files · ~28,566 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 5 file(s) not represented in the graph (top: (none) 3, .graphify-bak 1, .css 1)
+- Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .woff2 2, .graphify-bak 1)
 
 ## Summary
-- 649 nodes · 871 edges · 47 communities (32 shown, 15 thin omitted)
+- 649 nodes · 872 edges · 46 communities (33 shown, 13 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0ad1c896`
+- Built from commit: `92de9260`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,20 +42,19 @@
 - portfolio-website
 - jest
 - gitleaks.yml
-- @testing-library/jest-dom
+- ContactMe.tsx
 - pull_request_template.md
-- identity-obj-proxy@^3.0.0
+- eslint-config-next@^14.2.0
 - Checker Baseline — Known Pre-Existing Failures
 - next.config.js
 - Decisions — portfolio-website
 - .eslintrc.json
-- @testing-library/user-event@^14.6.1
+- jest-environment-jsdom@^29.7.0
 - frontend.md
 - security.md
 - testing.md
 - layout.tsx
-- ts-jest@^29.1.2
-- @types/node@^20.10.0
+- typescript@^5.3.3
 - updates
 - [[...tool]]/page.tsx
 
@@ -80,25 +79,25 @@
   docs/TASKS.md → lib/api-guards.ts
 - `Done` --references--> `isAllowedPath()`  [INFERRED]
   docs/TASKS.md → lib/api-guards.ts
-- `Home()` --calls--> `ErrorBoundary`  [EXTRACTED]
-  app/page.tsx → components/ui/ErrorBoundary.tsx
+- `ProjectCard()` --calls--> `Image`  [EXTRACTED]
+  components/sections/Projects.tsx → types/index.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (47 total, 15 thin omitted)
+## Communities (46 total, 13 thin omitted)
 
 ### Community 0 - "app/page.tsx"
-Cohesion: 0.06
-Nodes (59): getPortfolioData(), Home(), revalidate, ExperienceCard(), formatMonth(), Props, About(), Props (+51 more)
+Cohesion: 0.07
+Nodes (50): getPortfolioData(), Home(), revalidate, ExperienceCard(), formatMonth(), Props, About(), Props (+42 more)
 
 ### Community 1 - "Implementation Status - Portfolio Rebuild"
 Cohesion: 0.05
 Nodes (42): 1. Copy Files to Root, 2. Set Environment Variables, 3. Install Dependencies, 4. Test Locally, 5. Update Sanity Schema, 6. Get Resend API Key, 7. Deploy to Vercel, Architecture (+34 more)
 
 ### Community 2 - "animations.ts"
-Cohesion: 0.11
-Nodes (18): containerVariants, fadeInLeft, fadeInRight, fadeInUp, float, hoverScale, itemVariants, itemVariantsLeft (+10 more)
+Cohesion: 0.08
+Nodes (26): CardProps, ProjectCard(), Projects(), Props, restRotation(), containerVariants, fadeInLeft, fadeInRight (+18 more)
 
 ### Community 3 - "Portfolio Website Rebuild - Complete Implementation"
 Cohesion: 0.05
@@ -121,20 +120,20 @@ Cohesion: 0.09
 Nodes (21): compilerOptions, allowImportingTsExtensions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, jsxImportSource (+13 more)
 
 ### Community 8 - "email/route.ts"
-Cohesion: 0.08
-Nodes (31): POST(), rateLimitStore, POST(), Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next, Now (+23 more)
+Cohesion: 0.10
+Nodes (25): POST(), rateLimitStore, POST(), Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next, Now (+17 more)
 
 ### Community 9 - "How to Run & Test the Portfolio Site"
 Cohesion: 0.10
 Nodes (20): 10. Verify live + point domain, 1. Start the local dev server, 2. Security unit tests (Python — quick, no dev server needed), 3. Integration tests (need the dev server running), 4. TypeScript type check, 5. Linter, 6. Manual contact-form test, 7. Production build (must pass with 0 errors before deploy) (+12 more)
 
 ### Community 10 - "dependencies"
-Cohesion: 0.11
-Nodes (18): dependencies, framer-motion@^10.16.0, @heroicons/react@^2.0.18, @hookform/resolvers@^3.3.4, next@^14.2.0, react@^18.3.0, react-dom@^18.3.0, react-hook-form@^7.50.0 (+10 more)
+Cohesion: 0.12
+Nodes (16): dependencies, framer-motion@^10.16.0, @heroicons/react@^2.0.18, next@^14.2.0, react@^18.3.0, react-dom@^18.3.0, resend@^3.0.0, @sanity/image-url@^2.1.1 (+8 more)
 
 ### Community 11 - "package.json"
-Cohesion: 0.17
-Nodes (11): autoprefixer@^10.4.16, eslint-config-next@^14.2.0, jest@^29.7.0, jest-environment-jsdom@^29.7.0, name, private, version, autoprefixer (+3 more)
+Cohesion: 0.14
+Nodes (13): autoprefixer@^10.4.16, eslint@^8.55.0, tailwindcss@^3.4.1, @testing-library/user-event@^14.6.1, ts-jest@^29.1.2, name, private, version (+5 more)
 
 ### Community 12 - "Brief — portfolio-website"
 Cohesion: 0.12
@@ -145,8 +144,8 @@ Cohesion: 0.07
 Nodes (27): env, runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, group, NEXT_PUBLIC_SANITY_DATASET (+19 more)
 
 ### Community 14 - "devDependencies"
-Cohesion: 0.12
-Nodes (16): devDependencies, eslint@^8.55.0, postcss@^8.4.32, tailwindcss@^3.4.1, @testing-library/react@^14.3.1, @types/jest@^29.5.11, @types/react@^18.3.0, @types/react-dom@^18.3.0 (+8 more)
+Cohesion: 0.11
+Nodes (18): devDependencies, identity-obj-proxy@^3.0.0, jest@^29.7.0, postcss@^8.4.32, @testing-library/jest-dom@^6.9.1, @testing-library/react@^14.3.1, @types/jest@^29.5.11, @types/node@^20.10.0 (+10 more)
 
 ### Community 15 - "scripts"
 Cohesion: 0.18
@@ -192,6 +191,10 @@ Nodes (3): config, config, config
 Cohesion: 0.11
 Nodes (18): GITHUB_TOKEN, runs-on, steps, timeout-minutes, jobs, gitleaks, name, on (+10 more)
 
+### Community 26 - "ContactMe.tsx"
+Cohesion: 0.21
+Nodes (9): Props, ContactFormInput, contactFormSchema, @hookform/resolvers@^3.3.4, react-hook-form@^7.50.0, zod@^3.23.0, @hookform/resolvers, react-hook-form (+1 more)
+
 ### Community 27 - "pull_request_template.md"
 Cohesion: 0.40
 Nodes (4): Checklist, How to check it, Risks and follow-ups, What and why
@@ -219,22 +222,22 @@ Nodes (3): dynamic, next-sanity@^9.0.0, next-sanity
 ## Knowledge Gaps
 - **1 isolated node(s):** `next/core-web-vitals`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 377 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `email/route.ts` to `app/page.tsx`, `dependencies`, `package.json`, `layout.tsx`?**
+- **Why does `next` connect `email/route.ts` to `app/page.tsx`, `animations.ts`, `layout.tsx`, `dependencies`, `package.json`?**
   _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **What connects `next/core-web-vitals` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.056669339748730285 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `app/page.tsx` to `dependencies`, `package.json`, `ErrorBoundary`?**
+  _Cohesion score 0.06582952815829528 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `app/page.tsx` to `animations.ts`, `dependencies`, `package.json`, `ErrorBoundary`, `ContactMe.tsx`?**
   _High betweenness centrality (0.028) - this node is a cross-community bridge._
 - **Should `Implementation Status - Portfolio Rebuild` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
-- **Why does `@testing-library/react` connect `app/page.tsx` to `package.json`, `devDependencies`, `ErrorBoundary`?**
+- **Why does `@testing-library/react` connect `app/page.tsx` to `animations.ts`, `package.json`, `devDependencies`, `ErrorBoundary`?**
   _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **Should `animations.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07526881720430108 - nodes in this community are weakly interconnected._
