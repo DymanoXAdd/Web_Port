@@ -24,3 +24,6 @@ tsconfig.tsbuildinfo
 
 # old pre-rebuild site: already in git history, holds personal info and a 15 MB image
 docs/reference/vault/10 Original Files/
+
+.vercel
+.env*
