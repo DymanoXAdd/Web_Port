@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "components/ExperienceCard.tsx": {
-    "mtime": 1794535875.8184488,
-    "seen": 1794535876.7362878,
-    "ast_hash": "5a5d795f33923c2751da9a890f26fe1f",
+    "mtime": 1794538032.5363684,
+    "seen": 1794538096.2943475,
+    "ast_hash": "585ff01be067c08a0d6dd9e8c2c255cc",
     "semantic_hash": ""
   },
   "components/Skill.tsx": {
@@ -162,8 +162,8 @@
     "semantic_hash": ""
   },
   "components/ui/ErrorBoundary.tsx": {
-    "mtime": 1794537764.6460133,
-    "seen": 1794537817.208852,
+    "mtime": 1794537934.0229247,
+    "seen": 1794537935.850362,
     "ast_hash": "fa218c64e05f4bff972ebf1419ba5cee",
     "semantic_hash": ""
   },
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794537810.4265068,
-    "seen": 1794537817.2088907,
-    "ast_hash": "d170197e1c82f27a7c0e14228f252d33",
+    "mtime": 1794538080.5737944,
+    "seen": 1794538096.2943943,
+    "ast_hash": "e924a9b16d28efca43f336ee5846533b",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -468,9 +468,15 @@
     "semantic_hash": ""
   },
   "__tests__/components/ErrorBoundary.test.tsx": {
-    "mtime": 1794537761.3169868,
-    "seen": 1794537817.208826,
-    "ast_hash": "d9f6e2b360c33eaa9d33d22c149b1a8a",
+    "mtime": 1794537934.0229247,
+    "seen": 1794537935.85034,
+    "ast_hash": "59ea1c4bf9fb68a435acd9c5c7779b72",
+    "semantic_hash": ""
+  },
+  "__tests__/components/ExperienceCard.test.tsx": {
+    "mtime": 1794538029.2026062,
+    "seen": 1794538096.2943301,
+    "ast_hash": "e49648fb1434ded12cbb511a8ee6bf14",
     "semantic_hash": ""
   },
   "package-lock.json": {
