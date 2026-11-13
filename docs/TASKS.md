@@ -9,7 +9,6 @@ Stage: production · Updated: 2026-11-12
 
 ## Next
 - [ ] T-004 Sentry free tier + one uptime check on the home page (note: Cloudflare edge rejects some bots/checkers and Spectrum blocks the domain for CLI tools on Luis's network; run the uptime check from a hosted monitor and confirm it gets 200) (dependency + DSN secret approved in principle; confirm at build time)
-- [ ] T-010 One-line privacy note on the contact form ("Your message is emailed to Luis and not stored.")
 - [ ] T-011 Redesign: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
 - [ ] T-012 Playwright contact-flow E2E test, after the redesign lands
 
@@ -21,6 +20,7 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-010 Contact form shows "Your message is emailed to Luis and not stored." under Submit (small grey text, AA contrast). Luis approved (2026-11-12)
 - [x] T-006 The 4 plain `<img>` (Projects ×2, WorkExperience peek, Skill) use `next/image` (missing Sanity image keeps a same-size blank); `lib/sanity.ts` uses `createImageUrlBuilder`. Lint now 0 warnings, build deprecation warning gone. Not covered: `motion.img` in About and ExperienceCard still load straight from the Sanity CDN. Luis approved (2026-11-12)
 - [x] T-009 Dropped by Luis (2026-11-12): Claude ships PRs itself and CI (T-003) gates every PR, so a one-command deploy script is no longer needed
 - [x] T-005 `.github/dependabot.yml` (npm minor/patch grouped weekly, majors separate; actions grouped weekly) + `.github/workflows/gitleaks.yml` on every PR and push to main (2026-11-12)

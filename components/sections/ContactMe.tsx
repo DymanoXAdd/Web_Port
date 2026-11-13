@@ -201,6 +201,9 @@ export default function ContactMe({ pageInfo }: Props) {
           >
             {isSubmitting ? "Sending..." : "Submit"}
           </motion.button>
+          <p className="text-center text-xs text-neutral-500">
+            Your message is emailed to Luis and not stored.
+          </p>
         </motion.form>
       </div>
     </motion.div>
