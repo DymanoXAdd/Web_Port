@@ -8,7 +8,6 @@ interface ErrorBoundaryProps {
 
 interface ErrorBoundaryState {
   hasError: boolean;
-  error: Error | null;
 }
 
 export default class ErrorBoundary extends React.Component<
@@ -17,11 +16,11 @@ export default class ErrorBoundary extends React.Component<
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error };
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -35,8 +34,8 @@ export default class ErrorBoundary extends React.Component<
           <div className="text-center px-4">
             <h1 className="text-4xl font-bold mb-4">Oops! Something went wrong</h1>
             <p className="text-gray-400 mb-8">
-              {this.state.error?.message ||
-                "An unexpected error occurred. Please try refreshing the page."}
+              {/* Never show error.message: it can leak internals. Details go to the console. */}
+              An unexpected error occurred. Please try refreshing the page.
             </p>
             <button
               onClick={() => window.location.reload()}
