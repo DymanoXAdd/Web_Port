@@ -231,6 +231,14 @@ describe("HTTP Security Headers — GET /", () => {
     expect(csp).toContain("https://cdn.sanity.io");
   });
 
+  test("home page has the one site title and description", async () => {
+    const html = await (await fetch(`${BASE_URL}/`)).text();
+    expect(html.match(/<title>([^<]*)<\/title>/g)).toEqual([
+      "<title>Luis A Ruiz | Full Stack Developer &amp; Game Developer</title>",
+    ]);
+    expect(html).toContain("Building games and leveling up.");
+  });
+
   test("loads no stylesheet from another origin (CSP style-src is 'self', so it would be blocked)", async () => {
     const html = await (await fetch(`${BASE_URL}/`)).text();
     const external = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="(https?:\/\/[^"]+)"/g)].map((m) => m[1]);
