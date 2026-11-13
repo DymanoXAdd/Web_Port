@@ -48,7 +48,8 @@ export async function POST(request: NextRequest) {
     }
 
     const formData = validationResult.data;
-    const recipientEmail = process.env.RECIPIENT_EMAIL || "luisaruiz2734@gmail.com";
+    const recipientEmail = process.env.RECIPIENT_EMAIL;
+    if (!recipientEmail) throw new Error("RECIPIENT_EMAIL is not set"); // caught below: logged, generic 500
 
     // Only Luis gets mail: a reply to the visitor's address let anyone use our domain to spam any inbox.
     await sendContactEmail(formData, recipientEmail);

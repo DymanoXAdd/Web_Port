@@ -25,9 +25,15 @@ jest.mock("@/lib/useTypewriter", () => ({
 const mockPageInfo = {
   name: "Luis A Ruiz",
   role: "Computer Programmer",
+  contactInfo: { email: "luisaruiz2734@gmail.com" },
 } as unknown as PageInfo;
 
 const EMAIL = "luisaruiz2734@gmail.com";
+
+it("hides the email pill when Sanity has no email (no hard-coded fallback)", () => {
+  render(<Hero pageInfo={{ ...mockPageInfo, contactInfo: {} } as unknown as PageInfo} />);
+  expect(screen.queryByRole("button", { name: /Copy email/ })).not.toBeInTheDocument();
+});
 
 describe("Hero (redesigned / new theme)", () => {
   it("renders the intro heading with the name and role", () => {

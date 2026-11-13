@@ -8,8 +8,6 @@ type Props = {
   pageInfo: PageInfo;
 };
 
-const EMAIL = "luisaruiz2734@gmail.com";
-
 const VIDEO_SRC =
   "https://cdn.pixabay.com/video/2023/11/17/189457-885804464_medium.mp4";
 
@@ -29,6 +27,7 @@ export default function Hero({ pageInfo }: Props) {
 
   const name = pageInfo?.name || "Luis";
   const role = pageInfo?.role || "Computer Programmer";
+  const email = pageInfo?.contactInfo?.email; // Sanity is the one source; no pill if it's empty
 
   // Reveal action pills 400ms after load, independent of the typewriter.
   useEffect(() => {
@@ -93,8 +92,9 @@ export default function Hero({ pageInfo }: Props) {
   }, []);
 
   const handleCopyEmail = async () => {
+    if (!email) return;
     try {
-      await navigator.clipboard.writeText(EMAIL);
+      await navigator.clipboard.writeText(email);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
@@ -213,15 +213,16 @@ export default function Hero({ pageInfo }: Props) {
           ))}
 
           {/* Email pill — copy to clipboard */}
+          {email && (
           <button
             type="button"
             onClick={handleCopyEmail}
-            aria-label={`Copy email ${EMAIL}`}
+            aria-label={`Copy email ${email}`}
             className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black border border-black rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200"
           >
             <span>
               Reach me:{" "}
-              <span className="underline underline-offset-1">{EMAIL}</span>
+              <span className="underline underline-offset-1">{email}</span>
             </span>
             <span aria-hidden="true">
               {copied ? (
@@ -243,6 +244,7 @@ export default function Hero({ pageInfo }: Props) {
               )}
             </span>
           </button>
+          )}
         </div>
         </div>
       </div>
