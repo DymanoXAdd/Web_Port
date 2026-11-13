@@ -9,7 +9,7 @@
  *
  * Mocks:
  *  - @/lib/sanity: the real module throws at import time when Sanity env vars are
- *    absent, and urlFor must be deterministic for ExperienceCard's <img> src.
+ *    absent, and imageUrl must be deterministic for ExperienceCard's <img> src.
  *  - framer-motion: AnimatePresence's exit-animation + `mode="wait"` can leave the
  *    old node mounted in jsdom (no real animation frames). We stub it (and motion)
  *    to plain elements so exactly one active card is in the DOM after a transition.
@@ -20,7 +20,7 @@ import WorkExperience from "@/components/sections/WorkExperience";
 
 // Deterministic image URL builder — avoids the env-var throw in lib/sanity.
 jest.mock("@/lib/sanity", () => ({
-  urlFor: () => ({ url: () => "https://example.com/img.png" }),
+  imageUrl: () => "https://example.com/img.png",
 }));
 
 // Reduce framer-motion to plain DOM elements so AnimatePresence doesn't keep the

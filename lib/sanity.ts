@@ -21,7 +21,14 @@ export const client = createClient({
 // Image URL builder
 const builder = imageUrlBuilder({ projectId, dataset });
 
-export const urlFor = (source: any) => builder.image(source);
+// A Sanity doc with no image makes .url() throw, which would take down the whole page.
+export function imageUrl(source: any): string | undefined {
+  try {
+    return builder.image(source).url();
+  } catch {
+    return undefined;
+  }
+}
 
 // Helper function to fetch data from Sanity
 export async function sanityFetch<T>({

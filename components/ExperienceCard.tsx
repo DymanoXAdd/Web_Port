@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { Experience } from "@/types";
-import { urlFor } from "@/lib/sanity";
+import { imageUrl } from "@/lib/sanity";
 import { hoverScale, tapScale } from "@/lib/animations";
 
 type Props = {
@@ -22,7 +22,7 @@ export default function ExperienceCard({ experience }: Props) {
       className="flex flex-col items-center p-6 rounded-lg bg-neutral-50 border border-black/10 hover:border-black/30 transition-all"
     >
       <motion.img
-        src={urlFor(experience.companyImage).url()}
+        src={imageUrl(experience.companyImage)}
         alt={experience.company}
         className="h-20 w-20 rounded-full object-cover border-2 border-black mb-4"
       />
@@ -63,7 +63,7 @@ export default function ExperienceCard({ experience }: Props) {
         {experience.technologies?.slice(0, 3).map((tech) => (
           <motion.img
             key={tech._id}
-            src={urlFor(tech.image).url()}
+            src={imageUrl(tech.image)}
             alt={tech.title}
             title={tech.title}
             className="h-8 w-8 rounded-full"

@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Experience } from "@/types";
 import { containerVariants } from "@/lib/animations";
-import { urlFor } from "@/lib/sanity";
+import { imageUrl } from "@/lib/sanity";
 import ExperienceCard from "@/components/ExperienceCard";
 
 type Props = {
@@ -68,7 +68,7 @@ function WorkExperience({ experiences }: Props) {
           }`}
         >
           <img
-            src={urlFor(item.companyImage).url()}
+            src={imageUrl(item.companyImage)}
             alt=""
             className="h-20 w-20 rounded-full border-2 border-black object-cover"
           />

@@ -11,7 +11,7 @@
  *
  * Mocks:
  *  - @/lib/sanity: the real module throws at import time when env vars are
- *    absent; urlFor must also be deterministic for the <img> srcs.
+ *    absent; imageUrl must also be deterministic for the <img> srcs.
  *  - framer-motion: reduced to plain DOM elements so animation-only props don't
  *    leak onto real nodes / interfere under jsdom.
  */
@@ -24,7 +24,7 @@ import ContactMe from "@/components/sections/ContactMe";
 
 // Deterministic image URL builder — avoids the env-var throw in lib/sanity.
 jest.mock("@/lib/sanity", () => ({
-  urlFor: () => ({ url: () => "https://example.com/img.png" }),
+  imageUrl: () => "https://example.com/img.png",
 }));
 
 // Reduce framer-motion to plain DOM elements. Animation-only props that aren't

@@ -6,7 +6,6 @@ Stage: production · Updated: 2026-11-12
      update the registry row in the workspace CLAUDE.md in the same turn. -->
 
 ## Now
-- [ ] T-016 Guard every `urlFor(x).url()` (About, Projects ×2, ExperienceCard ×2, WorkExperience peek, Skill): one Sanity doc without an image throws and takes down the whole page
 - [ ] T-017 Remove the two `db.onlinewebfonts.com` stylesheet links in `app/layout.tsx`: the site CSP blocks them, so prod already renders the Arial fallback
 
 ## Next
@@ -28,6 +27,7 @@ Stage: production · Updated: 2026-11-12
 - [ ] T-012 Playwright contact-flow E2E test, after the redesign lands
 
 ## Blocked or waiting on a human
+- [ ] T-027 DNS move to Vercel (D-004): registry switched to `ns1/ns2.vercel-dns.com` (2026-11-12), Cloudflare and Google resolvers serve all records. Luis to confirm Resend still Verified, then delete the Cloudflare zone
 
 ## Open decisions from intake
 - _none — all settled 2026-11-12 (see BRIEF, D-002)_
@@ -35,6 +35,8 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-016 `lib/sanity.ts` `imageUrl()` replaces `urlFor().url()` at all 7 sites; a missing image renders no `src` instead of crashing the page (2026-11-12). Test: `__tests__/unit/image-url.test.ts`
+- [x] T-026 Contact form broken ("Unexpected token '<'"): Vercel Bot Protection challenged the form POST. Set to Log (D-003), 2026-11-12. Luis confirmed a live send from his phone
 - [x] T-015 Visitor confirmation email removed; contact route sends one email, to Luis only. Luis approved (2026-11-12). Test: `__tests__/unit/email-route.test.ts`
 - [x] T-007 `/ponytail-audit` run (2026-11-12); findings logged as T-015..T-025
 - [x] T-013 Domain `luisaruiz.xyz` renewed by Luis in Vercel (2026-11-12)

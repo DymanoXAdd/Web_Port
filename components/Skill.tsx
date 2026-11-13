@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Skill } from "@/types";
-import { urlFor } from "@/lib/sanity";
+import { imageUrl } from "@/lib/sanity";
 
 type Props = {
   skill: Skill;
@@ -80,7 +80,7 @@ export default function SkillComponent({ skill, active }: Props) {
       className="flex flex-col items-center gap-3 rounded-2xl border border-gray-700/60 bg-white/5 p-4 backdrop-blur-sm md:p-5"
     >
       <img
-        src={urlFor(skill.image).url()}
+        src={imageUrl(skill.image)}
         alt={skill.title}
         className="h-20 w-20 rounded-full border border-gray-500 object-cover md:h-24 md:w-24"
       />

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { PageInfo } from "@/types";
-import { urlFor } from "@/lib/sanity";
+import { imageUrl } from "@/lib/sanity";
 import { containerVariants, itemVariants, itemVariantsLeft, itemVariantsRight } from "@/lib/animations";
 
 type Props = {
@@ -24,7 +24,7 @@ function About({ pageInfo }: Props) {
       <div className="mx-auto flex min-h-full max-w-7xl flex-col items-center justify-center gap-8 px-5 sm:px-8 md:px-10 pt-36 pb-12 text-center md:flex-row md:gap-12 md:text-left md:pt-32">
       <motion.img
         variants={itemVariantsLeft}
-        src={urlFor(pageInfo?.profilePic).url()}
+        src={imageUrl(pageInfo?.profilePic)}
         alt={pageInfo?.name}
         className="flex-shrink-0 w-44 h-44 sm:w-52 sm:h-52 rounded-full object-cover md:rounded-lg md:w-[240px] md:h-[340px] xl:w-[400px] xl:h-[480px] shadow-lg"
       />
