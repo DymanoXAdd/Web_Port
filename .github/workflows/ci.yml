@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Public values (they appear in every Sanity image URL); the dataset is public-read, no token needed.
+      NEXT_PUBLIC_SANITY_PROJECT_ID: tl1sng9j
+      NEXT_PUBLIC_SANITY_DATASET: production
+      # Dummy values so the integration suite can never send real mail.
+      RESEND_API_KEY: re_dummy_ci
+      RECIPIENT_EMAIL: owner@example.com
+      TEST_BASE_URL: http://localhost:3100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run type-check
+      - run: npm run lint
+      - run: npm test
+      - run: npm run test:components
+      - run: npm run build
+      - name: Integration tests against next start
+        run: |
+          npx next start -p 3100 &
+          for i in $(seq 1 30); do curl -sf http://localhost:3100/api/email > /dev/null && break; sleep 1; done
+          npm run test:integration

@@ -8,7 +8,6 @@ Stage: production · Updated: 2026-11-12
 ## Now
 
 ## Next
-- [ ] T-003 GitHub Actions: lint, type-check, test:all, build on every PR. Integration suite needs a running server: `next start` with a dummy `RESEND_API_KEY` (the rate-limit test would send real mail), then `TEST_BASE_URL=... npm run test:integration`
 - [ ] T-009 `npm run deploy`: checks → push branch → `gh pr create` → `gh pr merge --squash` (Luis runs it, never Claude; needs T-003)
 - [ ] T-005 Dependabot (weekly, grouped) + gitleaks on every PR
 - [ ] T-004 Sentry free tier + one uptime check on the home page (note: Cloudflare edge rejects some bots/checkers and Spectrum blocks the domain for CLI tools on Luis's network; run the uptime check from a hosted monitor and confirm it gets 200) (dependency + DSN secret approved in principle; confirm at build time)
@@ -25,6 +24,7 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-003 `.github/workflows/ci.yml`: type-check, lint, unit, components, build, then integration against `next start` with a dummy Resend key, on every PR and push to main (2026-11-12)
 - [x] T-025 Site CSP has `'unsafe-eval'` only in dev (Studio CSP keeps it; home-page chunks scanned: no eval/new Function); dropped `X-XSS-Protection` and `X-DNS-Prefetch-Control`; revalidate allowlist is `/` only (2026-11-12)
 - [x] T-024 One `metadata` block, in `app/layout.tsx`, holding the values that were live (page's title/description/keywords); `app/page.tsx` copy deleted (2026-11-12). Test: integration "home page has the one site title and description"
 - [x] T-023 Project cards: card is no longer a `role="button"`; the "View Project" link is the only control (Tab reaches it and lifts the card); card body click opens nothing; no link in Sanity means no button. Hover/tilt unchanged. Plan approved by Luis (2026-11-12)
