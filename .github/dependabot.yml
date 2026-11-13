@@ -1,6 +1,7 @@
 version: 2
 updates:
-  # One grouped PR per week for npm minor/patch updates; majors come one per package so they can be reviewed alone.
+  # One grouped PR per week for npm minor/patch updates.
+  # shortcut: majors are skipped (Next 16, Tailwind 4, TS 7 etc. are migrations, not bumps; see T-028), revisit when T-028 is planned.
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -9,6 +10,9 @@ updates:
     groups:
       npm-minor-patch:
         update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
