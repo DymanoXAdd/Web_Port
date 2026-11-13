@@ -4,8 +4,8 @@
  * Verifies the horizontal scrollbar was replaced by a fanned/tilt card stack:
  *  - renders the Sanity-driven `projects` data (all titles present in the DOM)
  *  - the old .overflow-x-scroll scrollbar container is gone
- *  - each card is focusable and exposes a "View Project" link to linkToBuild
- *  - hover/focus reveals the card detail (aria-expanded / active state)
+ *  - the "View Project" link is each card's only control (card is not a button; no link, no button)
+ *  - hover, or focusing the link, reveals the card detail (data-active)
  *  - degrades sanely with 0, 1 and many items (no crash)
  *
  * Mocks:
@@ -15,7 +15,7 @@
  *    useMotionValue/useTransform/useSpring stubs (the component imports them, so
  *    they must resolve to callables or the import is undefined and crashes).
  */
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import type { Project } from "@/types";
 import Projects from "@/components/sections/Projects";
 
@@ -147,13 +147,14 @@ describe("Projects tilt/peek stack", () => {
     expect(document.querySelector(".overflow-x-scroll")).toBeNull();
   });
 
-  it("exposes a focusable card and a View Project link per project", () => {
+  it("has one View Project link per project and no nested interactive card wrapper", () => {
     render(<Projects projects={threeProjects} />);
 
     const cards = screen.getAllByTestId("project-card");
     expect(cards).toHaveLength(3);
     cards.forEach((card) => {
-      expect(card).toHaveAttribute("tabindex", "0");
+      expect(card).not.toHaveAttribute("role", "button");
+      expect(card).not.toHaveAttribute("tabindex");
     });
 
     const links = screen.getAllByRole("link", { name: /view project/i });
@@ -163,41 +164,41 @@ describe("Projects tilt/peek stack", () => {
     expect(links[0]).toHaveAttribute("rel", "noopener noreferrer");
   });
 
-  it("reveals a card's detail on focus (aria-expanded flips to true)", () => {
+  it("focusing a card's View Project link lifts and reveals that card", () => {
     render(<Projects projects={threeProjects} />);
     const cards = screen.getAllByTestId("project-card");
+    const links = screen.getAllByRole("link", { name: /view project/i });
 
-    expect(cards[0]).toHaveAttribute("aria-expanded", "false");
-    fireEvent.focus(cards[0]);
-    expect(cards[0]).toHaveAttribute("aria-expanded", "true");
-    fireEvent.blur(cards[0]);
-    expect(cards[0]).toHaveAttribute("aria-expanded", "false");
+    expect(cards[0]).toHaveAttribute("data-active", "false");
+    act(() => links[0].focus());
+    expect(cards[0]).toHaveAttribute("data-active", "true");
+    act(() => links[0].blur());
+    expect(cards[0]).toHaveAttribute("data-active", "false");
   });
 
-  it("reveals a card's detail on mouse enter (aria-expanded flips to true)", () => {
+  it("reveals a card's detail on mouse enter", () => {
     render(<Projects projects={threeProjects} />);
     const cards = screen.getAllByTestId("project-card");
 
     fireEvent.mouseEnter(cards[1]);
-    expect(cards[1]).toHaveAttribute("aria-expanded", "true");
+    expect(cards[1]).toHaveAttribute("data-active", "true");
     fireEvent.mouseLeave(cards[1]);
-    expect(cards[1]).toHaveAttribute("aria-expanded", "false");
+    expect(cards[1]).toHaveAttribute("data-active", "false");
   });
 
-  it("opens the project link when Enter is pressed on a focused card", () => {
-    const openSpy = jest
-      .spyOn(window, "open")
-      .mockImplementation(() => null);
+  it("clicking the card body opens nothing (only the button does)", () => {
+    const openSpy = jest.spyOn(window, "open").mockImplementation(() => null);
     render(<Projects projects={threeProjects} />);
-    const cards = screen.getAllByTestId("project-card");
 
-    fireEvent.keyDown(cards[0], { key: "Enter" });
-    expect(openSpy).toHaveBeenCalledWith(
-      "https://example.com/p1",
-      "_blank",
-      "noopener,noreferrer"
-    );
+    fireEvent.click(screen.getAllByTestId("project-card")[0]);
+    expect(openSpy).not.toHaveBeenCalled();
     openSpy.mockRestore();
+  });
+
+  it("a project with no link shows no View Project button (no blank tab)", () => {
+    render(<Projects projects={[{ ...threeProjects[0], linkToBuild: undefined } as unknown as Project]} />);
+    // queryByText, not queryByRole: an <a> without href has no "link" role and would hide the bug.
+    expect(screen.queryByText("View Project")).not.toBeInTheDocument();
   });
 
   it("degrades sanely with a single project", () => {

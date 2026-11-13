@@ -64,19 +64,6 @@ function ProjectCard({
     py.set(0);
   }
 
-  function openLink() {
-    if (typeof window !== "undefined") {
-      window.open(project.linkToBuild, "_blank", "noopener,noreferrer");
-    }
-  }
-
-  function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
-    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
-      e.preventDefault();
-      openLink();
-    }
-  }
-
   const rest = restRotation(index, count);
 
   // Neighbours slide aside to make room for the active card.
@@ -92,12 +79,10 @@ function ProjectCard({
     <motion.div
       ref={cardRef}
       data-testid="project-card"
-      role="button"
-      tabIndex={0}
-      aria-expanded={active}
-      aria-label={`${project.title} — view project`}
       data-active={active ? "true" : "false"}
-      className={`project-card group relative flex-shrink-0 cursor-pointer rounded-2xl outline-none focus-visible:ring-4 focus-visible:ring-black/40 ${
+      // Not a button itself: the "View Project" link inside is the one control (no nested interactives).
+      // Focus on that link bubbles here, so keyboard users still get the lift/reveal.
+      className={`project-card group relative flex-shrink-0 rounded-2xl focus-within:ring-4 focus-within:ring-black/40 ${
         active ? "is-active z-50" : "z-10"
       }`}
       style={{
@@ -126,8 +111,6 @@ function ProjectCard({
         resetTilt();
         onDeactivate();
       }}
-      onClick={openLink}
-      onKeyDown={handleKeyDown}
     >
       {/* Card face */}
       <div className="relative w-56 sm:w-64 lg:w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10">
@@ -167,16 +150,18 @@ function ProjectCard({
             ))}
           </div>
 
-          <a
-            href={project.linkToBuild}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-block w-fit rounded-lg bg-black px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-neutral-800"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            View Project
-          </a>
+          {project.linkToBuild && (
+            <a
+              href={project.linkToBuild}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View project: ${project.title}`}
+              className="inline-block w-fit rounded-lg bg-black px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-neutral-800 focus-visible:outline-none"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              View Project
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
