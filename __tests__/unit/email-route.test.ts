@@ -6,6 +6,8 @@ import { NextRequest } from "next/server";
 
 const send = jest.fn().mockResolvedValue({ data: { id: "x" }, error: null });
 jest.mock("resend", () => ({ Resend: jest.fn(() => ({ emails: { send } })) }));
+const captureException = jest.fn();
+jest.mock("@sentry/nextjs", () => ({ captureException: (e: unknown) => captureException(e) }));
 
 import { POST } from "@/app/api/email/route";
 
@@ -49,5 +51,7 @@ test("missing RECIPIENT_EMAIL sends nothing and returns a generic 500", async ()
 
   expect(res.status).toBe(500);
   expect(send).not.toHaveBeenCalled();
+  // The failure is reported to Sentry (error only, no form data).
+  expect(captureException).toHaveBeenCalledWith(expect.objectContaining({ message: "RECIPIENT_EMAIL is not set" }));
   expect((await res.json()).error).not.toMatch(/RECIPIENT_EMAIL/);
 });

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import * as Sentry from "@sentry/nextjs";
 import { contactFormSchema } from "@/lib/validation";
 import { sendContactEmail } from "@/lib/email";
 import { checkRateLimit, getClientIp, type RateLimitStore } from "@/lib/api-guards";
@@ -61,6 +62,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     // Never expose raw error details to the client
     console.error("Email API error:", error);
+    Sentry.captureException(error); // caught here, so Sentry would not see it otherwise; no form data is attached
     return NextResponse.json(
       { success: false, error: "An error occurred. Please try again later." },
       { status: 500 }
