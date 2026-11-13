@@ -17,7 +17,6 @@ Stage: production · Updated: 2026-11-12
   5. TypeScript 7 last, only once ts-jest and Next support it; until then stay on 5.9.
 - [x] T-029 (done 2026-11-12) Fonts are committed in `app/fonts/` (Inter + JetBrains Mono, latin, variable, OFL) and loaded with `next/font/local`. `next/font/google` failed two Vercel builds on a bad Google response
 - [x] T-011 (done 2026-11-12, PR #24, D-005) Concept A redesign live after Luis OK'd the preview. Mockups: https://claude.ai/artifact/VU24MPJApXdTfTCoxrvFDQ. Original task: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
-- [ ] T-012 Playwright contact-flow E2E test, after the redesign lands
 
 ## Blocked or waiting on a human
 
@@ -27,6 +26,8 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-012 Playwright E2E for the contact form (`e2e/contact.spec.ts`, desktop + phone): validation, success, HTML error page, server error; `/api/email` intercepted so no mail is sent; runs in CI (2026-11-12, Luis approved adding Playwright)
+- [x] Dependabot #16 (minor/patch) and #15 (Actions) merged after re-running CI on current main; #17–#20 (majors) closed, tracked as T-028 (2026-11-12)
 - [x] T-010 Contact form shows "Your message is emailed to Luis and not stored." under Submit (small grey text, AA contrast). Luis approved (2026-11-12)
 - [x] T-006 The 4 plain `<img>` (Projects ×2, WorkExperience peek, Skill) use `next/image` (missing Sanity image keeps a same-size blank); `lib/sanity.ts` uses `createImageUrlBuilder`. Lint now 0 warnings, build deprecation warning gone. Not covered: `motion.img` in About and ExperienceCard still load straight from the Sanity CDN. Luis approved (2026-11-12)
 - [x] T-009 Dropped by Luis (2026-11-12): Claude ships PRs itself and CI (T-003) gates every PR, so a one-command deploy script is no longer needed
