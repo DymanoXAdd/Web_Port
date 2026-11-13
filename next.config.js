@@ -18,8 +18,6 @@ const nextConfig = {
       { key: "X-Content-Type-Options", value: "nosniff" },
       // Prevent clickjacking — only same origin can frame us
       { key: "X-Frame-Options", value: "SAMEORIGIN" },
-      // Legacy XSS filter (belt-and-suspenders alongside CSP)
-      { key: "X-XSS-Protection", value: "1; mode=block" },
       // Don't leak full URL in Referer header to third parties
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       // Lock down hardware access
@@ -27,13 +25,11 @@ const nextConfig = {
       // HSTS — force HTTPS for 1 year, include subdomains
       // NOTE: only activates when site is served over HTTPS (Vercel prod)
       { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
-      // Prevent browsers from DNS-prefetching (minor privacy gain)
-      { key: "X-DNS-Prefetch-Control", value: "on" },
     ];
 
     // Strict Content Security Policy for the public site (everything except the Studio)
     // - default-src 'self': only load resources from our own origin
-    // - script-src: Next.js needs 'unsafe-eval' in dev; tighten in prod
+    // - script-src: 'unsafe-eval' only in dev (React Refresh needs it); the prod build doesn't
     // - style-src: Tailwind generates inline styles so 'unsafe-inline' required
     // - img-src: self + Sanity CDN + data URIs (base64 images)
     // - media-src: self + Pixabay CDN (the hero background video is hosted there)
@@ -41,7 +37,7 @@ const nextConfig = {
     // - frame-ancestors: nobody may embed us (stricter than X-Frame-Options)
     const siteCsp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+      `script-src 'self' ${process.env.NODE_ENV === "production" ? "" : "'unsafe-eval' "}'unsafe-inline'`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' https://cdn.sanity.io data: blob:",
       "media-src 'self' https://cdn.pixabay.com",
