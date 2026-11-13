@@ -39,7 +39,7 @@
     "@playwright/test": "^1.65.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.3.1",
-    "@testing-library/user-event": "^14.6.8",
+    "@testing-library/user-event": "^14.6.9",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.0",
     "@types/react": "^18.3.0",
