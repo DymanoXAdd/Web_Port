@@ -1,17 +1,17 @@
 # Graph Report - portfolio-website  (2026-11-12)
 
 ## Corpus Check
-- 79 files · ~30,031 words
+- 79 files · ~30,091 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 5 file(s) not represented in the graph (top: (none) 3, .graphify-bak 1, .css 1)
 
 ## Summary
-- 588 nodes · 833 edges · 40 communities (28 shown, 12 thin omitted)
+- 586 nodes · 830 edges · 41 communities (28 shown, 13 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `19769271`
+- Built from commit: `344aaf5b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -41,6 +41,8 @@
 - ErrorBoundary
 - portfolio-website
 - jest
+- package.json
+- jest@^29.7.0
 - pull_request_template.md
 - Checker Baseline — Known Pre-Existing Failures
 - next.config.js
@@ -50,7 +52,6 @@
 - security.md
 - testing.md
 - layout.tsx
-- ContactMe.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 19 edges
@@ -65,33 +66,33 @@
 10. `expect()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Done` --references--> `ErrorBoundary`  [INFERRED]
+  docs/TASKS.md → components/ui/ErrorBoundary.tsx
+- `Done` --references--> `imageUrl()`  [INFERRED]
+  docs/TASKS.md → lib/sanity.ts
 - `Done` --references--> `checkRateLimit()`  [INFERRED]
   docs/TASKS.md → lib/api-guards.ts
 - `Done` --references--> `isAllowedPath()`  [INFERRED]
   docs/TASKS.md → lib/api-guards.ts
-- `Done` --references--> `imageUrl()`  [INFERRED]
-  docs/TASKS.md → lib/sanity.ts
-- `Done` --references--> `ErrorBoundary`  [INFERRED]
-  docs/TASKS.md → components/ui/ErrorBoundary.tsx
 - `Home()` --calls--> `ErrorBoundary`  [EXTRACTED]
   app/page.tsx → components/ui/ErrorBoundary.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (40 total, 12 thin omitted)
+## Communities (41 total, 13 thin omitted)
 
 ### Community 0 - "app/page.tsx"
 Cohesion: 0.05
-Nodes (62): getPortfolioData(), Home(), metadata, revalidate, ExperienceCard(), formatMonth(), Props, About() (+54 more)
+Nodes (61): getPortfolioData(), Home(), metadata, revalidate, ExperienceCard(), formatMonth(), Props, About() (+53 more)
 
 ### Community 1 - "Implementation Status - Portfolio Rebuild"
 Cohesion: 0.05
 Nodes (42): 1. Copy Files to Root, 2. Set Environment Variables, 3. Install Dependencies, 4. Test Locally, 5. Update Sanity Schema, 6. Get Resend API Key, 7. Deploy to Vercel, Architecture (+34 more)
 
 ### Community 2 - "animations.ts"
-Cohesion: 0.12
-Nodes (18): Props, fadeInLeft, fadeInRight, fadeInUp, float, hoverScale, itemVariants, itemVariantsLeft (+10 more)
+Cohesion: 0.13
+Nodes (17): Props, containerVariants, fadeInLeft, fadeInRight, fadeInUp, float, itemVariants, itemVariantsLeft (+9 more)
 
 ### Community 3 - "Portfolio Website Rebuild - Complete Implementation"
 Cohesion: 0.05
@@ -106,28 +107,28 @@ Cohesion: 0.06
 Nodes (32): Also done this session (no loop run), Current Goal, 📋 Deploy checklist created → `(C) DEPLOY CHECKLIST.md` (project root), Deploy status — code side DONE, 1 blocker left (USER-ONLY), Deploy status — UNCHANGED from 2026-06-29: code side DONE, 1 blocker left (USER-ONLY), Done this session, Next Step, Next Step / state of `(C) TASK.md` (+24 more)
 
 ### Community 6 - "schemaTypes/index.ts"
-Cohesion: 0.10
-Nodes (19): dynamic, next-sanity@^9.0.0, sanity@^3.99.0, @sanity/icons@^2.11.8, @sanity/vision@^3.99.0, next-sanity, sanity, @sanity/icons (+11 more)
+Cohesion: 0.13
+Nodes (15): dynamic, next-sanity@^9.0.0, next-sanity, sanity, @sanity/icons, apiVersion, dataset, projectId (+7 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.09
 Nodes (21): compilerOptions, allowImportingTsExtensions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, jsxImportSource (+13 more)
 
 ### Community 8 - "email/route.ts"
-Cohesion: 0.13
-Nodes (18): POST(), rateLimitStore, POST(), ALLOWED_PATHS, checkRateLimit(), getClientIp(), isAllowedPath(), RATE_LIMIT (+10 more)
+Cohesion: 0.08
+Nodes (29): POST(), rateLimitStore, POST(), Props, Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next (+21 more)
 
 ### Community 9 - "How to Run & Test the Portfolio Site"
 Cohesion: 0.10
 Nodes (20): 10. Verify live + point domain, 1. Start the local dev server, 2. Security unit tests (Python — quick, no dev server needed), 3. Integration tests (need the dev server running), 4. TypeScript type check, 5. Linter, 6. Manual contact-form test, 7. Production build (must pass with 0 errors before deploy) (+12 more)
 
 ### Community 10 - "dependencies"
-Cohesion: 0.14
-Nodes (14): dependencies, framer-motion@^10.16.0, next@^14.2.0, react@^18.3.0, react-dom@^18.3.0, resend@^3.0.0, @sanity/image-url@^2.1.1, styled-components@^6.4.2 (+6 more)
+Cohesion: 0.09
+Nodes (23): dependencies, framer-motion@^10.16.0, @heroicons/react@^2.0.18, @hookform/resolvers@^3.3.4, react@^18.3.0, react-dom@^18.3.0, react-hook-form@^7.50.0, resend@^3.0.0 (+15 more)
 
 ### Community 11 - "package.json"
-Cohesion: 0.08
-Nodes (33): devDependencies, autoprefixer@^10.4.16, eslint@^8.55.0, eslint-config-next@^14.2.0, identity-obj-proxy@^3.0.0, jest@^29.7.0, postcss@^8.4.32, tailwindcss@^3.4.1 (+25 more)
+Cohesion: 0.10
+Nodes (20): devDependencies, eslint@^8.55.0, eslint-config-next@^14.2.0, identity-obj-proxy@^3.0.0, postcss@^8.4.32, @testing-library/react@^14.3.1, @testing-library/user-event@^14.6.1, @types/node@^20.10.0 (+12 more)
 
 ### Community 12 - "Brief — portfolio-website"
 Cohesion: 0.12
@@ -162,8 +163,8 @@ Cohesion: 0.22
 Nodes (8): Architecture — portfolio-website, Components and boundaries, Constraints and known risks, Context, Data model, External services and API contracts, Non-functional targets, Stack
 
 ### Community 22 - "ErrorBoundary"
-Cohesion: 0.12
-Nodes (10): ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState, Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next, Now (+2 more)
+Cohesion: 0.24
+Nodes (3): ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState
 
 ### Community 23 - "portfolio-website"
 Cohesion: 0.29
@@ -172,6 +173,10 @@ Nodes (6): Approval gates for this project, Commands, graphify, portfolio-websit
 ### Community 24 - "jest"
 Cohesion: 0.29
 Nodes (3): config, config, config
+
+### Community 25 - "package.json"
+Cohesion: 0.14
+Nodes (13): @sanity/image-url@^2.1.1, autoprefixer@^10.4.16, tailwindcss@^3.4.1, ts-jest@^29.1.2, @types/jest@^29.5.11, name, private, version (+5 more)
 
 ### Community 27 - "pull_request_template.md"
 Cohesion: 0.40
@@ -189,29 +194,25 @@ Nodes (5): D-001 — 2026-11-11 — Initial stack and setup (imported), D-002 �
 Cohesion: 0.33
 Nodes (3): metadata, @vercel/analytics@^1.2.2, @vercel/analytics
 
-### Community 40 - "ContactMe.tsx"
-Cohesion: 0.18
-Nodes (11): Props, ContactFormInput, contactFormSchema, @heroicons/react@^2.0.18, @hookform/resolvers@^3.3.4, react-hook-form@^7.50.0, zod@^3.23.0, @heroicons/react (+3 more)
-
 ## Knowledge Gaps
 - **1 isolated node(s):** `next/core-web-vitals`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 334 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `email/route.ts` to `app/page.tsx`, `dependencies`, `package.json`, `layout.tsx`?**
+- **Why does `next` connect `email/route.ts` to `app/page.tsx`, `package.json`, `layout.tsx`?**
   _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **What connects `next/core-web-vitals` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.05337078651685393 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `app/page.tsx` to `animations.ts`, `ContactMe.tsx`, `dependencies`, `package.json`, `ErrorBoundary`?**
+  _Cohesion score 0.05381400208986416 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `app/page.tsx` to `animations.ts`, `email/route.ts`, `dependencies`, `ErrorBoundary`, `package.json`?**
   _High betweenness centrality (0.034) - this node is a cross-community bridge._
 - **Should `Implementation Status - Portfolio Rebuild` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
-- **Why does `sanity` connect `schemaTypes/index.ts` to `package.json`?**
+- **Why does `sanity` connect `schemaTypes/index.ts` to `package.json`, `dependencies`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Should `animations.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.11578947368421053 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1286549707602339 - nodes in this community are weakly interconnected._
