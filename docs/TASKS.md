@@ -8,10 +8,8 @@ Stage: production · Updated: 2026-11-12
 ## Now
 
 ## Next
-- [ ] T-009 `npm run deploy`: checks → push branch → `gh pr create` → `gh pr merge --squash` (Luis runs it, never Claude; needs T-003)
 - [ ] T-004 Sentry free tier + one uptime check on the home page (note: Cloudflare edge rejects some bots/checkers and Spectrum blocks the domain for CLI tools on Luis's network; run the uptime check from a hosted monitor and confirm it gets 200) (dependency + DSN secret approved in principle; confirm at build time)
 - [ ] T-010 One-line privacy note on the contact form ("Your message is emailed to Luis and not stored.")
-- [ ] T-006 Fix the `<img>` / `no-img-element` lint warnings in `Projects.tsx:134,160`, `WorkExperience.tsx:70` and `Skill.tsx:82`; also switch `@sanity/image-url` default export to `createImageUrlBuilder` (build deprecation warning)
 - [ ] T-011 Redesign: 2–3 HTML mockups → Luis picks → plan → build (size from T-007 findings)
 - [ ] T-012 Playwright contact-flow E2E test, after the redesign lands
 
@@ -23,6 +21,8 @@ Stage: production · Updated: 2026-11-12
 ## Debt (from `/ponytail-debt`)
 
 ## Done
+- [x] T-006 The 4 plain `<img>` (Projects ×2, WorkExperience peek, Skill) use `next/image` (missing Sanity image keeps a same-size blank); `lib/sanity.ts` uses `createImageUrlBuilder`. Lint now 0 warnings, build deprecation warning gone. Not covered: `motion.img` in About and ExperienceCard still load straight from the Sanity CDN. Luis approved (2026-11-12)
+- [x] T-009 Dropped by Luis (2026-11-12): Claude ships PRs itself and CI (T-003) gates every PR, so a one-command deploy script is no longer needed
 - [x] T-005 `.github/dependabot.yml` (npm minor/patch grouped weekly, majors separate; actions grouped weekly) + `.github/workflows/gitleaks.yml` on every PR and push to main (2026-11-12)
 - [x] T-003 `.github/workflows/ci.yml`: type-check, lint, unit, components, build, then integration against `next start` with a dummy Resend key, on every PR and push to main (2026-11-12)
 - [x] T-025 Site CSP has `'unsafe-eval'` only in dev (Studio CSP keeps it; home-page chunks scanned: no eval/new Function); dropped `X-XSS-Protection` and `X-DNS-Prefetch-Control`; revalidate allowlist is `/` only (2026-11-12)

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Skill } from "@/types";
+import Image from "next/image";
 import { imageUrl } from "@/lib/sanity";
 
 type Props = {
@@ -72,6 +73,8 @@ export default function SkillComponent({ skill, active }: Props) {
   // Bar fill: final width when reduced or active, otherwise empty.
   const filled = reduced || active;
   const barWidth = `${filled ? target : 0}%`;
+  const src = imageUrl(skill.image);
+  const iconClass = "h-20 w-20 rounded-full border border-gray-500 object-cover md:h-24 md:w-24";
 
   return (
     <motion.div
@@ -79,11 +82,12 @@ export default function SkillComponent({ skill, active }: Props) {
       data-testid="skill-card"
       className="flex flex-col items-center gap-3 rounded-2xl border border-gray-700/60 bg-white/5 p-4 backdrop-blur-sm md:p-5"
     >
-      <img
-        src={imageUrl(skill.image)}
-        alt={skill.title}
-        className="h-20 w-20 rounded-full border border-gray-500 object-cover md:h-24 md:w-24"
-      />
+      {/* next/image throws without a src, so a missing Sanity image keeps an empty same-size circle. */}
+      {src ? (
+        <Image src={src} alt={skill.title} width={96} height={96} className={iconClass} />
+      ) : (
+        <div aria-hidden="true" className={iconClass} />
+      )}
       <p className="text-center text-sm font-semibold text-black md:text-base">
         {skill.title}
       </p>
