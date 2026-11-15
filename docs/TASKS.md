@@ -1,17 +1,20 @@
 # Tasks — portfolio-website
 
-Stage: production · Updated: 2026-11-13
+Stage: production · Updated: 2026-11-15
 
 <!-- IDs never get reused. "Now" holds at most 3 tasks. When a task changes state,
      update the registry row in the workspace CLAUDE.md in the same turn. -->
 
 ## Now
+- [ ] T-028 Major upgrades — Luis said yes to the plan below (2026-11-15). Step 1 (Next 15.5 + React 19.3, framer-motion 12, @sanity/icons 3, @testing-library/react 16, @types/react 19, eslint-config-next 15) on `task/T-028-next15-react19`: type-check, lint, unit 54, components 47, integration 27, E2E 8, build all green locally; dropped the `instrumentationHook` flag (default in 15). Waiting on the Vercel preview check, then merge and start step 2.
 
 ## Next
 - [ ] T-031 Small cleanups (no approval needed beyond a dependency removal): uninstall unused `@heroicons/react`; revoke the Vercel "Protection Bypass for Automation" secret that `vercel curl` created (Project → Settings → Deployment Protection); optional `SENTRY_AUTH_TOKEN` for readable stack traces (new secret, needs yes)
 
 ## Blocked or waiting on a human
-- [ ] T-028 Major upgrades, each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). Dependabot skips majors until this is planned. Needs Luis yes on this plan (written 2026-11-12), one PR per step, each previewed before merge:
+
+## T-028 plan (approved 2026-11-15)
+Each its own migration (Dependabot PRs #17–#20 all fail CI): Next 14→16 with eslint-config-next 16, Tailwind 3→4, TypeScript 5→7, Sanity 3→6 (@sanity/vision). One PR per step, each previewed before merge:
   1. Next 14 → 15 + React 19 together (Next 15 needs React 19): `@types/react` 19, `@testing-library/react` 16, framer-motion to a React-19 version, eslint-config-next 15. Code risk is low: no `cookies()`/`headers()` use; route handlers only read `request.nextUrl`/headers.
   2. Sanity 3 → current (needs React 19 from step 1): `sanity`, `@sanity/vision`, `next-sanity` together; check `/studio` loads and the 4 new Page Info fields still save.
   3. Next 15 → 16: `next lint` is gone (switch the lint script to the ESLint CLI with a flat config); Turbopack becomes the default bundler.

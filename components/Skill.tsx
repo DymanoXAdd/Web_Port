@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { Skill } from "@/types";
 import Image from "next/image";
 import { imageUrl } from "@/lib/sanity";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 // Card child variants for the staggered cascade.
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 26, scale: 0.9 },
   visible: {
     opacity: 1,

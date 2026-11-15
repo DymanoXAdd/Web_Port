@@ -3,8 +3,6 @@ const { withSentryConfig } = require("@sentry/nextjs/config");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Next 14 only runs instrumentation.ts (server-side Sentry) with this flag.
-  experimental: { instrumentationHook: true },
   images: {
     remotePatterns: [
       {
