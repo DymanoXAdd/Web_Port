@@ -10,13 +10,19 @@ const OFFLINE: ServerStatus = { online: false, players: null };
 export async function getServerStatus(
   address = process.env.MC_SERVER_ADDRESS
 ): Promise<ServerStatus> {
-  if (!address) return OFFLINE;
+  if (!address) {
+    console.warn("minecraft status: MC_SERVER_ADDRESS not set");
+    return OFFLINE;
+  }
   try {
     const res = await fetch(
       `https://api.mcstatus.io/v2/status/java/${encodeURIComponent(address)}`,
       { next: { revalidate: 30 }, signal: AbortSignal.timeout(5000) }
     );
-    if (!res.ok) return OFFLINE;
+    if (!res.ok) {
+      console.warn(`minecraft status: mcstatus.io answered ${res.status}`);
+      return OFFLINE;
+    }
     const data = await res.json();
     if (data?.online !== true) return OFFLINE;
     const { online, max } = data.players ?? {};
@@ -25,7 +31,8 @@ export async function getServerStatus(
       players:
         typeof online === "number" && typeof max === "number" ? { online, max } : null,
     };
-  } catch {
+  } catch (error) {
+    console.warn("minecraft status: request failed", error);
     return OFFLINE;
   }
 }
