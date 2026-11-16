@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "next.config.js": {
-    "mtime": 1794810381.7153804,
-    "seen": 1794810498.044492,
-    "ast_hash": "67a8cd3fbc12c92267882504f9694a3d",
+    "mtime": 1794811025.3594491,
+    "seen": 1794811104.1156983,
+    "ast_hash": "82ba7821ea0353f81bdd28c3094a4df8",
     "semantic_hash": ""
   },
   "package.json": {
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794810491.1595345,
-    "seen": 1794810498.0445194,
-    "ast_hash": "46ac5ec06d2039be3bf0fadb0fbafbe6",
+    "mtime": 1794811102.654209,
+    "seen": 1794811104.1157258,
+    "ast_hash": "a4a9488de0e705520742dfd418618d7a",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -516,15 +516,15 @@
     "semantic_hash": ""
   },
   "__tests__/unit/minecraft.test.ts": {
-    "mtime": 1794810381.8654227,
-    "seen": 1794810498.044462,
-    "ast_hash": "59e62814286236888d8b03512b02bee9",
+    "mtime": 1794811046.5652344,
+    "seen": 1794811104.1156666,
+    "ast_hash": "18b289c58eb3cf7ddfacaa72a0396630",
     "semantic_hash": ""
   },
   "app/minecraft/page.tsx": {
-    "mtime": 1794810381.817504,
-    "seen": 1794810498.0444684,
-    "ast_hash": "abec103b829d55f15ee1e343e5480674",
+    "mtime": 1794811032.6817858,
+    "seen": 1794811104.115673,
+    "ast_hash": "26a18d0665192f13e209acf9b38dadf9",
     "semantic_hash": ""
   },
   "components/GrassBlock.tsx": {
@@ -534,9 +534,15 @@
     "semantic_hash": ""
   },
   "lib/minecraft.ts": {
-    "mtime": 1794810369.610386,
-    "seen": 1794810498.0444882,
-    "ast_hash": "7039016847a85c4fe22447e619e8886f",
+    "mtime": 1794811025.323387,
+    "seen": 1794811104.1156945,
+    "ast_hash": "06028f61b1104920e6c9a0b257b41d2c",
+    "semantic_hash": ""
+  },
+  "components/PlayerHead.tsx": {
+    "mtime": 1794811032.5816896,
+    "seen": 1794811104.1156778,
+    "ast_hash": "8925efed36a8d317f5ed205f258fc322",
     "semantic_hash": ""
   },
   "package-lock.json": {

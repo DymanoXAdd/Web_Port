@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import PlayerHead from "@/components/PlayerHead";
 import { sanityFetch } from "@/lib/sanity";
 import { socialsQuery } from "@/lib/sanity-queries";
 import { getServerStatus } from "@/lib/minecraft";
@@ -61,13 +61,7 @@ export default async function MinecraftPage() {
               {status.players.list.map((player) => (
                 <tr key={player.uuid} className="border-b border-line last:border-b-0">
                   <td className="px-4 py-2">
-                    <Image
-                      src={`https://minotar.net/helm/${player.uuid}/64.png`}
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="rounded-sm [image-rendering:pixelated]"
-                    />
+                    <PlayerHead skin={player.skin} />
                   </td>
                   <td className="px-4 py-2 text-fg">{player.name}</td>
                 </tr>

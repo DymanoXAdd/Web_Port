@@ -1,4 +1,4 @@
-export type Player = { uuid: string; name: string };
+export type Player = { uuid: string; name: string; skin: string | null };
 
 export type ServerStatus = {
   online: boolean;
@@ -34,14 +34,37 @@ export async function getServerStatus(
     const { online, max, list } = data.players ?? {};
     if (typeof online !== "number" || typeof max !== "number") return { online: true, players: null };
     // shortcut: the ping only carries the server's player sample (vanilla: up to 12 names), fine for a 12-slot server.
-    const players: Player[] = Array.isArray(list)
-      ? list
-          .filter((p) => typeof p?.uuid === "string" && UUID.test(p.uuid) && typeof p?.name_clean === "string")
-          .map((p) => ({ uuid: p.uuid, name: p.name_clean }))
+    const sample: { uuid: string; name_clean: string }[] = Array.isArray(list)
+      ? list.filter((p) => typeof p?.uuid === "string" && UUID.test(p.uuid) && typeof p?.name_clean === "string")
       : [];
+    const players: Player[] = await Promise.all(
+      sample.map(async (p) => ({ uuid: p.uuid, name: p.name_clean, skin: await getSkinUrl(p.uuid) }))
+    );
     return { online: true, players: { online, max, list: players } };
   } catch (error) {
     console.warn("minecraft status: request failed", error);
     return OFFLINE;
+  }
+}
+
+// The player's skin texture from Mojang (avatar sites either block Vercel or return the default head).
+// Cached 1 h; null on any failure, and the page shows a blank square.
+async function getSkinUrl(uuid: string): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://sessionserver.mojang.com/session/minecraft/profile/${uuid.replace(/-/g, "")}`,
+      { next: { revalidate: 3600 }, signal: AbortSignal.timeout(5000) }
+    );
+    if (!res.ok) return null;
+    const profile = await res.json();
+    const value = profile?.properties?.find((p: { name?: string }) => p?.name === "textures")?.value;
+    if (typeof value !== "string") return null;
+    const url = JSON.parse(Buffer.from(value, "base64").toString("utf8"))?.textures?.SKIN?.url;
+    // Only Mojang's texture host, upgraded to https (the profile gives http).
+    return typeof url === "string" && /^https?:\/\/textures\.minecraft\.net\/texture\/[0-9a-f]+$/.test(url)
+      ? url.replace(/^http:/, "https:")
+      : null;
+  } catch {
+    return null;
   }
 }
