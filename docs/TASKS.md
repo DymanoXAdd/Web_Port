@@ -6,6 +6,7 @@ Stage: production · Updated: 2026-11-15
      update the registry row in the workspace CLAUDE.md in the same turn. -->
 
 ## Now
+- [ ] T-033 `/minecraft` page (Luis yes, 2026-11-16): original pixel grass-block icon after "skills" in the nav (desktop + phone menu) links to `/minecraft`; page shows a floating block, "Orbis", Online/Offline and players online / max for the Java server in `MC_SERVER_ADDRESS` (Vercel Production + Preview). Status from mcstatus.io on the server, cached 30 s; any failure shows Offline. Nav links now `/#…` so they work from the new page. Tests: `__tests__/unit/minecraft.test.ts`, header test. Waiting on Luis to check the preview. Later: player stats and leaderboard (needs data from the server itself, e.g. a plugin)
 
 ## Shipped 2026-11-15
 - [x] T-031 Sentry source maps (D-007): Luis added `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` (`luis-ruiz`), `SENTRY_PROJECT` to Vercel Production and redeployed without cache. Production chunks carry `_sentryDebugIds` (previous deploy had none), no public `sourceMappingURL`; Sentry shows two uploads (1290 + 924 files) for release `5d166a8`, confirmed by Luis
