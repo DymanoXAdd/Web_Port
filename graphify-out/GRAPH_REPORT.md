@@ -1,17 +1,17 @@
 # Graph Report - portfolio-website  (2026-11-16)
 
 ## Corpus Check
-- 89 files · ~31,571 words
+- 90 files · ~32,335 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .woff2 2, .graphify-bak 1)
 
 ## Summary
-- 685 nodes · 939 edges · 45 communities (33 shown, 12 thin omitted)
+- 692 nodes · 948 edges · 46 communities (35 shown, 11 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c219b9d6`
+- Built from commit: `d657bd0d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -48,27 +48,28 @@
 - Checker Baseline — Known Pre-Existing Failures
 - package.json
 - ErrorBoundary
-- postcss@^8.5.32
-- @testing-library/dom@^10.4.0
+- minecraft.ts
+- Tasks — portfolio-website
 - frontend.md
 - security.md
 - testing.md
-- minecraft/page.tsx
-- @types/jest@^29.5.11
-- @types/node@^20.10.0
+- layout.tsx
+- jest-environment-jsdom@^29.7.0
+- @types/react@^19.0.0
 - updates
+- typescript@^5.3.3
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 19 edges
 2. `react` - 17 edges
 3. `Brief — portfolio-website` - 16 edges
-4. `Portfolio Website Rebuild - Complete Implementation` - 13 edges
-5. `scripts` - 12 edges
-6. `next` - 12 edges
+4. `next` - 13 edges
+5. `Portfolio Website Rebuild - Complete Implementation` - 13 edges
+6. `scripts` - 12 edges
 7. `imageUrl()` - 11 edges
 8. `Implementation Status - Portfolio Rebuild` - 11 edges
 9. `sanity` - 11 edges
-10. `ErrorBoundary` - 10 edges
+10. `Tasks — portfolio-website` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Done` --references--> `ErrorBoundary`  [INFERRED]
@@ -85,11 +86,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (45 total, 12 thin omitted)
+## Communities (46 total, 11 thin omitted)
 
 ### Community 0 - "app/page.tsx"
-Cohesion: 0.06
-Nodes (56): getPortfolioData(), Home(), revalidate, ExperienceCard(), formatMonth(), Props, About(), Props (+48 more)
+Cohesion: 0.05
+Nodes (65): metadata, MinecraftPage(), revalidate, getPortfolioData(), Home(), revalidate, ExperienceCard(), formatMonth() (+57 more)
 
 ### Community 1 - "Implementation Status - Portfolio Rebuild"
 Cohesion: 0.05
@@ -120,16 +121,16 @@ Cohesion: 0.09
 Nodes (21): compilerOptions, allowImportingTsExtensions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, jsxImportSource (+13 more)
 
 ### Community 8 - "email/route.ts"
-Cohesion: 0.07
-Nodes (33): POST(), rateLimitStore, POST(), Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next, Now (+25 more)
+Cohesion: 0.11
+Nodes (22): POST(), rateLimitStore, POST(), Props, Done, ALLOWED_PATHS, checkRateLimit(), getClientIp() (+14 more)
 
 ### Community 9 - "How to Run & Test the Portfolio Site"
 Cohesion: 0.10
 Nodes (20): 10. Verify live + point domain, 1. Start the local dev server, 2. Security unit tests (Python — quick, no dev server needed), 3. Integration tests (need the dev server running), 4. TypeScript type check, 5. Linter, 6. Manual contact-form test, 7. Production build (must pass with 0 errors before deploy) (+12 more)
 
 ### Community 10 - "dependencies"
-Cohesion: 0.14
-Nodes (14): dependencies, framer-motion@^12.43.0, @hookform/resolvers@^3.3.4, next@^16.4.6, react@^19.3.1, react-dom@^19.3.1, react-hook-form@^7.91.0, @sanity/image-url@^2.1.1 (+6 more)
+Cohesion: 0.11
+Nodes (18): dependencies, framer-motion@^12.43.0, @hookform/resolvers@^3.3.4, next@^16.4.6, react@^19.3.1, react-dom@^19.3.1, react-hook-form@^7.91.0, resend@^3.0.0 (+10 more)
 
 ### Community 11 - "contact.spec.ts"
 Cohesion: 0.33
@@ -144,8 +145,8 @@ Cohesion: 0.07
 Nodes (27): env, runs-on, steps, timeout-minutes, concurrency, cancel-in-progress, group, NEXT_PUBLIC_SANITY_DATASET (+19 more)
 
 ### Community 14 - "devDependencies"
-Cohesion: 0.12
-Nodes (16): devDependencies, identity-obj-proxy@^3.0.0, jest-environment-jsdom@^29.7.0, tailwindcss@^4.3.5, @tailwindcss/postcss@^4.3.5, @testing-library/react@^16.3.0, @testing-library/user-event@^14.6.8, @types/react-dom@^19.0.0 (+8 more)
+Cohesion: 0.11
+Nodes (18): devDependencies, eslint@^9.39.0, identity-obj-proxy@^3.0.0, postcss@^8.5.32, tailwindcss@^4.3.5, @tailwindcss/postcss@^4.3.5, @testing-library/dom@^10.4.0, @testing-library/react@^16.3.0 (+10 more)
 
 ### Community 15 - "scripts"
 Cohesion: 0.17
@@ -205,31 +206,39 @@ Nodes (3): Checker Baseline — Known Pre-Existing Failures, Known failures (do 
 
 ### Community 30 - "package.json"
 Cohesion: 0.17
-Nodes (11): eslint@^9.39.0, jest@^29.7.0, ts-jest@^29.4.15, @types/react@^19.0.0, name, private, version, eslint (+3 more)
+Nodes (11): jest@^29.7.0, @testing-library/user-event@^14.6.8, ts-jest@^29.4.15, @types/node@^20.10.0, name, private, version, jest (+3 more)
 
 ### Community 31 - "ErrorBoundary"
 Cohesion: 0.07
 Nodes (15): ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState, D-001 — 2026-11-11 — Initial stack and setup (imported), D-002 — 2026-11-12 — Delivery workflow, monitoring and scanning, D-003 — 2026-11-12 — Vercel Bot Protection: Challenge → Log, D-004 — 2026-11-12 — DNS moves from Cloudflare to Vercel, D-005 — 2026-11-12 — Redesign to concept A "Query" + four optional hero fields in Sanity (+7 more)
 
-### Community 39 - "minecraft/page.tsx"
-Cohesion: 0.11
-Nodes (17): inter, metadata, mono, metadata, MinecraftPage(), revalidate, GrassBlock(), Header() (+9 more)
+### Community 32 - "minecraft.ts"
+Cohesion: 0.22
+Nodes (5): getServerStatus(), getSkinUrl(), OFFLINE, Player, ServerStatus
+
+### Community 33 - "Tasks — portfolio-website"
+Cohesion: 0.20
+Nodes (9): Blocked or waiting on a human, Debt (from `/ponytail-debt`), Next, Now, Open decisions from intake, Shipped 2026-11-15, Shipped 2026-11-16, T-028 plan (approved 2026-11-15) (+1 more)
+
+### Community 39 - "layout.tsx"
+Cohesion: 0.25
+Nodes (5): inter, metadata, mono, @vercel/analytics@^1.2.2, @vercel/analytics
 
 ### Community 42 - "updates"
 Cohesion: 0.12
 Nodes (15): patterns, actions, npm-minor-patch, dependency-name, update-types, update-types, interval, updates (+7 more)
 
 ## Knowledge Gaps
-- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `minecraft/page.tsx` to `email/route.ts`, `app/page.tsx`, `dependencies`, `package.json`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `next` connect `app/page.tsx` to `email/route.ts`, `dependencies`, `package.json`, `layout.tsx`?**
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
 - **Should `app/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.05877167205406994 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `app/page.tsx` to `dependencies`, `minecraft/page.tsx`, `package.json`, `ErrorBoundary`?**
+  _Cohesion score 0.0528555431131019 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `app/page.tsx` to `email/route.ts`, `dependencies`, `package.json`, `ErrorBoundary`?**
   _High betweenness centrality (0.028) - this node is a cross-community bridge._
 - **Should `Implementation Status - Portfolio Rebuild` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
