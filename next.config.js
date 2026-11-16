@@ -10,10 +10,11 @@ const nextConfig = {
         hostname: "cdn.sanity.io",
       },
       // Minecraft skin heads on /minecraft, proxied through /_next/image so the CSP stays img-src 'self'.
+      // (mc-heads.net refuses Vercel's image fetcher: OPTIMIZED_EXTERNAL_IMAGE_REQUEST_UNAUTHORIZED.)
       {
         protocol: "https",
-        hostname: "mc-heads.net",
-        pathname: "/avatar/**",
+        hostname: "minotar.net",
+        pathname: "/helm/**",
       },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

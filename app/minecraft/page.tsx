@@ -62,7 +62,7 @@ export default async function MinecraftPage() {
                 <tr key={player.uuid} className="border-b border-line last:border-b-0">
                   <td className="px-4 py-2">
                     <Image
-                      src={`https://mc-heads.net/avatar/${player.uuid}/64`}
+                      src={`https://minotar.net/helm/${player.uuid}/64.png`}
                       alt=""
                       width={32}
                       height={32}

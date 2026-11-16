@@ -6,7 +6,7 @@ Stage: production · Updated: 2026-11-15
      update the registry row in the workspace CLAUDE.md in the same turn. -->
 
 ## Now
-- [ ] T-034 `/minecraft` player table (Luis asked, 2026-11-16): table under the count lists players online with their skin heads (mc-heads.net via `next/image`, so the CSP stays `img-src 'self'`). Names and UUIDs come from the ping's player sample (vanilla: up to 12); UUIDs are format-checked before going into the image URL. Test: `__tests__/unit/minecraft.test.ts`. Waiting on Luis to check the preview. Later: player stats and leaderboard (needs data from the server itself, e.g. a plugin)
+- [ ] T-034 `/minecraft` player table (Luis asked, 2026-11-16): table under the count lists players online with their skin heads (minotar.net via `next/image`; mc-heads.net refuses Vercel's image fetcher, so the CSP stays `img-src 'self'`). Names and UUIDs come from the ping's player sample (vanilla: up to 12); UUIDs are format-checked before going into the image URL. Test: `__tests__/unit/minecraft.test.ts`. Waiting on Luis to check the preview. Later: player stats and leaderboard (needs data from the server itself, e.g. a plugin)
 
 ## Shipped 2026-11-16
 - [x] T-033 `/minecraft` page (Luis yes): original pixel grass-block icon after "skills" in the nav (desktop + phone menu) links to `/minecraft`; floating block, "Orbis", Online/Offline and players online / max for the Java server in `MC_SERVER_ADDRESS` (Vercel Production + Preview). Status from mcstatus.io on the server, cached 30 s; any failure shows Offline and logs why. The address is trimmed (the first Vercel value ended in `\r\n` and mcstatus.io answered 400). Nav links now `/#…`. Luis checked the preview; merged as PR #39
