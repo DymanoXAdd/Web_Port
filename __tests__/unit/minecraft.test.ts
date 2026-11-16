@@ -21,6 +21,15 @@ describe("getServerStatus", () => {
     );
   });
 
+  it("ignores a trailing line break in the address", async () => {
+    mockFetch(() => reply({ online: true, players: { online: 0, max: 12 } }));
+    await getServerStatus("1.2.3.4:25565\r\n");
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://api.mcstatus.io/v2/status/java/1.2.3.4%3A25565",
+      expect.anything()
+    );
+  });
+
   it("returns offline when the server is down", async () => {
     mockFetch(() => reply({ online: false }));
     await expect(getServerStatus("1.2.3.4")).resolves.toEqual({ online: false, players: null });

@@ -10,6 +10,7 @@ const OFFLINE: ServerStatus = { online: false, players: null };
 export async function getServerStatus(
   address = process.env.MC_SERVER_ADDRESS
 ): Promise<ServerStatus> {
+  address = address?.trim(); // a pasted env value can end in "\r\n", which mcstatus.io rejects (400)
   if (!address) {
     console.warn("minecraft status: MC_SERVER_ADDRESS not set");
     return OFFLINE;
