@@ -1,10 +1,4 @@
 {
-  ".eslintrc.json": {
-    "mtime": 1794455394.7938604,
-    "seen": 1794455800.802044,
-    "ast_hash": "934a81616adbd809dfc38314baaa3409",
-    "semantic_hash": ""
-  },
   "__mocks__/fileMock.js": {
     "mtime": 1794455394.7948594,
     "seen": 1794455800.8020463,
@@ -114,9 +108,9 @@
     "semantic_hash": ""
   },
   "components/Skill.tsx": {
-    "mtime": 1794786809.8620386,
-    "seen": 1794786811.0978582,
-    "ast_hash": "9dc4cfa25940f71bc4616f41a6ce5d59",
+    "mtime": 1794788197.7769384,
+    "seen": 1794788322.3235276,
+    "ast_hash": "2db5c943c2b60ab14fb5f471ddeb8f15",
     "semantic_hash": ""
   },
   "components/sections/About.tsx": {
@@ -222,9 +216,9 @@
     "semantic_hash": ""
   },
   "next-env.d.ts": {
-    "mtime": 1794786809.8655148,
-    "seen": 1794786811.0978763,
-    "ast_hash": "90426577ad8f38459f3e566411c85589",
+    "mtime": 1794788225.4105792,
+    "seen": 1794788322.3235464,
+    "ast_hash": "0e4a65e8b2b9aa3ed0f8957b9406bd41",
     "semantic_hash": ""
   },
   "next.config.js": {
@@ -234,9 +228,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1794787315.8086576,
-    "seen": 1794787454.263538,
-    "ast_hash": "bd991ba9fd944daf18254ee755d5752e",
+    "mtime": 1794788189.2196834,
+    "seen": 1794788322.3235478,
+    "ast_hash": "396bc7678d753bd8df16bd5de7f8762a",
     "semantic_hash": ""
   },
   "postcss.config.js": {
@@ -318,9 +312,9 @@
     "semantic_hash": ""
   },
   "tsconfig.json": {
-    "mtime": 1794530437.7630033,
-    "seen": 1794530438.6317604,
-    "ast_hash": "878d06a3284171f1b5a4d81e63cb0169",
+    "mtime": 1794788225.409972,
+    "seen": 1794788322.3235598,
+    "ast_hash": "f9b360ba9cf3eb3ab27658e5729e0e3e",
     "semantic_hash": ""
   },
   "types/index.ts": {
@@ -408,9 +402,9 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1794530437.7439885,
-    "seen": 1794530439.758941,
-    "ast_hash": "943c57ee81801d8533a0d699c06f441d",
+    "mtime": 1794788319.189951,
+    "seen": 1794788322.323571,
+    "ast_hash": "7d9dacb9e5f73e6b808c24022a6f58f8",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
@@ -438,9 +432,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794787451.309806,
-    "seen": 1794787454.2635653,
-    "ast_hash": "e864d2a2fbd82e0eef24024b838db71d",
+    "mtime": 1794788319.3340962,
+    "seen": 1794788322.3235748,
+    "ast_hash": "005055ee9f6f7bc79dd22db3e08bedfc",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -480,9 +474,9 @@
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
-    "mtime": 1794548065.0047004,
-    "seen": 1794548065.8059506,
-    "ast_hash": "ca1cd1318065caae3937c64f6a5d6dc3",
+    "mtime": 1794788294.8117597,
+    "seen": 1794788322.323503,
+    "ast_hash": "a39a678926a56e7dc72b87c9802b32bb",
     "semantic_hash": ""
   },
   ".github/workflows/gitleaks.yml": {
@@ -521,10 +515,16 @@
     "ast_hash": "310f5e11eddd93103d2bb6ffefb14f3f",
     "semantic_hash": ""
   },
+  "eslint.config.mjs": {
+    "mtime": 1794788189.263671,
+    "seen": 1794788322.323536,
+    "ast_hash": "3991f102d531efe5c94e0f9c960388a8",
+    "semantic_hash": ""
+  },
   "package-lock.json": {
-    "mtime": 1794787336.412135,
-    "seen": 1794787454.2635672,
-    "ast_hash": "699ed05d1fa85802ddd42ed7ca01a1d4",
+    "mtime": 1794788157.9222553,
+    "seen": 1794788322.3235767,
+    "ast_hash": "fe1b9dfa756c7b9cad235144ca4577ea",
     "semantic_hash": ""
   }
 }

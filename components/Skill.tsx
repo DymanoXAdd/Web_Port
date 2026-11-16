@@ -26,19 +26,14 @@ const cardVariants: Variants = {
 // requestAnimationFrame count-up with cubic ease-out (~1100ms).
 // `active` gates the run: false -> resets to 0, true -> animates 0 -> target.
 function useCountUp(target: number, active: boolean, reduced: boolean): number {
-  const [value, setValue] = useState(reduced ? target : 0);
+  const [value, setValue] = useState(0);
   const rafRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    if (reduced) {
-      setValue(target);
-      return;
-    }
+  // Reset during render (not in an effect) so a replay starts from 0 with no stale frame.
+  if (!active && value !== 0) setValue(0);
 
-    if (!active) {
-      setValue(0);
-      return;
-    }
+  useEffect(() => {
+    if (reduced || !active) return;
 
     const duration = 1100;
     let start: number | null = null;
@@ -62,7 +57,7 @@ function useCountUp(target: number, active: boolean, reduced: boolean): number {
     };
   }, [target, active, reduced]);
 
-  return value;
+  return reduced ? target : value;
 }
 
 export default function SkillComponent({ skill, active }: Props) {
