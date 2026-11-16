@@ -16,7 +16,6 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.3.4",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^2.1.1",

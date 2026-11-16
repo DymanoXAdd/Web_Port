@@ -3,6 +3,13 @@
 <!-- One entry per decision, newest first. Never edit an old entry; add a new one
      that supersedes it. Changing anything recorded here needs human approval. -->
 
+## D-007 — 2026-11-15 — Sentry source-map upload
+- Status: approved by Luis, 2026-11-15 (T-031 item 3)
+- Decision: supersedes D-006's "no source-map upload". `withSentryConfig` uploads source maps when `SENTRY_AUTH_TOKEN` is set; `SENTRY_ORG` and `SENTRY_PROJECT` name the target. All three live in Vercel Production only. The token is a secret (Sentry org auth token, upload scope only), created and pasted into Vercel by Luis, never committed or sent through chat. Locally, in CI and in previews the upload is skipped.
+- Why: production stack traces in Sentry show minified code, which makes errors hard to trace.
+- Alternatives considered: keep minified traces.
+- Approved by: Luis
+
 ## D-006 — 2026-11-12 — Sentry error monitoring
 - Status: approved by Luis, 2026-11-12 (asked to add Sentry; provided the DSN)
 - Decision: `@sentry/nextjs` 11 on browser, server and edge (`instrumentation-client.ts`, `instrumentation.ts`, `app/global-error.tsx`), plus explicit reports from `ErrorBoundary` and the email route's catch. Errors only: `tracesSampleRate: 0`, no replay, no personal data (SDK default). Browser reports go through the `/monitoring` tunnel on our own origin, so the CSP stays `connect-src 'self'`. DSN in Vercel as `NEXT_PUBLIC_SENTRY_DSN` (production + preview, plain config: a DSN is public by design); unset locally and in CI, so Sentry is off there. No source-map upload (would need a `SENTRY_AUTH_TOKEN` secret).
