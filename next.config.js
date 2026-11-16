@@ -9,6 +9,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
       },
+      // Minecraft skin heads on /minecraft, proxied through /_next/image so the CSP stays img-src 'self'.
+      {
+        protocol: "https",
+        hostname: "mc-heads.net",
+        pathname: "/avatar/**",
+      },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

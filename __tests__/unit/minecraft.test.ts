@@ -9,11 +9,24 @@ const mockFetch = (impl: () => Promise<unknown>) => {
 const reply = (body: unknown, ok = true) => Promise.resolve({ ok, json: () => Promise.resolve(body) });
 
 describe("getServerStatus", () => {
-  it("returns online with player counts", async () => {
-    mockFetch(() => reply({ online: true, players: { online: 2, max: 12, list: [] } }));
+  it("returns online with player counts and names", async () => {
+    const uuid = "11475f91-4c66-4a44-bb63-34dbc5e67660";
+    mockFetch(() =>
+      reply({
+        online: true,
+        players: {
+          online: 2,
+          max: 12,
+          list: [
+            { uuid, name_clean: "professorsquidd" },
+            { uuid: "../../evil", name_clean: "bad uuid is dropped" },
+          ],
+        },
+      })
+    );
     await expect(getServerStatus("1.2.3.4:25565")).resolves.toEqual({
       online: true,
-      players: { online: 2, max: 12 },
+      players: { online: 2, max: 12, list: [{ uuid, name: "professorsquidd" }] },
     });
     expect(global.fetch).toHaveBeenCalledWith(
       "https://api.mcstatus.io/v2/status/java/1.2.3.4%3A25565",

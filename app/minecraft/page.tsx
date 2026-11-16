@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { sanityFetch } from "@/lib/sanity";
 import { socialsQuery } from "@/lib/sanity-queries";
 import { getServerStatus } from "@/lib/minecraft";
@@ -43,6 +44,37 @@ export default async function MinecraftPage() {
             </p>
           )}
         </div>
+        {status.online && status.players && status.players.list.length > 0 && (
+          <table className="w-full max-w-sm overflow-hidden rounded-md border border-line bg-panel font-mono text-sm">
+            <caption className="sr-only">Players online now</caption>
+            <thead>
+              <tr className="border-b border-line text-left text-muted">
+                <th scope="col" className="w-14 px-4 py-2 font-normal">
+                  <span className="sr-only">Skin</span>
+                </th>
+                <th scope="col" className="px-4 py-2 font-normal lowercase">
+                  Player
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {status.players.list.map((player) => (
+                <tr key={player.uuid} className="border-b border-line last:border-b-0">
+                  <td className="px-4 py-2">
+                    <Image
+                      src={`https://mc-heads.net/avatar/${player.uuid}/64`}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="rounded-sm [image-rendering:pixelated]"
+                    />
+                  </td>
+                  <td className="px-4 py-2 text-fg">{player.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </main>
     </>
   );
