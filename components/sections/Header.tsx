@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import type { Social } from "@/types";
+import Link from "next/link";
+import GrassBlock from "@/components/GrassBlock";
 
 type Props = {
   socials: Social[];
@@ -9,10 +11,11 @@ type Props = {
 
 // Labels stay capitalised for screen readers; CSS shows them lowercase in the mono "query" style.
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
+// Leading "/" so the links also work from /minecraft.
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills", href: "/#skills" },
 ];
 
 export default function Header({ socials }: Props) {
@@ -21,30 +24,38 @@ export default function Header({ socials }: Props) {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-ink/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-6 py-4">
-        <a
-          href="#hero"
+        <Link
+          href="/#hero"
           aria-label="Luis A Ruiz, back to top"
           className="font-mono text-base font-semibold text-fg no-underline"
         >
           luis@ruiz:~$
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-6 text-[15px] md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="font-mono lowercase text-muted transition-colors hover:text-fg"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/minecraft"
+            aria-label="Minecraft server"
+            title="Minecraft server"
+            className="rounded-sm transition-transform hover:-translate-y-0.5"
+          >
+            <GrassBlock className="h-7 w-7" />
+          </Link>
+          <Link
+            href="/#contact"
             className="rounded-md bg-brand px-4 py-2.5 font-semibold text-white transition-colors hover:bg-brand-hover"
           >
             Get in touch
-          </a>
+          </Link>
         </div>
 
         <button
@@ -66,22 +77,30 @@ export default function Header({ socials }: Props) {
         style={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
       >
         {NAV_LINKS.map((link) => (
-          <a
+          <Link
             key={link.href}
             href={link.href}
             onClick={() => setOpen(false)}
             className="font-mono text-2xl lowercase text-fg"
           >
             {link.label}
-          </a>
+          </Link>
         ))}
-        <a
-          href="#contact"
+        <Link
+          href="/minecraft"
+          onClick={() => setOpen(false)}
+          className="flex items-center gap-3 font-mono text-2xl lowercase text-fg"
+        >
+          <GrassBlock className="h-8 w-8" />
+          Minecraft
+        </Link>
+        <Link
+          href="/#contact"
           onClick={() => setOpen(false)}
           className="rounded-md bg-brand px-5 py-3 text-lg font-semibold text-white"
         >
           Get in touch
-        </a>
+        </Link>
         {socials?.length ? (
           <div className="flex gap-6 pt-2">
             {socials.map((social) => (

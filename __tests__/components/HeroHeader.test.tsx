@@ -86,17 +86,17 @@ describe("Header", () => {
 
   it("renders the logo as a link back to the top", () => {
     render(<Header socials={mockSocials} />);
-    expect(screen.getByRole("link", { name: "Luis A Ruiz, back to top" })).toHaveAttribute("href", "#hero");
+    expect(screen.getByRole("link", { name: "Luis A Ruiz, back to top" })).toHaveAttribute("href", "/#hero");
   });
 
   it("renders the nav links with correct hrefs", () => {
     render(<Header socials={mockSocials} />);
 
     const expected: { label: RegExp; href: string }[] = [
-      { label: /^About$/, href: "#about" },
-      { label: /^Experience$/, href: "#experience" },
-      { label: /^Projects$/, href: "#projects" },
-      { label: /^Skills$/, href: "#skills" },
+      { label: /^About$/, href: "/#about" },
+      { label: /^Experience$/, href: "/#experience" },
+      { label: /^Projects$/, href: "/#projects" },
+      { label: /^Skills$/, href: "/#skills" },
     ];
 
     expected.forEach(({ label, href }) => {
@@ -106,11 +106,18 @@ describe("Header", () => {
     });
   });
 
+  it("links to the Minecraft page from the desktop nav and mobile menu", () => {
+    render(<Header socials={mockSocials} />);
+    const links = screen.getAllByRole("link", { name: /Minecraft/ });
+    expect(links).toHaveLength(2);
+    links.forEach((link) => expect(link).toHaveAttribute("href", "/minecraft"));
+  });
+
   it("renders the 'Get in touch' CTA pointing at #contact", () => {
     render(<Header socials={mockSocials} />);
     const ctas = screen.getAllByRole("link", { name: /Get in touch/ });
     expect(ctas.length).toBeGreaterThan(0);
-    ctas.forEach((cta) => expect(cta).toHaveAttribute("href", "#contact"));
+    ctas.forEach((cta) => expect(cta).toHaveAttribute("href", "/#contact"));
   });
 
   it("toggles the mobile menu open when the hamburger is clicked", () => {
