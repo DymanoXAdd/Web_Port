@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "__tests__/components/Skills.test.tsx": {
-    "mtime": 1794546147.1088922,
-    "seen": 1794546149.2445302,
-    "ast_hash": "b56254c1e00caa56f6224d3408906118",
+    "mtime": 1794791537.9886878,
+    "seen": 1794791615.3810534,
+    "ast_hash": "9a78d432a05f857f0d72f922021fdbdf",
     "semantic_hash": ""
   },
   "__tests__/components/WorkExperience.test.tsx": {
@@ -84,8 +84,8 @@
     "semantic_hash": ""
   },
   "app/layout.tsx": {
-    "mtime": 1794789074.412386,
-    "seen": 1794789212.504928,
+    "mtime": 1794789501.2233915,
+    "seen": 1794791615.381065,
     "ast_hash": "adb8f0c7dd9d0ef986dd99567395e56f",
     "semantic_hash": ""
   },
@@ -102,20 +102,20 @@
     "semantic_hash": ""
   },
   "components/ExperienceCard.tsx": {
-    "mtime": 1794789048.9459672,
-    "seen": 1794789212.5049307,
+    "mtime": 1794789501.2233915,
+    "seen": 1794791615.3810675,
     "ast_hash": "f1785d992576304b9179fbfc84c482a0",
     "semantic_hash": ""
   },
   "components/Skill.tsx": {
-    "mtime": 1794789048.9459672,
-    "seen": 1794789212.504932,
-    "ast_hash": "273146fccfa8ef0baba088c746ad3559",
+    "mtime": 1794791541.3872552,
+    "seen": 1794791615.3810682,
+    "ast_hash": "8d597296810bce369de8bcc7c5a47485",
     "semantic_hash": ""
   },
   "components/sections/About.tsx": {
-    "mtime": 1794789048.9459672,
-    "seen": 1794789212.5049326,
+    "mtime": 1794789501.2233915,
+    "seen": 1794791615.381069,
     "ast_hash": "8a438955b5787a7b66ae2613dd909b4d",
     "semantic_hash": ""
   },
@@ -126,8 +126,8 @@
     "semantic_hash": ""
   },
   "components/sections/Header.tsx": {
-    "mtime": 1794789048.9459672,
-    "seen": 1794789212.5049343,
+    "mtime": 1794789501.2233915,
+    "seen": 1794791615.3810706,
     "ast_hash": "5942f0fe17abd22832c4dc0f9e92c417",
     "semantic_hash": ""
   },
@@ -138,8 +138,8 @@
     "semantic_hash": ""
   },
   "components/sections/Projects.tsx": {
-    "mtime": 1794789048.9459672,
-    "seen": 1794789212.504936,
+    "mtime": 1794789501.2251346,
+    "seen": 1794791615.381072,
     "ast_hash": "5aa125af8020e67ddb31e054d8d879cf",
     "semantic_hash": ""
   },
@@ -228,14 +228,14 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1794789054.5871868,
-    "seen": 1794789212.504952,
+    "mtime": 1794789501.2321415,
+    "seen": 1794791615.3810878,
     "ast_hash": "43871bbfabe59f20aafad55b9e3a070d",
     "semantic_hash": ""
   },
   "postcss.config.js": {
-    "mtime": 1794789048.9459672,
-    "seen": 1794789212.5049536,
+    "mtime": 1794789501.2321415,
+    "seen": 1794791615.3810892,
     "ast_hash": "f446fe07a9958d5e50dede9acefcc282",
     "semantic_hash": ""
   },
@@ -396,8 +396,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1794789209.5833437,
-    "seen": 1794789212.5049748,
+    "mtime": 1794789501.221371,
+    "seen": 1794791615.3811102,
     "ast_hash": "fe6bfd12123fcb2fd91d34716bbde274",
     "semantic_hash": ""
   },
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794789209.4861252,
-    "seen": 1794789212.5049787,
-    "ast_hash": "846c795040e0db86766d5eec61b7e900",
+    "mtime": 1794791608.1494272,
+    "seen": 1794791615.3811145,
+    "ast_hash": "72608ff1657f411901cb562d0e831f15",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -516,8 +516,8 @@
     "semantic_hash": ""
   },
   "package-lock.json": {
-    "mtime": 1794789054.7958937,
-    "seen": 1794789212.5049806,
+    "mtime": 1794789501.2321415,
+    "seen": 1794791615.3811162,
     "ast_hash": "670a2c66684c53f3bc03a71a0999f722",
     "semantic_hash": ""
   }
