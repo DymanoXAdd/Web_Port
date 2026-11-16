@@ -176,6 +176,26 @@ describe("Skills cascade + count-up", () => {
     expect(screen.getByText("70%")).toBeInTheDocument();
   });
 
+  it("hydrates server HTML with reduced motion and no mismatch (T-032)", async () => {
+    useInViewMock.mockReturnValue(false);
+    // Node build: the browser build needs MessageChannel, which jsdom lacks.
+    const { renderToString } = require("react-dom/server.node");
+    const container = document.createElement("div");
+    // A real server has no window, so it can't see the visitor's motion setting.
+    useReducedMotionMock.mockReturnValue(false);
+    container.innerHTML = renderToString(<Skills skills={threeSkills} />);
+    document.body.appendChild(container);
+    // The visitor's browser does prefer reduced motion.
+    useReducedMotionMock.mockReturnValue(true);
+    const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+
+    render(<Skills skills={threeSkills} />, { container, hydrate: true });
+
+    expect(await screen.findByText("95%")).toBeInTheDocument();
+    expect(errorSpy).not.toHaveBeenCalled();
+    errorSpy.mockRestore();
+  });
+
   it("degrades sanely with zero skills (no crash)", () => {
     render(<Skills skills={[]} />);
     expect(

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { Skill } from "@/types";
 import Image from "next/image";
@@ -60,8 +60,14 @@ function useCountUp(target: number, active: boolean, reduced: boolean): number {
   return reduced ? target : value;
 }
 
+const noopSubscribe = () => () => {};
+
 export default function SkillComponent({ skill, active }: Props) {
-  const reduced = useReducedMotion() ?? false;
+  // false on the server and during hydration, true after: the server can't know the
+  // visitor's motion setting, so the first client render must match its HTML (React #418).
+  const hydrated = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const prefersReduced = useReducedMotion() ?? false;
+  const reduced = hydrated && prefersReduced;
   const target = skill.progress ?? 0;
   const count = useCountUp(target, active, reduced);
 
