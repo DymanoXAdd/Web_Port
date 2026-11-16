@@ -84,7 +84,7 @@ function ProjectCard({
       data-active={active ? "true" : "false"}
       // Not a button itself: the "View Project" link inside is the one control (no nested interactives).
       // Focus on that link bubbles here, so keyboard users still get the lift/reveal.
-      className={`project-card group relative flex-shrink-0 rounded-[14px] focus-within:ring-4 focus-within:ring-brand-text/60 ${
+      className={`project-card group relative shrink-0 rounded-[14px] focus-within:ring-4 focus-within:ring-brand-text/60 ${
         active ? "is-active z-50" : "z-10"
       }`}
       style={{
@@ -153,7 +153,7 @@ function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${project.title}`}
-                className="w-fit py-1.5 font-semibold text-brand-text focus-visible:outline-none"
+                className="w-fit py-1.5 font-semibold text-brand-text focus-visible:outline-hidden"
               >
                 View Project →
               </a>

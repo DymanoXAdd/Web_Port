@@ -6,7 +6,7 @@ import "./globals.css";
 // Font files live in the repo (latin, variable weight, OFL). next/font/google fetched them from Google
 // at build time and that fetch failed on Vercel twice (T-029), so builds no longer depend on Google.
 const inter = localFont({ src: "./fonts/inter-latin.woff2", weight: "100 900", variable: "--font-inter", display: "swap" });
-const mono = localFont({ src: "./fonts/jetbrains-mono-latin.woff2", weight: "100 800", variable: "--font-mono", display: "swap" });
+const mono = localFont({ src: "./fonts/jetbrains-mono-latin.woff2", weight: "100 800", variable: "--font-jetbrains", display: "swap" });
 
 export const metadata: Metadata = {
   // The one metadata block for the site (app/page.tsx used to override it; these are the values that were live).

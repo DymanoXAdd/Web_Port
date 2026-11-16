@@ -19,7 +19,7 @@ export default function Header({ socials }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-ink/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-ink/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-6 py-4">
         <a
           href="#hero"
@@ -56,7 +56,7 @@ export default function Header({ socials }: Props) {
         >
           <span className={`h-[2px] w-6 bg-fg transition-transform duration-300 ${open ? "translate-y-[7px] rotate-45" : ""}`} />
           <span className={`h-[2px] w-6 bg-fg transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"}`} />
-          <span className={`h-[2px] w-6 bg-fg transition-transform duration-300 ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
+          <span className={`h-[2px] w-6 bg-fg transition-transform duration-300 ${open ? "translate-y-[-7px] -rotate-45" : ""}`} />
         </button>
       </nav>
 

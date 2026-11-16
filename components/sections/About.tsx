@@ -22,7 +22,7 @@ function About({ pageInfo }: Props) {
             alt={pageInfo?.name || "Profile photo"}
             width={320}
             height={400}
-            className="h-56 w-56 flex-shrink-0 rounded-[10px] object-cover md:h-[300px] md:w-[240px]"
+            className="h-56 w-56 shrink-0 rounded-[10px] object-cover md:h-[300px] md:w-[240px]"
           />
         ) : null}
         <p className="text-lg leading-relaxed text-soft md:text-xl">{pageInfo?.backgroundInformation}</p>
