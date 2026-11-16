@@ -1,3 +1,20 @@
+# Session Handoff — 2026-11-15/16 — major upgrades, Sentry source maps, /minecraft page
+
+## State when this session ended
+- **Live on `luisaruiz.xyz`:** Next 16 + React 19 + Sanity 6 + Tailwind 4 (T-028 steps 1–4), Sentry readable traces (T-031), `/minecraft` page for Luis's Java server "Orbis": status, players online / max, player table with skin heads (T-033, T-034).
+- **`main` is clean and green** (last merge `5fb7e07`, PR #40). No open PRs, nothing in "Now".
+- **Next when Luis wants it:** Minecraft player stats + leaderboard. Needs data from the server itself (plugin or stats files); ask Luis what the server runs (vanilla/Paper/Fabric) and plan before building.
+- **Blocked:** T-028 step 5 (TypeScript 7) until ts-jest supports it.
+- **Not looked at:** `npm audit` shows 40 vulnerabilities, none critical.
+
+## Things to know next time
+- `/minecraft`: status from mcstatus.io (server-side, cached 30 s) for `MC_SERVER_ADDRESS` (Vercel Production + Preview; value is trimmed because the first one ended in `\r\n`). Skins: Mojang sessionserver → textures.minecraft.net via `next/image`, face cropped in CSS (`components/PlayerHead.tsx`). mc-heads.net blocks Vercel; minotar returns only the default head.
+- Sentry: org `luis-ruiz`; token, org and project in Vercel Production only (D-007). Bypass secret kept so Claude can `vercel curl` deploys.
+- `vercel ls` prints to stderr: check once with `2>&1`, no polling loops. Stop leftover `next start` processes on port 3100 (TaskStop can leave the node process running).
+- Luis moved `sentrykey.txt` out of the repo; never commit secrets.
+
+---
+
 # Session Handoff — 2026-11-12/13 — audit fixes, redesign, monitoring
 
 ## State when this session ended
