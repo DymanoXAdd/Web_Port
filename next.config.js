@@ -91,7 +91,8 @@ module.exports = withSentryConfig(nextConfig, {
   // Browser reports go to /monitoring on our own origin and are forwarded to Sentry, so the CSP
   // (connect-src 'self') and ad blockers don't drop them.
   tunnelRoute: "/monitoring",
-  // shortcut: no source-map upload (needs a Sentry auth token secret); stack traces show minified code. Add SENTRY_AUTH_TOKEN if traces get hard to read.
-  sourcemaps: { disable: true },
+  // Source maps upload only where SENTRY_AUTH_TOKEN, SENTRY_ORG and SENTRY_PROJECT are set
+  // (Vercel production); elsewhere the build skips the upload and traces stay minified.
+  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN },
   telemetry: false,
 });
