@@ -3,7 +3,7 @@
 Luis's personal-brand site, live at `luisaruiz.xyz`: who he is, his work, his projects, and a working contact form.
 
 - Type: website · Stage: production · Ponytail level: full
-- Stack: Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind · framer-motion · Sanity CMS · Resend email · Jest · Vercel
+- Stack: Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind 4 (theme in `app/globals.css`) · framer-motion · Sanity CMS · Resend email · Jest · Vercel
 
 ## Commands
 

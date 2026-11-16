@@ -69,7 +69,7 @@ export default function SkillComponent({ skill, active }: Props) {
   const filled = reduced || active;
   const barWidth = `${filled ? target : 0}%`;
   const src = imageUrl(skill.image);
-  const iconClass = "h-6 w-6 flex-shrink-0 rounded object-contain";
+  const iconClass = "h-6 w-6 shrink-0 rounded-sm object-contain";
 
   return (
     <motion.div

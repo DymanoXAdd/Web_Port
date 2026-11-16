@@ -33,7 +33,7 @@ export default function ExperienceCard({ experience }: Props) {
             alt={experience.company}
             width={48}
             height={48}
-            className="h-12 w-12 flex-shrink-0 rounded-md border border-line-2 object-cover"
+            className="h-12 w-12 shrink-0 rounded-md border border-line-2 object-cover"
           />
         ) : null}
         <div className="flex flex-col gap-1.5">
