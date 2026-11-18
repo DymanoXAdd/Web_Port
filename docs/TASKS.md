@@ -6,7 +6,9 @@ Stage: production · Updated: 2026-11-15
      update the registry row in the workspace CLAUDE.md in the same turn. -->
 
 ## Now
-- [ ] T-035 `/minecraft` leaderboard (Luis yes 2026-11-17, mockup https://claude.ai/artifact/5z1uVs73cUvuTTMqQVamRi): tabs Playtime / Deaths / Mob kills / Blocks mined / Distance, top 10, rows slide in, #1 gets a floating pixel crown and its row bursts into flames. Data: `scripts/orbis-stats.py` on the Orbis box (`~/orbis-stats/`, cron every 15 min) writes Sanity doc `minecraftStats` (new schema). Code on `task/T-035-minecraft-leaderboard`, all checks green, dry run on the server OK. Waiting on Luis: Sanity Editor token in `~/.config/orbis-stats/token` on the server, then cron, preview check, merge
+
+## Shipped 2026-11-17
+- [x] T-035 `/minecraft` leaderboard (Luis yes, mockup https://claude.ai/artifact/5z1uVs73cUvuTTMqQVamRi): tabs Playtime / Deaths / Mob kills / Blocks mined / Distance (all travel except falling), top 10, rows slide in, #1 gets a floating pixel crown and its row bursts into 8-bit pixel flames (`public/leaderboard-fire.svg`) that settle to flickering embers. Data: `scripts/orbis-stats.py` runs on the Orbis box from Luis's crontab every 15 min (`~/orbis-stats/`, log `~/orbis-stats/log.txt`, cron service is `cronie` on Manjaro), token in `~/.config/orbis-stats/token` (600, Sanity Editor), writes doc `minecraftStats` (new read-only schema). Tests: `Leaderboard.test.tsx`, `minecraft.test.ts` getSkinUrl, `python scripts/test_orbis_stats.py`. Luis checked the preview; merged as PR #42
 
 ## Shipped 2026-11-16
 - [x] T-034 `/minecraft` player table: lists players online with their skin heads, cropped in CSS from each player's Mojang skin (sessionserver, cached 1 h) loaded via `next/image` from textures.minecraft.net, so the CSP stays `img-src 'self'`. Avatar sites failed: mc-heads.net refuses Vercel, minotar returns the default head. Names and UUIDs come from the ping's player sample (vanilla: up to 12); UUIDs are format-checked. Test: `__tests__/unit/minecraft.test.ts`. Luis checked the preview; merged as PR #40
