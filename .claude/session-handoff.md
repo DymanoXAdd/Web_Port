@@ -1,11 +1,17 @@
-# Session Handoff — 2026-11-17 — Orbis leaderboard
+# Session Handoff — 2026-11-17 — Orbis leaderboard, compliance, whitelist requests
 
 ## State when this session ended
-- **Live on `luisaruiz.xyz/minecraft`:** leaderboard (T-035, PR #42), confirmed by Luis. `main` clean, no open PRs, nothing in "Now".
-- **Server side:** `~/orbis-stats/orbis-stats.py` on Luis's Manjaro box (`luisdev@192.168.1.48`, SSH key via Windows ssh-agent) runs from crontab every 15 min, log `~/orbis-stats/log.txt`; token `~/.config/orbis-stats/token`. A change to `scripts/orbis-stats.py` in the repo must be copied to the box with scp; nothing syncs it.
-- **Still open:** T-028 step 5 (TS 7, blocked on ts-jest), `npm audit` 40 non-critical.
+- **Shipped today, all live:** T-035 leaderboard with crown + pixel fire (PR #42), T-036 compliance fixes: `/privacy`, footer, Mojang notice, skip link, alt text, font licenses, Sentry `dataCollection` off, axe scan in E2E (PR #43, D-008), T-037 Orbis whitelist + "request to join" form (PR #45, D-009). Luis confirmed each on the preview.
+- `main` clean, no open PRs, nothing in "Now". Only open task: T-028 step 5 (TS 7, blocked on ts-jest). `npm audit` 40 non-critical, not a task yet.
+- **Orbis server** (Luis's Manjaro box `luisdev@192.168.1.48`, SSH key via Windows ssh-agent): whitelist on (8 players; tunestay and Kivl left off on purpose), RCON on 25575 (password `~/.config/orbis-stats/rcon`; must not be port-forwarded). `~/orbis-stats/orbis-stats.py` runs from crontab every 5 min: pushes stats, whitelists approved requests, honours `~/.config/orbis-stats/hidden.txt` opt-outs. Log `~/orbis-stats/log.txt`. Backups `server.properties.bak-2026-11-17`, `whitelist.json.bak-2026-11-17`.
+- A change to `scripts/orbis-stats.py` in the repo must be copied to the box with scp; nothing syncs it.
 
 ## Things to know next time
+- Approving a join request: Studio → Whitelist requests → Status Approved → Publish. Delete = deny. Requests use ids `whitelist-requests.<uuid>`, hidden from the public API (checked).
+- Vercel secrets need **both Production and Preview** ticked; `SANITY_WRITE_TOKEN` was Production-only at first and the preview failed with "SANITY_WRITE_TOKEN is not set". Check with `npx vercel env ls`.
+- Restarting Orbis: ask RCON `list` who is online first (log scraping missed a player once). Find the PID with `ps -eo pid,args | grep "[s]erver.jar nogui"`, not `pgrep -f` (it matched the SSH command). Start: `cd ~/"Desktop/Minecraft Server" && nohup ./start.sh > output.log 2>&1 &`.
+- Keep `/privacy` true: any new service or data the site collects needs a line there and a "Last updated" change.
+- Sentry 11 has no `sendDefaultPii`; privacy is `dataCollection` in both inits, guarded by `__tests__/unit/sentry-privacy.test.ts`.
 - SSH from Claude: `/c/Windows/System32/OpenSSH/ssh.exe -o BatchMode=yes` in the Bash tool (PowerShell 5.1 mangles quotes; Git Bash's ssh can't see the agent).
 - Pixel fire art is generated: two-frame SVGs in `public/leaderboard-fire.svg` and `leaderboard-embers.svg`, animated in `app/globals.css`.
 - `next dev` drops an untracked `AGENTS.md` and edits `next-env.d.ts`; remove/revert before committing.
