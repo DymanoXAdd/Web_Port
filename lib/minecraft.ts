@@ -82,3 +82,18 @@ export async function getSkinUrl(uuid: string): Promise<string | null> {
     return null;
   }
 }
+
+// Mojang's record for a Java username: the exact spelling and the dashed UUID. null when no such
+// account exists; throws when Mojang can't be reached, so the caller can say "try again later".
+export async function lookupProfile(username: string): Promise<{ name: string; uuid: string } | null> {
+  const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${encodeURIComponent(username)}`, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(5000),
+  });
+  if (res.status === 204 || res.status === 404) return null;
+  if (!res.ok) throw new Error(`Mojang answered ${res.status}`);
+  const data = await res.json();
+  const id = typeof data?.id === "string" ? data.id : "";
+  if (!/^[0-9a-f]{32}$/i.test(id) || typeof data?.name !== "string") throw new Error("Unexpected Mojang reply");
+  return { name: data.name, uuid: id.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5").toLowerCase() };
+}

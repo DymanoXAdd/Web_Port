@@ -2,7 +2,10 @@
 import datetime
 import importlib.util
 import json
+import socket
+import struct
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 
@@ -62,6 +65,74 @@ class OptOut(unittest.TestCase):
 
         self.assertEqual([p["name"] for p in doc["players"]], ["Snack"])
         self.assertEqual(orbis.read_hidden(Path(d) / "missing.txt"), set())
+
+
+
+
+class FakeRcon(threading.Thread):
+    """A one-connection RCON server: checks the password, answers one command."""
+
+    def __init__(self, password, reply):
+        super().__init__(daemon=True)
+        self.sock = socket.socket()
+        self.sock.bind(("127.0.0.1", 0))
+        self.sock.listen(1)
+        self.port = self.sock.getsockname()[1]
+        self.password, self.reply, self.command = password, reply, None
+
+    def run(self):
+        conn, _ = self.sock.accept()
+        with conn:
+            def read():
+                length = struct.unpack("<i", conn.recv(4))[0]
+                data = conn.recv(length)
+                return struct.unpack("<ii", data[:8])[0], data[8:-2].decode()
+
+            def send(req_id, body):
+                data = struct.pack("<ii", req_id, 0) + body.encode() + b"\x00\x00"
+                conn.sendall(struct.pack("<i", len(data)) + data)
+
+            req_id, pw = read()
+            if pw != self.password:
+                send(-1, "")
+                return
+            send(req_id, "")
+            req_id, self.command = read()
+            send(req_id, self.reply)
+
+
+class Rcon(unittest.TestCase):
+    def test_runs_a_command_after_login(self):
+        server = FakeRcon("secret", "Added Snack to the whitelist")
+        server.start()
+        reply = orbis.rcon("whitelist add Snack", "secret", port=server.port)
+        self.assertEqual(reply, "Added Snack to the whitelist")
+        self.assertEqual(server.command, "whitelist add Snack")
+
+    def test_wrong_password_raises(self):
+        server = FakeRcon("secret", "")
+        server.start()
+        with self.assertRaises(PermissionError):
+            orbis.rcon("whitelist list", "wrong", port=server.port)
+
+
+class HandleRequests(unittest.TestCase):
+    def test_adds_approved_players_and_deletes_only_handled_requests(self):
+        replies = {
+            "whitelist add Snack": "Added Snack to the whitelist",
+            "whitelist add Red_1901": "Player is already whitelisted",
+            "whitelist add Ghost": "That player does not exist",
+        }
+        ran, deleted = [], []
+        requests = [
+            {"_id": "whitelist-requests.a", "username": "Snack"},
+            {"_id": "whitelist-requests.b", "username": "Red_1901"},
+            {"_id": "whitelist-requests.c", "username": "Ghost"},
+            {"_id": "whitelist-requests.d", "username": "x; op Evil"},  # never reaches the console
+        ]
+        orbis.handle_requests(requests, lambda cmd: ran.append(cmd) or replies[cmd], deleted.append)
+        self.assertEqual(ran, ["whitelist add Snack", "whitelist add Red_1901", "whitelist add Ghost"])
+        self.assertEqual(deleted, ["whitelist-requests.a", "whitelist-requests.b"])
 
 
 if __name__ == "__main__":
