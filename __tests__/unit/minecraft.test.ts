@@ -2,7 +2,7 @@
  * getServerStatus: online servers show players with their Mojang skin; any failure shows offline
  * (or no skin) instead of breaking the page.
  */
-import { getServerStatus } from "@/lib/minecraft";
+import { getServerStatus, getSkinUrl } from "@/lib/minecraft";
 
 const reply = (body: unknown, ok = true) => Promise.resolve({ ok, json: () => Promise.resolve(body) });
 const mockFetch = (impl: (url: string) => Promise<unknown>) => {
@@ -82,6 +82,14 @@ describe("getServerStatus", () => {
   it("returns offline without calling out when no address is set", async () => {
     mockFetch(() => reply({ online: true }));
     await expect(getServerStatus("")).resolves.toEqual({ online: false, players: null });
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+});
+
+describe("getSkinUrl", () => {
+  it("never fetches for a malformed UUID (it would go into the Mojang URL)", async () => {
+    mockFetch(() => reply(textures("http://textures.minecraft.net/texture/abc123")));
+    await expect(getSkinUrl("../../evil")).resolves.toBeNull();
     expect(global.fetch).not.toHaveBeenCalled();
   });
 });

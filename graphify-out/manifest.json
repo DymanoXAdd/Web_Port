@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "lib/sanity-queries.ts": {
-    "mtime": 1794546147.1206698,
-    "seen": 1794546149.2445557,
-    "ast_hash": "0b2fc4d3d3c049af5c4e213b7d214c4d",
+    "mtime": 1794973997.0133986,
+    "seen": 1794974197.2933605,
+    "ast_hash": "b8a88ce6a04a05ab7e6ddbaf0fcef08d",
     "semantic_hash": ""
   },
   "lib/sanity.ts": {
@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "next.config.js": {
-    "mtime": 1794811025.3594491,
-    "seen": 1794811104.1156983,
-    "ast_hash": "82ba7821ea0353f81bdd28c3094a4df8",
+    "mtime": 1794811365.2385273,
+    "seen": 1794974197.293364,
+    "ast_hash": "65ebccacaabd6de3bdb60a0ca16f4e9d",
     "semantic_hash": ""
   },
   "package.json": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "sanity/schemaTypes/index.ts": {
-    "mtime": 1794455394.8156726,
-    "seen": 1794455800.8020804,
-    "ast_hash": "7afb829a6d1ac2b26de3ef4c60f73a72",
+    "mtime": 1794973996.9335196,
+    "seen": 1794974197.2933714,
+    "ast_hash": "642f12cb96c5ffa825b69de7c44b2a89",
     "semantic_hash": ""
   },
   "sanity/schemaTypes/pageInfo.ts": {
@@ -384,9 +384,9 @@
     "semantic_hash": ""
   },
   ".claude/session-handoff.md": {
-    "mtime": 1794550960.2424304,
-    "seen": 1794786503.506083,
-    "ast_hash": "88a8253f39fe089417addec921cede3a",
+    "mtime": 1794811943.5663185,
+    "seen": 1794974197.2933908,
+    "ast_hash": "6962cf7212410f4463d8cc16fe76e760",
     "semantic_hash": ""
   },
   ".github/pull_request_template.md": {
@@ -426,9 +426,9 @@
     "semantic_hash": ""
   },
   "docs/TASKS.md": {
-    "mtime": 1794811102.654209,
-    "seen": 1794811104.1157258,
-    "ast_hash": "a4a9488de0e705520742dfd418618d7a",
+    "mtime": 1794974194.650655,
+    "seen": 1794974197.2933967,
+    "ast_hash": "d6538e43a81aab55d15b9ed1f0897211",
     "semantic_hash": ""
   },
   "__tests__/unit/email-route.test.ts": {
@@ -516,15 +516,15 @@
     "semantic_hash": ""
   },
   "__tests__/unit/minecraft.test.ts": {
-    "mtime": 1794811046.5652344,
-    "seen": 1794811104.1156666,
-    "ast_hash": "18b289c58eb3cf7ddfacaa72a0396630",
+    "mtime": 1794974109.0426638,
+    "seen": 1794974197.2933264,
+    "ast_hash": "ccd4aeee92b5e18c133ff27696fcc659",
     "semantic_hash": ""
   },
   "app/minecraft/page.tsx": {
-    "mtime": 1794811032.6817858,
-    "seen": 1794811104.115673,
-    "ast_hash": "26a18d0665192f13e209acf9b38dadf9",
+    "mtime": 1794974060.0921454,
+    "seen": 1794974197.2933335,
+    "ast_hash": "17df402dd635e2fdc33dd8f4a1d97ef9",
     "semantic_hash": ""
   },
   "components/GrassBlock.tsx": {
@@ -534,15 +534,45 @@
     "semantic_hash": ""
   },
   "lib/minecraft.ts": {
-    "mtime": 1794811025.323387,
-    "seen": 1794811104.1156945,
-    "ast_hash": "06028f61b1104920e6c9a0b257b41d2c",
+    "mtime": 1794974003.578746,
+    "seen": 1794974197.2933595,
+    "ast_hash": "6bd9d8f6c229511fc1edb2dce31a483f",
     "semantic_hash": ""
   },
   "components/PlayerHead.tsx": {
-    "mtime": 1794811032.5816896,
-    "seen": 1794811104.1156778,
-    "ast_hash": "8925efed36a8d317f5ed205f258fc322",
+    "mtime": 1794811365.2335274,
+    "seen": 1794974197.2933397,
+    "ast_hash": "a6cf6b962fe80337123cc109f521d11c",
+    "semantic_hash": ""
+  },
+  "__tests__/components/Leaderboard.test.tsx": {
+    "mtime": 1794974101.8140497,
+    "seen": 1794974197.2933133,
+    "ast_hash": "afa05fb820984eb7a9d63a90bdcd7e82",
+    "semantic_hash": ""
+  },
+  "components/Leaderboard.tsx": {
+    "mtime": 1794974059.8356147,
+    "seen": 1794974197.2933383,
+    "ast_hash": "97c89527ae63a66dfd2e13630f0871f1",
+    "semantic_hash": ""
+  },
+  "sanity/schemaTypes/minecraftStats.ts": {
+    "mtime": 1794973996.5947268,
+    "seen": 1794974197.2933722,
+    "ast_hash": "cb4582050bb41da783b318fc7de132fd",
+    "semantic_hash": ""
+  },
+  "scripts/orbis-stats.py": {
+    "mtime": 1794974101.7645338,
+    "seen": 1794974197.2933776,
+    "ast_hash": "07f463866a4e3884d197d223ad8e6de4",
+    "semantic_hash": ""
+  },
+  "scripts/test_orbis_stats.py": {
+    "mtime": 1794974085.7588203,
+    "seen": 1794974197.2933784,
+    "ast_hash": "04f0eb5e548fa9b084f19f00506e441b",
     "semantic_hash": ""
   },
   "package-lock.json": {

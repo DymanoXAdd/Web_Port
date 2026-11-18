@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import PlayerHead from "@/components/PlayerHead";
 import { sanityFetch } from "@/lib/sanity";
-import { socialsQuery } from "@/lib/sanity-queries";
-import { getServerStatus } from "@/lib/minecraft";
+import { minecraftStatsQuery, socialsQuery } from "@/lib/sanity-queries";
+import { getServerStatus, getSkinUrl, type MinecraftStats } from "@/lib/minecraft";
+import Leaderboard from "@/components/Leaderboard";
 import type { Social } from "@/types";
 import Header from "@/components/sections/Header";
 import GrassBlock from "@/components/GrassBlock";
@@ -15,10 +16,18 @@ export const metadata: Metadata = {
 };
 
 export default async function MinecraftPage() {
-  const [socials, status] = await Promise.all([
+  const [socials, status, stats] = await Promise.all([
     sanityFetch<Social[]>({ query: socialsQuery }).catch(() => [] as Social[]),
     getServerStatus(),
+    // No stats yet, or Sanity down: the page just leaves the leaderboard out.
+    sanityFetch<MinecraftStats | null>({ query: minecraftStatsQuery }).catch((error) => {
+      console.warn("minecraft stats: Sanity fetch failed", error);
+      return null;
+    }),
   ]);
+  const leaders = await Promise.all(
+    (stats?.players ?? []).map(async (p) => ({ ...p, skin: await getSkinUrl(p.uuid) }))
+  );
 
   return (
     <>
@@ -69,6 +78,7 @@ export default async function MinecraftPage() {
             </tbody>
           </table>
         )}
+        {stats && leaders.length > 0 && <Leaderboard players={leaders} updatedAt={stats.updatedAt} />}
       </main>
     </>
   );
