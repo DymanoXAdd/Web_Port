@@ -225,6 +225,6 @@ describe("ContactMe section layout", () => {
 
   it("tells visitors what happens to their message", () => {
     render(<ContactMe pageInfo={mockPageInfo} />);
-    expect(screen.getByText("Your message is emailed to Luis and not stored.")).toBeInTheDocument();
+    expect(screen.getByText("Your message goes to Luis by email. This site keeps no copy.")).toBeInTheDocument();
   });
 });

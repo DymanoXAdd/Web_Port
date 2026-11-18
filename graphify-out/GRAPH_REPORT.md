@@ -1,17 +1,17 @@
 # Graph Report - portfolio-website  (2026-11-17)
 
 ## Corpus Check
-- 95 files · ~34,465 words
+- 99 files · ~38,584 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: (none) 3, .woff2 2, .graphify-bak 1)
 
 ## Summary
-- 738 nodes · 1031 edges · 43 communities (34 shown, 9 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 10 edges (avg confidence: 0.9)
+- 759 nodes · 1081 edges · 43 communities (34 shown, 9 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.9)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d631a0cb`
+- Built from commit: `5e8f40cc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,10 +46,10 @@
 - pull_request_template.md
 - [[...tool]]/page.tsx
 - Checker Baseline — Known Pre-Existing Failures
-- @testing-library/user-event@^14.6.8
+- @testing-library/jest-dom
 - ErrorBoundary
 - minecraft/page.tsx
-- @types/jest@^29.5.11
+- ts-jest@^29.4.15
 - frontend.md
 - security.md
 - testing.md
@@ -60,24 +60,24 @@
 1. `react` - 19 edges
 2. `compilerOptions` - 19 edges
 3. `Brief — portfolio-website` - 16 edges
-4. `next` - 13 edges
+4. `next` - 15 edges
 5. `Portfolio Website Rebuild - Complete Implementation` - 13 edges
 6. `scripts` - 12 edges
 7. `sanity` - 12 edges
-8. `imageUrl()` - 11 edges
-9. `@testing-library/react` - 11 edges
-10. `Implementation Status - Portfolio Rebuild` - 11 edges
+8. `Home()` - 11 edges
+9. `imageUrl()` - 11 edges
+10. `@testing-library/react` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `State when this session ended` --references--> `main()`  [INFERRED]
+  .claude/session-handoff.md → scripts/orbis-stats.py
+- `D-006 — 2026-11-12 — Sentry error monitoring` --references--> `ErrorBoundary`  [INFERRED]
+  docs/DECISIONS.md → components/ui/ErrorBoundary.tsx
 - `Done` --references--> `ErrorBoundary`  [INFERRED]
   docs/TASKS.md → components/ui/ErrorBoundary.tsx
 - `Done` --references--> `imageUrl()`  [INFERRED]
   docs/TASKS.md → lib/sanity.ts
-- `D-006 — 2026-11-12 — Sentry error monitoring` --references--> `ErrorBoundary`  [INFERRED]
-  docs/DECISIONS.md → components/ui/ErrorBoundary.tsx
 - `Done` --references--> `checkRateLimit()`  [INFERRED]
-  docs/TASKS.md → lib/api-guards.ts
-- `Done` --references--> `isAllowedPath()`  [INFERRED]
   docs/TASKS.md → lib/api-guards.ts
 
 ## Import Cycles
@@ -86,8 +86,8 @@
 ## Communities (43 total, 9 thin omitted)
 
 ### Community 0 - "app/page.tsx"
-Cohesion: 0.06
-Nodes (56): getPortfolioData(), Home(), revalidate, ExperienceCard(), formatMonth(), Props, About(), Props (+48 more)
+Cohesion: 0.05
+Nodes (72): metadata, MinecraftPage(), revalidate, getPortfolioData(), Home(), revalidate, metadata, PrivacyPage() (+64 more)
 
 ### Community 1 - "Implementation Status - Portfolio Rebuild"
 Cohesion: 0.05
@@ -102,16 +102,16 @@ Cohesion: 0.05
 Nodes (36): 1. Install Dependencies, 2. Environment Variables, 3. Get Resend API Key, 4. Update Sanity Schema, 5. Run Locally, 6. Test Everything, ✅ Components Enhanced, 📧 Contact Form (+28 more)
 
 ### Community 4 - "run-tests.py"
-Cohesion: 0.08
+Cohesion: 0.09
 Nodes (16): check_rate_limit(), escape_html(), expect(), get_client_ip(), is_allowed_path(), make_store(), _no_first_entry(), _rl_block() (+8 more)
 
 ### Community 5 - "Session Handoff — 2026-06-26 (PM)"
 Cohesion: 0.05
-Nodes (39): Also done this session (no loop run), Current Goal, 📋 Deploy checklist created → `(C) DEPLOY CHECKLIST.md` (project root), Deploy status — code side DONE, 1 blocker left (USER-ONLY), Deploy status — UNCHANGED from 2026-06-29: code side DONE, 1 blocker left (USER-ONLY), Done this session, Next Step, Next Step / state of `(C) TASK.md` (+31 more)
+Nodes (42): Also done this session (no loop run), Current Goal, 📋 Deploy checklist created → `(C) DEPLOY CHECKLIST.md` (project root), Deploy status — code side DONE, 1 blocker left (USER-ONLY), Deploy status — UNCHANGED from 2026-06-29: code side DONE, 1 blocker left (USER-ONLY), Done this session, Next Step, Next Step / state of `(C) TASK.md` (+34 more)
 
 ### Community 6 - "schemaTypes/index.ts"
-Cohesion: 0.14
-Nodes (15): sanity@^6.23.0, @sanity/icons@^3.7.4, sanity, @sanity/icons, apiVersion, dataset, projectId, experienceType (+7 more)
+Cohesion: 0.13
+Nodes (17): sanity@^6.23.0, @sanity/icons@^3.7.4, @sanity/vision@^6.23.0, sanity, @sanity/icons, @sanity/vision, apiVersion, dataset (+9 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.09
@@ -119,19 +119,19 @@ Nodes (21): compilerOptions, allowImportingTsExtensions, allowJs, esModuleIntero
 
 ### Community 8 - "email/route.ts"
 Cohesion: 0.07
-Nodes (31): POST(), rateLimitStore, POST(), Props, Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next (+23 more)
+Nodes (31): POST(), rateLimitStore, POST(), Blocked or waiting on a human, Debt (from `/ponytail-debt`), Done, Next, Now (+23 more)
 
 ### Community 9 - "How to Run & Test the Portfolio Site"
 Cohesion: 0.10
 Nodes (20): 10. Verify live + point domain, 1. Start the local dev server, 2. Security unit tests (Python — quick, no dev server needed), 3. Integration tests (need the dev server running), 4. TypeScript type check, 5. Linter, 6. Manual contact-form test, 7. Production build (must pass with 0 errors before deploy) (+12 more)
 
 ### Community 10 - "dependencies"
-Cohesion: 0.10
-Nodes (20): dependencies, framer-motion@^12.43.0, @hookform/resolvers@^3.3.4, next@^16.4.6, react@^19.3.1, react-dom@^19.3.1, react-hook-form@^7.91.0, resend@^3.0.0 (+12 more)
+Cohesion: 0.12
+Nodes (17): dependencies, @hookform/resolvers@^3.3.4, next@^16.4.6, react@^19.3.1, react-dom@^19.3.1, react-hook-form@^7.91.0, resend@^3.0.0, @sanity/image-url@^2.1.1 (+9 more)
 
 ### Community 11 - "contact.spec.ts"
-Cohesion: 0.33
-Nodes (4): field(), fillValidForm(), @playwright/test@^1.65.0, @playwright/test
+Cohesion: 0.22
+Nodes (6): field(), fillValidForm(), @axe-core/playwright@^4.14.0, @playwright/test@^1.65.0, @axe-core/playwright, @playwright/test
 
 ### Community 12 - "Brief — portfolio-website"
 Cohesion: 0.12
@@ -190,8 +190,8 @@ Cohesion: 0.11
 Nodes (18): GITHUB_TOKEN, runs-on, steps, timeout-minutes, jobs, gitleaks, name, on (+10 more)
 
 ### Community 26 - "orbis-stats.py"
-Cohesion: 0.14
-Nodes (5): build_document(), main(), push(), summarize(), BuildDocument
+Cohesion: 0.11
+Nodes (7): build_document(), main(), push(), read_hidden(), summarize(), BuildDocument, OptOut
 
 ### Community 27 - "pull_request_template.md"
 Cohesion: 0.40
@@ -206,12 +206,12 @@ Cohesion: 0.50
 Nodes (3): Checker Baseline — Known Pre-Existing Failures, Known failures (do NOT block a task's verdict), Notes
 
 ### Community 31 - "ErrorBoundary"
-Cohesion: 0.07
-Nodes (15): ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState, D-001 — 2026-11-11 — Initial stack and setup (imported), D-002 — 2026-11-12 — Delivery workflow, monitoring and scanning, D-003 — 2026-11-12 — Vercel Bot Protection: Challenge → Log, D-004 — 2026-11-12 — DNS moves from Cloudflare to Vercel, D-005 — 2026-11-12 — Redesign to concept A "Query" + four optional hero fields in Sanity (+7 more)
+Cohesion: 0.06
+Nodes (19): ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState, D-001 — 2026-11-11 — Initial stack and setup (imported), D-002 — 2026-11-12 — Delivery workflow, monitoring and scanning, D-003 — 2026-11-12 — Vercel Bot Protection: Challenge → Log, D-004 — 2026-11-12 — DNS moves from Cloudflare to Vercel, D-005 — 2026-11-12 — Redesign to concept A "Query" + four optional hero fields in Sanity (+11 more)
 
 ### Community 32 - "minecraft/page.tsx"
-Cohesion: 0.08
-Nodes (28): metadata, MinecraftPage(), revalidate, GrassBlock(), Crown(), Leaderboard(), LeaderboardPlayer, list (+20 more)
+Cohesion: 0.09
+Nodes (18): Crown(), Leaderboard(), LeaderboardPlayer, list, minuteNow(), row, StatKey, subscribeMinute() (+10 more)
 
 ### Community 39 - "layout.tsx"
 Cohesion: 0.25
@@ -227,16 +227,16 @@ Nodes (15): patterns, actions, npm-minor-patch, dependency-name, update-types, u
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `minecraft/page.tsx` to `app/page.tsx`, `layout.tsx`, `email/route.ts`, `dependencies`, `package.json`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `next` connect `app/page.tsx` to `email/route.ts`, `dependencies`, `package.json`, `layout.tsx`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Should `app/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.058416139716952725 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `app/page.tsx` to `minecraft/page.tsx`, `email/route.ts`, `dependencies`, `package.json`, `ErrorBoundary`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+  _Cohesion score 0.05036630036630037 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `app/page.tsx` to `minecraft/page.tsx`, `dependencies`, `package.json`, `ErrorBoundary`?**
+  _High betweenness centrality (0.036) - this node is a cross-community bridge._
 - **Should `Implementation Status - Portfolio Rebuild` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
 - **Why does `@sentry/nextjs` connect `ErrorBoundary` to `email/route.ts`, `package.json`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **Should `animations.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Should `Portfolio Website Rebuild - Complete Implementation` be split into smaller, more focused modules?**

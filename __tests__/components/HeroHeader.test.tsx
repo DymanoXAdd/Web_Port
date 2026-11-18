@@ -54,7 +54,7 @@ describe("Hero", () => {
     Object.defineProperty(navigator, "clipboard", { value: { writeText }, configurable: true });
 
     render(<Hero pageInfo={mockPageInfo} />);
-    fireEvent.click(screen.getByRole("button", { name: `Copy email ${EMAIL}` }));
+    fireEvent.click(screen.getByRole("button", { name: `${EMAIL} copy` }));
 
     expect(writeText).toHaveBeenCalledWith(EMAIL);
     expect(await screen.findByText("Copied!")).toBeInTheDocument();
@@ -62,7 +62,7 @@ describe("Hero", () => {
 
   it("hides the email button when Sanity has no email (no hard-coded fallback)", () => {
     render(<Hero pageInfo={{ ...mockPageInfo, contactInfo: {} } as unknown as PageInfo} />);
-    expect(screen.queryByRole("button", { name: /Copy email/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /copy$/ })).not.toBeInTheDocument();
   });
 
   it("shows the at-a-glance strip with the Sanity role and the status", () => {
@@ -86,7 +86,7 @@ describe("Header", () => {
 
   it("renders the logo as a link back to the top", () => {
     render(<Header socials={mockSocials} />);
-    expect(screen.getByRole("link", { name: "Luis A Ruiz, back to top" })).toHaveAttribute("href", "/#hero");
+    expect(screen.getByRole("link", { name: "luis@ruiz:~$ Luis A Ruiz, back to top" })).toHaveAttribute("href", "/#hero");
   });
 
   it("renders the nav links with correct hrefs", () => {

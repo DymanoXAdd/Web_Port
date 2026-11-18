@@ -48,3 +48,11 @@ it("current job shows Present", () => {
   render(<ExperienceCard experience={exp({ isCurrentlyWorkingHere: true })} />);
   expect(screen.getByText("Jan 2020 - Present")).toBeInTheDocument();
 });
+
+it("logo always has alt text: the company name, or empty (decorative) when there is none", () => {
+  const { container, unmount } = render(<ExperienceCard experience={exp({})} />);
+  expect(container.querySelector("img")).toHaveAttribute("alt", "Acme logo");
+  unmount();
+  const { container: noName } = render(<ExperienceCard experience={exp({ company: undefined as unknown as string })} />);
+  expect(noName.querySelector("img")).toHaveAttribute("alt", "");
+});

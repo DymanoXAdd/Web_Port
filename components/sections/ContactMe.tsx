@@ -125,7 +125,7 @@ export default function ContactMe({ pageInfo }: Props) {
         >
           {isSubmitting ? "Sending..." : "Send message"}
         </button>
-        <p className="text-center text-[13px] text-muted">Your message is emailed to Luis and not stored.</p>
+        <p className="text-center text-[13px] text-muted">Your message goes to Luis by email. This site keeps no copy.</p>
       </form>
     </div>
   );

@@ -1,3 +1,17 @@
+# Session Handoff — 2026-11-17 — Orbis leaderboard
+
+## State when this session ended
+- **Live on `luisaruiz.xyz/minecraft`:** leaderboard (T-035, PR #42), confirmed by Luis. `main` clean, no open PRs, nothing in "Now".
+- **Server side:** `~/orbis-stats/orbis-stats.py` on Luis's Manjaro box (`luisdev@192.168.1.48`, SSH key via Windows ssh-agent) runs from crontab every 15 min, log `~/orbis-stats/log.txt`; token `~/.config/orbis-stats/token`. A change to `scripts/orbis-stats.py` in the repo must be copied to the box with scp; nothing syncs it.
+- **Still open:** T-028 step 5 (TS 7, blocked on ts-jest), `npm audit` 40 non-critical.
+
+## Things to know next time
+- SSH from Claude: `/c/Windows/System32/OpenSSH/ssh.exe -o BatchMode=yes` in the Bash tool (PowerShell 5.1 mangles quotes; Git Bash's ssh can't see the agent).
+- Pixel fire art is generated: two-frame SVGs in `public/leaderboard-fire.svg` and `leaderboard-embers.svg`, animated in `app/globals.css`.
+- `next dev` drops an untracked `AGENTS.md` and edits `next-env.d.ts`; remove/revert before committing.
+
+---
+
 # Session Handoff — 2026-11-15/16 — major upgrades, Sentry source maps, /minecraft page
 
 ## State when this session ended

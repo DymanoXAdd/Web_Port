@@ -4,6 +4,7 @@ import { sanityFetch } from "@/lib/sanity";
 import { minecraftStatsQuery, socialsQuery } from "@/lib/sanity-queries";
 import { getServerStatus, getSkinUrl, type MinecraftStats } from "@/lib/minecraft";
 import Leaderboard from "@/components/Leaderboard";
+import Footer from "@/components/Footer";
 import type { Social } from "@/types";
 import Header from "@/components/sections/Header";
 import GrassBlock from "@/components/GrassBlock";
@@ -32,7 +33,7 @@ export default async function MinecraftPage() {
   return (
     <>
       <Header socials={socials} />
-      <main className="flex min-h-[calc(100vh-65px)] flex-col items-center justify-center gap-8 bg-ink px-6 py-16 text-fg">
+      <main id="main" className="flex min-h-[calc(100vh-65px)] flex-col items-center justify-center gap-8 bg-ink px-6 py-16 text-fg">
         <GrassBlock className="h-48 w-48 animate-float drop-shadow-[0_24px_24px_rgba(0,0,0,0.5)] sm:h-64 sm:w-64" />
         <div className="flex flex-col items-center gap-3 text-center">
           <h1 className="font-mono text-4xl font-semibold sm:text-5xl">Orbis</h1>
@@ -80,6 +81,8 @@ export default async function MinecraftPage() {
         )}
         {stats && leaders.length > 0 && <Leaderboard players={leaders} updatedAt={stats.updatedAt} />}
       </main>
+      {/* Wording from Mojang's usage guidelines for anything Minecraft-related. */}
+      <Footer note="NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT." />
     </>
   );
 }

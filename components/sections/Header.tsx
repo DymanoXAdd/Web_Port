@@ -23,13 +23,20 @@ export default function Header({ socials }: Props) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-ink/95 backdrop-blur-sm">
+      {/* Hidden until focused: the first Tab lets keyboard users skip the nav (WCAG 2.4.1). */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to content
+      </a>
       <nav className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-6 py-4">
         <Link
           href="/#hero"
-          aria-label="Luis A Ruiz, back to top"
           className="font-mono text-base font-semibold text-fg no-underline"
         >
-          luis@ruiz:~$
+          {/* Name starts with the visible text so voice control can say it (WCAG 2.5.3). */}
+          luis@ruiz:~$<span className="sr-only"> Luis A Ruiz, back to top</span>
         </Link>
 
         <div className="hidden items-center gap-6 text-[15px] md:flex">

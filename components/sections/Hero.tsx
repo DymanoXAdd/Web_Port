@@ -62,11 +62,11 @@ export default function Hero({ pageInfo }: Props) {
             <button
               type="button"
               onClick={handleCopyEmail}
-              aria-label={`Copy email ${email}`}
               className="inline-flex items-center gap-3 rounded-md border border-line-2 px-[22px] py-3.5 font-semibold text-fg transition-colors hover:border-brand-text"
             >
+              {/* The visible text is the accessible name ("<email> copy"), so voice control can say it (WCAG 2.5.3). */}
               <span>{email}</span>
-              <span aria-hidden="true" className="font-mono text-xs text-brand-text">
+              <span className="font-mono text-xs text-brand-text">
                 {copied ? "Copied!" : "copy"}
               </span>
             </button>
