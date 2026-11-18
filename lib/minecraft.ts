@@ -5,6 +5,19 @@ export type ServerStatus = {
   players: { online: number; max: number; list: Player[] } | null;
 };
 
+// One player's lifetime stats, as scripts/orbis-stats.py writes them to Sanity (raw game units).
+export type PlayerStats = {
+  uuid: string;
+  name: string;
+  playTime: number; // ticks, 20 per second
+  deaths: number;
+  mobKills: number;
+  blocksMined: number;
+  distanceCm: number;
+};
+
+export type MinecraftStats = { updatedAt: string; players: PlayerStats[] };
+
 const OFFLINE: ServerStatus = { online: false, players: null };
 
 // The UUID goes into the skin-head image URL, so only accept the real format.
@@ -49,7 +62,8 @@ export async function getServerStatus(
 
 // The player's skin texture from Mojang (avatar sites either block Vercel or return the default head).
 // Cached 1 h; null on any failure, and the page shows a blank square.
-async function getSkinUrl(uuid: string): Promise<string | null> {
+export async function getSkinUrl(uuid: string): Promise<string | null> {
+  if (!UUID.test(uuid)) return null;
   try {
     const res = await fetch(
       `https://sessionserver.mojang.com/session/minecraft/profile/${uuid.replace(/-/g, "")}`,

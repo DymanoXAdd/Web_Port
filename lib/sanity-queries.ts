@@ -67,6 +67,13 @@ export const projectsQuery = `
   }
 `;
 
+export const minecraftStatsQuery = `
+  *[_id == "minecraftStats"][0]{
+    updatedAt,
+    players[]{ uuid, name, playTime, deaths, mobKills, blocksMined, distanceCm }
+  }
+`;
+
 export const socialsQuery = `
   *[_type == "social"] | order(title asc){
     _id,

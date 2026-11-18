@@ -86,6 +86,38 @@
   color: #ffffff;
 }
 
+/* /minecraft leaderboard: a floating crown on #1, and the #1 row bursts into flames as it slides in,
+   then keeps a low ember glow. The reduced-motion rule below stops both. */
+.leaderboard-crown {
+  position: absolute;
+  left: 2px;
+  top: -17px;
+  filter: drop-shadow(0 0 4px rgb(245 197 24 / 0.6));
+  animation: crown-float 2.4s ease-in-out infinite;
+}
+@keyframes crown-float {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-4px) rotate(6deg); }
+}
+.leaderboard-fire {
+  /* flame tongues (repeated radial gradient) over a warm base glow */
+  background-image:
+    radial-gradient(circle at 50% 100%, rgb(255 214 0 / 0.55) 0 25%, rgb(255 90 0 / 0.45) 50%, transparent 72%),
+    linear-gradient(to top, rgb(255 90 0 / 0.35), transparent 70%);
+  background-repeat: repeat-x, no-repeat;
+  background-position: 0 100%, 0 100%;
+  background-size: 28px 18%, 100% 18%;
+  animation: row-burn 1.8s ease-out;
+}
+@keyframes row-burn {
+  0% { background-size: 28px 0%, 100% 0%; }
+  20% { background-size: 22px 140%, 100% 120%; background-position: 6px 100%, 0 100%; }
+  40% { background-size: 30px 95%, 100% 90%; background-position: -4px 100%, 0 100%; }
+  60% { background-size: 24px 125%, 100% 110%; background-position: 10px 100%, 0 100%; }
+  80% { background-size: 28px 70%, 100% 60%; background-position: 2px 100%, 0 100%; }
+  100% { background-size: 28px 18%, 100% 18%; background-position: 0 100%, 0 100%; }
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   * {
