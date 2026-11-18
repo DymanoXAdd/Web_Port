@@ -45,5 +45,24 @@ class BuildDocument(unittest.TestCase):
         }])
 
 
+class OptOut(unittest.TestCase):
+    def test_hidden_players_are_left_out_by_name_or_uuid(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "usercache.json").write_text(json.dumps([{"uuid": A, "name": "Squid"}, {"uuid": B, "name": "Red"}, {"uuid": C, "name": "Snack"}]))
+            stats = root / "world" / "players" / "stats"
+            stats.mkdir(parents=True)
+            for u in (A, B, C):
+                (stats / f"{u}.json").write_text(json.dumps({"stats": {"minecraft:custom": {"minecraft:play_time": 100}}}))
+            hide = root / "hidden.txt"
+            hide.write_text(f"# players who opted out\nsquid\n{B.upper()}  # by uuid\n\n")
+
+            hidden = orbis.read_hidden(hide)
+            doc = orbis.build_document(root, datetime.datetime.now(datetime.timezone.utc), hidden)
+
+        self.assertEqual([p["name"] for p in doc["players"]], ["Snack"])
+        self.assertEqual(orbis.read_hidden(Path(d) / "missing.txt"), set())
+
+
 if __name__ == "__main__":
     unittest.main()

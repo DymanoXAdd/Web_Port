@@ -31,3 +31,6 @@ docs/reference/vault/10 Original Files/
 # Playwright
 /test-results/
 /playwright-report/
+
+# Python
+__pycache__/

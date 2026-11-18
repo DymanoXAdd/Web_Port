@@ -3,6 +3,13 @@
 <!-- One entry per decision, newest first. Never edit an old entry; add a new one
      that supersedes it. Changing anything recorded here needs human approval. -->
 
+## D-008 — 2026-11-17 — Privacy policy and what the site collects
+- Status: approved by Luis, 2026-11-17 (T-036, "do all in one go")
+- Decision: a `/privacy` page, linked from every page's footer, states what the site collects. To keep it true: Sentry (browser and server) sets `dataCollection` off for user info/IP, cookies, headers, request bodies, query params and stack-frame variables (a unit test guards it); the contact form note says the site keeps no copy; Orbis players can opt out of the leaderboard through `~/.config/orbis-stats/hidden.txt` on the server.
+- Why: California's CalOPPA requires a posted policy when a site collects personal info (the contact form), and GDPR expects one. Sentry 11 collects request bodies and stack variables by default, which on the email route would include the form.
+- Alternatives considered: Sentry's project-level "prevent storing IP addresses" toggle (not available in Luis's Sentry); no policy (rejected: CalOPPA).
+- Approved by: Luis
+
 ## D-007 — 2026-11-15 — Sentry source-map upload
 - Status: approved by Luis, 2026-11-15 (T-031 item 3)
 - Decision: supersedes D-006's "no source-map upload". `withSentryConfig` uploads source maps when `SENTRY_AUTH_TOKEN` is set; `SENTRY_ORG` and `SENTRY_PROJECT` name the target. All three live in Vercel Production only. The token is a secret (Sentry org auth token, upload scope only), created and pasted into Vercel by Luis, never committed or sent through chat. Locally, in CI and in previews the upload is skipped.

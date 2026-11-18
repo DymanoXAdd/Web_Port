@@ -30,7 +30,7 @@ export default function ExperienceCard({ experience }: Props) {
         {logo ? (
           <Image
             src={logo}
-            alt={experience.company}
+            alt={experience.company ? `${experience.company} logo` : "" /* no company name: the logo is decoration */}
             width={48}
             height={48}
             className="h-12 w-12 shrink-0 rounded-md border border-line-2 object-cover"

@@ -9,4 +9,14 @@ Sentry.init({
   enabled: !!dsn,
   environment: process.env.NEXT_PUBLIC_VERCEL_ENV ?? "development",
   tracesSampleRate: 0,
+  // Sentry 11 collects user info (IP), cookies, headers, request bodies and stack variables by default;
+  // on the email route that would include the form. Off: error reports carry only the error (privacy policy, T-036).
+  dataCollection: {
+    userInfo: false,
+    cookies: false,
+    httpHeaders: false,
+    httpBodies: [],
+    urlQueryParams: false,
+    stackFrameVariables: false,
+  },
 });

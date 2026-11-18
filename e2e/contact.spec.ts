@@ -8,7 +8,7 @@ async function openContact(page: Page) {
   await expect(page.getByRole("button", { name: "Send message" })).toBeVisible();
 }
 
-// exact: the hero's "Copy email …" button would otherwise also match "Email".
+// exact: the hero's "<email> copy" button would otherwise also match "Email".
 const field = (page: Page, label: string) => page.getByLabel(label, { exact: true });
 
 async function fillValidForm(page: Page) {

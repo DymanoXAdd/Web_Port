@@ -21,6 +21,7 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import ContactMe from "@/components/sections/ContactMe";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
+import Footer from "@/components/Footer";
 
 export const revalidate = 60; // ISR - revalidate every 60 seconds
 
@@ -55,7 +56,7 @@ export default async function Home() {
   return (
     <ErrorBoundary>
       <Header socials={socials} />
-      <main className="min-h-screen bg-ink text-fg">
+      <main id="main" className="min-h-screen bg-ink text-fg">
         <section id="hero">
           <Hero pageInfo={pageInfo} />
         </section>
@@ -75,6 +76,7 @@ export default async function Home() {
           <ContactMe pageInfo={pageInfo} />
         </section>
       </main>
+      <Footer />
     </ErrorBoundary>
   );
 }

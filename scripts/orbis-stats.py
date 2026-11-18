@@ -8,7 +8,9 @@ replaces the single Sanity document "minecraftStats". Standard library only.
     python3 orbis-stats.py --server-dir "/home/luisdev/Desktop/Minecraft Server" \
         --project tl1sng9j --dataset production --token-file ~/.config/orbis-stats/token
 
---dry-run prints the document instead of sending it. The token file must hold a Sanity
+--dry-run prints the document instead of sending it. Players listed in --hide-file (default
+~/.config/orbis-stats/hidden.txt, one username or UUID per line) are left out: the opt-out the
+site's privacy policy promises. The token file must hold a Sanity
 API token with Editor rights and nothing else; keep it chmod 600.
 """
 import argparse
@@ -40,7 +42,15 @@ def summarize(stats: dict) -> dict:
     }
 
 
-def build_document(server_dir: Path, now: datetime.datetime) -> dict:
+def read_hidden(path: Path) -> set:
+    """Players who opted out of the leaderboard: one username or UUID per line, # starts a comment."""
+    if not path.exists():
+        return set()
+    lines = (line.split("#", 1)[0].strip().lower() for line in path.read_text(encoding="utf-8").splitlines())
+    return {line for line in lines if line}
+
+
+def build_document(server_dir: Path, now: datetime.datetime, hidden: set = frozenset()) -> dict:
     level = "world"
     props = server_dir / "server.properties"
     if props.exists():
@@ -61,6 +71,8 @@ def build_document(server_dir: Path, now: datetime.datetime) -> dict:
             print(f"skipping {f.name}: {e}", file=sys.stderr)
             continue
         if numbers["playTime"] <= 0 or uuid not in names:  # never played, or no name to show
+            continue
+        if uuid.lower() in hidden or names[uuid].lower() in hidden:  # opted out (privacy policy)
             continue
         players.append({"_key": uuid, "uuid": uuid, "name": names[uuid], **numbers})
 
@@ -89,10 +101,12 @@ def main() -> int:
     p.add_argument("--project", required=True)
     p.add_argument("--dataset", required=True)
     p.add_argument("--token-file", type=Path, default=Path("~/.config/orbis-stats/token"))
+    p.add_argument("--hide-file", type=Path, default=Path("~/.config/orbis-stats/hidden.txt"))
     p.add_argument("--dry-run", action="store_true")
     a = p.parse_args()
 
-    doc = build_document(a.server_dir.expanduser(), datetime.datetime.now(datetime.timezone.utc))
+    hidden = read_hidden(a.hide_file.expanduser())
+    doc = build_document(a.server_dir.expanduser(), datetime.datetime.now(datetime.timezone.utc), hidden)
     if a.dry_run:
         print(json.dumps(doc, indent=2))
         return 0
