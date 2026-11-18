@@ -100,22 +100,31 @@
   50% { transform: translateY(-4px) rotate(6deg); }
 }
 .leaderboard-fire {
-  /* flame tongues (repeated radial gradient) over a warm base glow */
-  background-image:
-    radial-gradient(circle at 50% 100%, rgb(255 214 0 / 0.55) 0 25%, rgb(255 90 0 / 0.45) 50%, transparent 72%),
-    linear-gradient(to top, rgb(255 90 0 / 0.35), transparent 70%);
-  background-repeat: repeat-x, no-repeat;
-  background-position: 0 100%, 0 100%;
-  background-size: 28px 18%, 100% 18%;
-  animation: row-burn 1.8s ease-out;
+  /* public/leaderboard-fire.svg (48px tall) and leaderboard-embers.svg (16px tall): each holds two
+     32px pixel frames side by side, 4px per pixel. Shifting x by 32px swaps frames (flicker); the
+     flames' y offset is how much of them shows, and they sink out of sight to leave the embers. */
+  background-image: url("/leaderboard-fire.svg"), url("/leaderboard-embers.svg");
+  background-repeat: repeat-x;
+  background-size: 64px 48px, 64px 16px;
+  background-position: 0 calc(100% + 48px), 0 100%;
+  animation:
+    pixel-burn 1.6s steps(1, end),
+    ember-flicker 0.5s steps(1, end) 1.6s infinite;
 }
-@keyframes row-burn {
-  0% { background-size: 28px 0%, 100% 0%; }
-  20% { background-size: 22px 140%, 100% 120%; background-position: 6px 100%, 0 100%; }
-  40% { background-size: 30px 95%, 100% 90%; background-position: -4px 100%, 0 100%; }
-  60% { background-size: 24px 125%, 100% 110%; background-position: 10px 100%, 0 100%; }
-  80% { background-size: 28px 70%, 100% 60%; background-position: 2px 100%, 0 100%; }
-  100% { background-size: 28px 18%, 100% 18%; background-position: 0 100%, 0 100%; }
+.leaderboard-fire td { text-shadow: 0 1px 0 #000, 0 0 4px #000; } /* names stay readable over the flames */
+@keyframes pixel-burn {
+  0% { background-position: 0 calc(100% + 48px), 0 100%; }
+  10% { background-position: 32px calc(100% + 24px), 32px 100%; }
+  20% { background-position: 0 calc(100% + 4px), 0 100%; }
+  35% { background-position: 32px 100%, 32px 100%; }
+  50% { background-position: 0 calc(100% + 8px), 0 100%; }
+  65% { background-position: 32px calc(100% + 16px), 32px 100%; }
+  80% { background-position: 0 calc(100% + 32px), 0 100%; }
+  100% { background-position: 32px calc(100% + 48px), 32px 100%; }
+}
+@keyframes ember-flicker {
+  0% { background-position: 0 calc(100% + 48px), 0 100%; }
+  50% { background-position: 0 calc(100% + 48px), 32px 100%; }
 }
 
 /* Reduce motion for users who prefer it */
