@@ -25,3 +25,17 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>;
+
+// Minecraft Java usernames: 3-16 letters, digits or underscore. The server script re-checks this
+// before it puts a name into an RCON command.
+export const MC_USERNAME = /^[A-Za-z0-9_]{3,16}$/;
+
+export const whitelistRequestSchema = z.object({
+  username: z
+    .string()
+    .trim()
+    .regex(MC_USERNAME, "Enter your Minecraft Java username (3-16 letters, numbers or _)"),
+  note: z.string().trim().max(200, "Keep the note under 200 characters").optional(),
+});
+
+export type WhitelistRequestInput = z.infer<typeof whitelistRequestSchema>;

@@ -5,6 +5,7 @@ import { minecraftStatsQuery, socialsQuery } from "@/lib/sanity-queries";
 import { getServerStatus, getSkinUrl, type MinecraftStats } from "@/lib/minecraft";
 import Leaderboard from "@/components/Leaderboard";
 import Footer from "@/components/Footer";
+import WhitelistForm from "@/components/WhitelistForm";
 import type { Social } from "@/types";
 import Header from "@/components/sections/Header";
 import GrassBlock from "@/components/GrassBlock";
@@ -80,6 +81,7 @@ export default async function MinecraftPage() {
           </table>
         )}
         {stats && leaders.length > 0 && <Leaderboard players={leaders} updatedAt={stats.updatedAt} />}
+        <WhitelistForm />
       </main>
       {/* Wording from Mojang's usage guidelines for anything Minecraft-related. */}
       <Footer note="NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT." />

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 // Keep in step with what the site actually does: contact form (Resend), Sentry, Vercel Analytics and
-// logs, and the Orbis leaderboard. Change "Last updated" with every edit.
+// logs, the Orbis leaderboard and join requests. Change "Last updated" with every edit.
 export default async function PrivacyPage() {
   const [socials, pageInfo] = await Promise.all([
     sanityFetch<Social[]>({ query: socialsQuery }).catch(() => [] as Social[]),
@@ -74,6 +74,14 @@ export default async function PrivacyPage() {
             The <Link href="/minecraft" className="text-brand-text underline underline-offset-4">Orbis page</Link> shows the
             usernames, skins and game stats of players on Luis&apos;s Minecraft server. If you play there and want to be
             left off, ask Luis and you will be removed at the next update, within 15 minutes.
+          </p>
+
+          <h2 className={h2}>Requests to join the Minecraft server</h2>
+          <p>
+            The join form asks for your Minecraft username and an optional note. The username is checked with Mojang
+            (the company behind Minecraft) to make sure the account exists. The request is stored in Sanity, where this
+            site&apos;s content lives, and is not public. Luis gets an email about it. Once he approves or denies it, the
+            request is deleted.
           </p>
 
           <h2 className={h2}>Your rights</h2>

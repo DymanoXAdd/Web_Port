@@ -86,3 +86,16 @@ export async function sendContactEmail(data: ContactFormInput, recipientEmail: s
     throw error;
   }
 }
+
+// Tells Luis someone asked to join Orbis. Approval happens in Sanity Studio, not by replying.
+export async function sendWhitelistNotice(username: string, note: string, recipientEmail: string) {
+  const result = await resend().emails.send({
+    from: "noreply@luisaruiz.xyz",
+    to: recipientEmail,
+    subject: `Orbis join request: ${username}`,
+    html: `<p><strong>${escapeHtml(username)}</strong> asked to join Orbis.</p>
+      ${note ? `<p>Note: ${escapeHtml(note)}</p>` : ""}
+      <p>Approve or delete it in <a href="https://luisaruiz.xyz/studio">Sanity Studio</a> under Whitelist requests.</p>`,
+  });
+  if (result.error) throw new Error(result.error.message);
+}

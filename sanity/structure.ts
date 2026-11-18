@@ -5,6 +5,8 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content')
     .items([
+      S.documentTypeListItem('whitelistRequest').title('Whitelist requests'),
+      S.divider(),
       S.documentTypeListItem('pageInfo').title('Page Info'),
       S.documentTypeListItem('skill').title('Skill'),
       S.documentTypeListItem('social').title('Social'),
@@ -14,7 +16,7 @@ export const structure: StructureResolver = (S) =>
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
-          !['pageInfo', 'skill', 'social', 'experience', 'project'].includes(
+          !['whitelistRequest', 'pageInfo', 'skill', 'social', 'experience', 'project'].includes(
             item.getId()!
           )
       ),

@@ -3,6 +3,13 @@
 <!-- One entry per decision, newest first. Never edit an old entry; add a new one
      that supersedes it. Changing anything recorded here needs human approval. -->
 
+## D-009 — 2026-11-17 — Orbis whitelist and join requests
+- Status: approved by Luis, 2026-11-17 (T-037)
+- Decision: Orbis runs with `white-list` and `enforce-whitelist` on, seeded with the 8 players in the stats files except tunestay and Kivl. `/api/whitelist` checks the username with Mojang and saves a pending `whitelistRequest` in Sanity with id `whitelist-requests.<uuid>` (the dotted id keeps it out of the public API; checked live), then emails Luis. Luis approves by setting Status to Approved and publishing in Studio. `scripts/orbis-stats.py` (cron every 5 min) runs `whitelist add` over RCON for approved requests and deletes them. RCON is on (port 25575, password in `~/.config/orbis-stats/rcon`, 600) and must not be port-forwarded. New secret: `SANITY_WRITE_TOKEN` (Sanity Editor) in Vercel Production + Preview, server-only (`lib/sanity-write.ts`).
+- Why: Luis wants the server closed to strangers but open to friends without SSH for every approval.
+- Alternatives considered: email-only requests with Luis typing `whitelist add` in a console (no console attached to the server); a public request list (rejected: usernames and notes would be readable by anyone).
+- Approved by: Luis
+
 ## D-008 — 2026-11-17 — Privacy policy and what the site collects
 - Status: approved by Luis, 2026-11-17 (T-036, "do all in one go")
 - Decision: a `/privacy` page, linked from every page's footer, states what the site collects. To keep it true: Sentry (browser and server) sets `dataCollection` off for user info/IP, cookies, headers, request bodies, query params and stack-frame variables (a unit test guards it); the contact form note says the site keeps no copy; Orbis players can opt out of the leaderboard through `~/.config/orbis-stats/hidden.txt` on the server.
