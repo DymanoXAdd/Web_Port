@@ -37,6 +37,7 @@ Stage: production · Updated: 2026-11-15
   - Security basics regulators expect: HTTPS, headers, rate limits (mostly done, T-025/T-018)
 
 ## Blocked or waiting on a human
+- [ ] T-038 `luisaruiz.xyz` blocked on Spectrum home internet (Spectrum Security Shield; works on cellular). 2026-11-23: DNS ruled out (Spectrum DNS and 1.1.1.1 both return Vercel's addresses), so Security Shield blocks the connection by domain name, likely a low reputation score for a young `.xyz` domain. Luis submitted a recategorization request. Waiting on the result; then recheck at home with Security Shield on. If still blocked: report the false positive to Spectrum and allowlist in My Spectrum → Security → Security Shield. Note: plain `nslookup` shows a bogus `.lan` answer from the router; use a trailing dot (`nslookup luisaruiz.xyz.`)
 - [ ] T-028 step 5, TypeScript 7: blocked upstream. ts-jest 29.4.15 (latest) peers `typescript >=4.3 <7` (checked 2026-11-15). Stay on 5.9; recheck when ts-jest ships TS 7 support. Steps 1–4 shipped (PRs #30, #32, #33, #34).
 
 ## T-028 plan (approved 2026-11-15)
