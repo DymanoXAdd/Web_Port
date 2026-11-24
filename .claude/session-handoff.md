@@ -3,7 +3,7 @@
 ## State when this session ended
 - **Shipped today, all live:** T-035 leaderboard with crown + pixel fire (PR #42), T-036 compliance fixes: `/privacy`, footer, Mojang notice, skip link, alt text, font licenses, Sentry `dataCollection` off, axe scan in E2E (PR #43, D-008), T-037 Orbis whitelist + "request to join" form (PR #45, D-009). Luis confirmed each on the preview.
 - `main` clean, no open PRs, nothing in "Now". Only open task: T-028 step 5 (TS 7, blocked on ts-jest). `npm audit` 40 non-critical, not a task yet.
-- **Orbis server** (Luis's Manjaro box `luisdev@192.168.1.48`, SSH key via Windows ssh-agent): whitelist on (8 players; tunestay and Kivl left off on purpose), RCON on 25575 (password `~/.config/orbis-stats/rcon`; must not be port-forwarded). `~/orbis-stats/orbis-stats.py` runs from crontab every 5 min: pushes stats, whitelists approved requests, honours `~/.config/orbis-stats/hidden.txt` opt-outs. Log `~/orbis-stats/log.txt`. Backups `server.properties.bak-2026-11-17`, `whitelist.json.bak-2026-11-17`.
+- **Orbis server** (Luis's Manjaro box, user `luisdev`, SSH key via Windows ssh-agent; ask Luis for its address): whitelist on (8 players; tunestay and Kivl left off on purpose), RCON on 25575 (password `~/.config/orbis-stats/rcon`; must not be port-forwarded). `~/orbis-stats/orbis-stats.py` runs from crontab every 5 min: pushes stats, whitelists approved requests, honours `~/.config/orbis-stats/hidden.txt` opt-outs. Log `~/orbis-stats/log.txt`. Backups `server.properties.bak-2026-11-17`, `whitelist.json.bak-2026-11-17`.
 - A change to `scripts/orbis-stats.py` in the repo must be copied to the box with scp; nothing syncs it.
 
 ## Things to know next time
